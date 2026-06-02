@@ -64,7 +64,7 @@ function DeviceCard({
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className={`group relative overflow-hidden rounded-3xl border border-white/8 bg-white/[0.04] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/30 ${className}`}
+      className={`group relative overflow-hidden rounded-[1.75rem] border border-white/6 bg-white/[0.02] transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/25 hover:shadow-[0_20px_60px_-20px_oklch(0_0_0/0.6)] ${className}`}
     >
       <Image
         src={device.image}
@@ -97,7 +97,7 @@ function DeviceCard({
 
 export function Compatibility() {
   return (
-    <section id="compatibilidade" className="relative py-28 sm:py-36">
+    <section id="compatibilidade" className="relative py-32 sm:py-44">
       {/* Ambient glow */}
       <div
         aria-hidden

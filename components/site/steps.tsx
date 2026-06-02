@@ -55,7 +55,7 @@ function StepCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.7, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative flex flex-col overflow-hidden rounded-3xl border border-white/8 bg-white/[0.04] backdrop-blur-sm transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/30 hover:bg-white/[0.07]"
+      className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/6 bg-white/[0.02] transition-all duration-500 hover:-translate-y-2 hover:border-primary/25 hover:shadow-[0_24px_70px_-24px_oklch(0_0_0/0.6)]"
     >
       {/* Image */}
       <div className="relative h-52 overflow-hidden sm:h-56">
@@ -81,9 +81,9 @@ function StepCard({
       </div>
 
       {/* Content */}
-      <div className="flex flex-col p-7">
-        <h3 className="text-xl font-semibold text-white">{step.title}</h3>
-        <p className="mt-3 text-[15px] leading-relaxed text-white/55">{step.desc}</p>
+      <div className="flex flex-col p-8">
+        <h3 className="text-xl font-semibold tracking-[-0.01em] text-white">{step.title}</h3>
+        <p className="mt-3.5 text-[0.9rem] leading-[1.65] text-white/50">{step.desc}</p>
 
         {/* Connector dot */}
         {index < STEPS.length - 1 && (
@@ -107,7 +107,7 @@ export function Steps() {
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"])
 
   return (
-    <section id="como-funciona" ref={sectionRef} className="relative overflow-hidden py-28 sm:py-36">
+    <section id="como-funciona" ref={sectionRef} className="relative overflow-hidden py-32 sm:py-44">
       {/* Ambient background glow */}
       <motion.div
         style={{ y: bgY }}

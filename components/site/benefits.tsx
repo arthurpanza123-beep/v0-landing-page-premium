@@ -15,7 +15,7 @@ const CHAT_MSGS = [
 
 export function Benefits() {
   return (
-    <section id="beneficios" className="relative py-28 sm:py-36">
+    <section id="beneficios" className="relative py-32 sm:py-44">
       {/* Ambient */}
       <div
         aria-hidden

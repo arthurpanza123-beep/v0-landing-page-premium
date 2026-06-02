@@ -101,7 +101,7 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section className="relative py-28 sm:py-36">
+    <section className="relative py-32 sm:py-44">
       {/* Ambient */}
       <div
         aria-hidden

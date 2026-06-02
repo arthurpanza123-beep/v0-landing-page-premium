@@ -68,36 +68,41 @@ function CatalogCard({
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.55, delay: index * 0.09, ease: [0.22, 1, 0.36, 1] }}
-      className={`group relative overflow-hidden rounded-3xl border border-white/8 bg-white/[0.03] transition-all duration-500 hover:-translate-y-1 hover:border-primary/25 ${className}`}
+      className={`group relative overflow-hidden rounded-[1.75rem] border border-white/6 bg-white/[0.02] transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/20 hover:shadow-[0_20px_60px_-20px_oklch(0_0_0/0.6)] ${className}`}
     >
       <Image
         src={item.image}
         alt={item.label}
         fill
-        className="object-cover transition-transform duration-700 group-hover:scale-105"
+        className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
       />
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
+      {/* Overlay — mais profundidade e menos opacidade no topo */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 via-50% to-black/5" />
 
-      {/* Play button — visible on hover */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-        <div className="flex size-14 items-center justify-center rounded-full border border-white/20 bg-white/10 backdrop-blur-md">
-          <Play className="size-5 fill-white text-white" />
+      {/* Shine on hover */}
+      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        style={{ background: "linear-gradient(135deg, transparent 40%, oklch(1 0 0 / 0.04) 50%, transparent 60%)" }}
+      />
+
+      {/* Play button */}
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
+        <div className="flex size-16 items-center justify-center rounded-full border border-white/15 bg-black/40 backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
+          <Play className="size-6 fill-white/90 text-white/90" />
         </div>
       </div>
 
       {/* Content */}
-      <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
+      <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-7">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <item.icon className="size-4 text-primary" />
-            <span className="text-sm font-bold text-white">{item.label}</span>
+            <span className="text-[0.9rem] font-semibold text-white">{item.label}</span>
           </div>
-          <span className="rounded-full border border-primary/30 bg-primary/15 px-2.5 py-0.5 text-[11px] font-semibold text-primary">
+          <span className="rounded-full border border-primary/25 bg-primary/12 px-3 py-1 text-[11px] font-semibold text-primary">
             {item.count}
           </span>
         </div>
-        <p className="mt-1.5 text-[13px] leading-snug text-white/55">{item.desc}</p>
+        <p className="mt-2 text-[13.5px] leading-snug text-white/50">{item.desc}</p>
       </div>
     </motion.div>
   )
@@ -105,12 +110,12 @@ function CatalogCard({
 
 export function Catalog() {
   return (
-    <section id="catalogo" className="relative py-28 sm:py-36">
+    <section id="catalogo" className="relative py-32 sm:py-44">
       {/* Ambient glow */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-0 top-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-20"
-        style={{ background: "radial-gradient(ellipse, oklch(0.62 0.18 255 / 0.4) 0%, transparent 70%)", filter: "blur(90px)" }}
+        className="pointer-events-none absolute left-0 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-15"
+        style={{ background: "radial-gradient(ellipse, oklch(0.62 0.18 255 / 0.5) 0%, transparent 70%)", filter: "blur(100px)" }}
       />
 
       <Container>
@@ -151,7 +156,7 @@ export function Catalog() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="mt-6 grid grid-cols-2 divide-x divide-white/8 overflow-hidden rounded-3xl border border-white/8 bg-white/[0.04] backdrop-blur-sm sm:grid-cols-4"
+          className="mt-7 grid grid-cols-2 divide-x divide-white/6 overflow-hidden rounded-[1.5rem] border border-white/6 bg-white/[0.03] sm:grid-cols-4"
         >
           {[
             { value: "+5.000", label: "Filmes" },
@@ -159,9 +164,9 @@ export function Catalog() {
             { value: "+200", label: "Canais ao vivo" },
             { value: "4K", label: "Ultra HD" },
           ].map((stat, i) => (
-            <div key={stat.label} className={`flex flex-col items-center py-6 ${i > 1 ? "hidden sm:flex" : ""}`}>
-              <span className="text-2xl font-bold text-white sm:text-3xl">{stat.value}</span>
-              <span className="mt-1 text-xs text-white/40">{stat.label}</span>
+            <div key={stat.label} className={`flex flex-col items-center py-7 ${i > 1 ? "hidden sm:flex" : ""}`}>
+              <span className="text-2xl font-bold tracking-[-0.02em] text-white sm:text-[1.75rem]">{stat.value}</span>
+              <span className="mt-1.5 text-[0.8rem] text-white/35">{stat.label}</span>
             </div>
           ))}
         </motion.div>

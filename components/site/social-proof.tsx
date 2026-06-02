@@ -119,28 +119,28 @@ function TestimonialCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className="group flex flex-col justify-between rounded-3xl border border-white/8 bg-white/[0.04] p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-primary/25 hover:bg-white/[0.07]"
+      className="group flex flex-col justify-between rounded-[1.5rem] border border-white/6 bg-white/[0.03] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-primary/18 hover:bg-white/[0.05]"
     >
       {/* Stars */}
-      <div className="flex gap-0.5">
+      <div className="flex gap-1">
         {Array.from({ length: t.rating }).map((_, i) => (
-          <Star key={i} className="size-4 fill-amber-400 text-amber-400" />
+          <Star key={i} className="size-[0.9rem] fill-amber-400 text-amber-400" />
         ))}
       </div>
 
       {/* Quote */}
-      <p className="mt-4 text-[15px] leading-relaxed text-white/75">&ldquo;{t.text}&rdquo;</p>
+      <p className="mt-5 text-[0.9rem] leading-[1.7] text-white/70">&ldquo;{t.text}&rdquo;</p>
 
       {/* Author */}
-      <div className="mt-6 flex items-center gap-3">
-        <div className="flex size-10 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/15 text-sm font-bold text-primary">
+      <div className="mt-7 flex items-center gap-3.5">
+        <div className="flex size-11 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-primary/10 text-[0.8rem] font-bold text-primary">
           {t.initials}
         </div>
         <div>
-          <p className="text-sm font-semibold text-white">{t.name}</p>
-          <p className="text-xs text-white/40">{t.location}</p>
+          <p className="text-[0.9rem] font-semibold text-white">{t.name}</p>
+          <p className="mt-0.5 text-[0.8rem] text-white/35">{t.location}</p>
         </div>
-        <span className="ml-auto flex size-6 items-center justify-center rounded-full bg-whatsapp/20">
+        <span className="ml-auto flex size-7 items-center justify-center rounded-full bg-whatsapp/15">
           <Star className="size-3 fill-whatsapp text-whatsapp" />
         </span>
       </div>
@@ -150,7 +150,7 @@ function TestimonialCard({
 
 export function SocialProof() {
   return (
-    <section id="depoimentos" className="relative py-28 sm:py-36">
+    <section id="depoimentos" className="relative py-32 sm:py-44">
       {/* Background image */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <Image
@@ -183,7 +183,7 @@ export function SocialProof() {
         </div>
 
         {/* Stats */}
-        <div className="mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6">
+        <div className="mx-auto mt-16 grid max-w-4xl grid-cols-2 gap-5 sm:grid-cols-4 sm:gap-6">
           {STATS.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -191,22 +191,22 @@ export function SocialProof() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: i * 0.1 }}
-              className="flex flex-col items-center rounded-3xl border border-white/8 bg-white/[0.05] px-4 py-7 text-center backdrop-blur-sm"
+              className="group flex flex-col items-center rounded-[1.5rem] border border-white/6 bg-white/[0.03] px-4 py-8 text-center transition-all duration-500 hover:border-primary/20 hover:bg-white/[0.05]"
             >
-              <span className="text-3xl font-bold text-white sm:text-4xl">
+              <span className="text-[2rem] font-bold tracking-[-0.02em] text-white sm:text-[2.5rem]">
                 <AnimatedCount
                   target={stat.value}
                   suffix={stat.suffix}
                   isFloat={stat.isFloat}
                 />
               </span>
-              <span className="mt-2 text-[13px] text-white/45">{stat.label}</span>
+              <span className="mt-2.5 text-[0.8rem] text-white/40">{stat.label}</span>
             </motion.div>
           ))}
         </div>
 
         {/* Testimonials grid */}
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {TESTIMONIALS.map((t, i) => (
             <TestimonialCard key={t.name} t={t} index={i} />
           ))}

@@ -10,10 +10,10 @@ import { cn } from "@/lib/utils"
 
 export function Plans() {
   return (
-    <section id="planos" className="relative py-28 sm:py-36">
+    <section id="planos" className="relative py-32 sm:py-44">
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/4 -z-10 h-[520px] w-[820px] -translate-x-1/2 rounded-full bg-primary/10 blur-[160px]"
+        className="pointer-events-none absolute left-1/2 top-1/4 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/8 blur-[180px]"
       />
       <Container>
         <Reveal>
@@ -29,16 +29,16 @@ export function Plans() {
           />
         </Reveal>
 
-        <Stagger className="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 lg:items-center">
+        <Stagger className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:items-center lg:gap-5">
           {PLANS.map((plan) => (
             <motion.div
               key={plan.id}
               variants={staggerItem}
               className={cn(
-                "group relative flex flex-col rounded-3xl border p-7 transition-all duration-300",
+                "group relative flex flex-col rounded-[1.75rem] border p-8 transition-all duration-500",
                 plan.highlight
-                  ? "ring-gradient z-10 border-primary/50 bg-gradient-to-b from-primary/15 via-card to-card shadow-glow lg:scale-[1.06]"
-                  : "border-border/70 bg-card/50 hover:-translate-y-1 hover:border-primary/30 hover:bg-card",
+                  ? "ring-gradient z-10 border-primary/40 bg-gradient-to-b from-primary/12 via-card to-card shadow-[0_20px_70px_-20px_oklch(0.62_0.18_255/0.35)] lg:scale-[1.04]"
+                  : "border-border/50 bg-card/40 hover:-translate-y-1.5 hover:border-primary/25 hover:bg-card/70 hover:shadow-[0_16px_50px_-16px_oklch(0_0_0/0.5)]",
               )}
             >
               {plan.badge && (
@@ -52,17 +52,17 @@ export function Plans() {
                 {plan.name}
               </p>
 
-              <div className="mt-5 flex items-baseline gap-1.5">
-                <span className="text-base font-medium text-muted-foreground">R$</span>
+              <div className="mt-6 flex items-baseline gap-1">
+                <span className="text-sm font-medium text-muted-foreground/70">R$</span>
                 <span
                   className={cn(
-                    "text-6xl font-bold tracking-tight",
+                    "text-[3.5rem] font-bold tracking-[-0.03em] leading-none",
                     plan.highlight && "text-gradient-blue",
                   )}
                 >
                   {plan.price}
                 </span>
-                <span className="text-sm text-muted-foreground">{plan.period}</span>
+                <span className="ml-1 text-sm text-muted-foreground/60">{plan.period}</span>
               </div>
 
               <p className="mt-1.5 h-4 text-xs font-medium text-primary/90">
@@ -73,18 +73,18 @@ export function Plans() {
                 {plan.description}
               </p>
 
-              <ul className="mt-7 flex flex-col gap-3.5 border-t border-border/60 pt-7">
+              <ul className="mt-8 flex flex-col gap-4 border-t border-border/40 pt-8">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-3 text-[15px]">
+                  <li key={feature} className="flex items-center gap-3 text-[14.5px] text-foreground/85">
                     <span
                       className={cn(
-                        "flex size-5 shrink-0 items-center justify-center rounded-full",
+                        "flex size-[1.125rem] shrink-0 items-center justify-center rounded-full",
                         plan.highlight
                           ? "bg-primary text-primary-foreground"
-                          : "bg-primary/15 text-primary",
+                          : "bg-primary/12 text-primary",
                       )}
                     >
-                      <Check className="size-3" strokeWidth={3} />
+                      <Check className="size-2.5" strokeWidth={3} />
                     </span>
                     {feature}
                   </li>
@@ -95,10 +95,10 @@ export function Plans() {
                 asChild
                 size="lg"
                 className={cn(
-                  "mt-8 h-12 w-full rounded-xl text-sm font-semibold",
+                  "mt-8 h-[3.25rem] w-full rounded-2xl text-[0.9rem] font-semibold transition-all duration-300",
                   plan.highlight
-                    ? "bg-primary text-primary-foreground shadow-glow hover:bg-primary/90"
-                    : "bg-secondary text-secondary-foreground hover:bg-accent",
+                    ? "bg-primary text-primary-foreground shadow-[0_8px_30px_-6px_oklch(0.62_0.18_255/0.5)] hover:bg-primary/90 hover:shadow-[0_12px_40px_-6px_oklch(0.62_0.18_255/0.6)]"
+                    : "bg-secondary/80 text-secondary-foreground hover:bg-accent",
                 )}
               >
                 <a
