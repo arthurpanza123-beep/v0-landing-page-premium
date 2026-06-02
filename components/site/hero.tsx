@@ -7,8 +7,6 @@ import {
   Clock,
   Headphones,
   BadgeCheck,
-  Sparkles,
-  Zap,
 } from "lucide-react"
 import Image from "next/image"
 import { useRef } from "react"
@@ -16,7 +14,7 @@ import { WHATSAPP_DEFAULT, whatsappLink } from "@/lib/site"
 import { AnnouncementBadge } from "./micro/announcement-badge"
 import { StatusCard } from "./micro/status-card"
 import { GlowButton } from "./micro/glow-button"
-import { FloatingElement, GlowOrb } from "./micro/floating-element"
+import { FloatingElement } from "./micro/floating-element"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -27,88 +25,91 @@ export function Hero() {
     offset: ["start start", "end start"],
   })
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"])
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15])
-  const contentY = useTransform(scrollYProgress, [0, 0.5], ["0%", "10%"])
+  const visualY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"])
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"])
+  const waveOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.3])
 
   return (
     <section
       ref={sectionRef}
       id="inicio"
-      className="relative min-h-[100svh] overflow-hidden"
+      className="relative min-h-[100svh] overflow-hidden bg-background"
     >
-      {/* Premium cinematic room background with parallax */}
+      {/* Deep black base */}
+      <div className="absolute inset-0 -z-40 bg-background" />
+
+      {/* Cinematic blue light wave at the bottom */}
       <motion.div
-        style={{ y: bgY, scale: bgScale }}
-        className="absolute inset-0 -z-30"
+        style={{ opacity: waveOpacity }}
+        className="pointer-events-none absolute inset-x-0 bottom-0 -z-30 h-[75%]"
       >
         <Image
-          src="/images/hero-scene-v4.png"
+          src="/images/hero-wave.png"
           alt=""
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover object-bottom opacity-80"
           quality={95}
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-background/20 to-background" />
       </motion.div>
 
-      {/* Multi-layer gradient overlays for depth and readability */}
-      <div className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_top_right,transparent_20%,var(--background)_75%)]" />
-      <div className="absolute inset-0 -z-20 bg-gradient-to-r from-background via-background/95 to-transparent" />
-      <div className="absolute inset-0 -z-20 bg-gradient-to-t from-background via-background/50 to-background/80" />
-      <div className="absolute inset-0 -z-20 bg-gradient-to-b from-background/60 via-transparent to-background" />
+      {/* Guaranteed cinematic blue glow sweeping the lower portion */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-30 h-[55%] bg-[radial-gradient(120%_100%_at_70%_120%,oklch(0.55_0.2_255/0.55)_0%,oklch(0.4_0.18_258/0.25)_35%,transparent_70%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-30 h-44 bg-gradient-to-t from-primary/25 to-transparent blur-2xl" />
 
-      {/* Premium ambient glow orbs */}
-      <GlowOrb color="primary" size="lg" className="right-1/4 top-1/4" intensity={0.15} />
-      <GlowOrb color="warm" size="md" className="bottom-1/3 left-0" intensity={0.08} />
-      <GlowOrb color="accent" size="sm" className="right-10 top-1/2" intensity={0.1} />
+      {/* Premium grain texture */}
+      <div className="pointer-events-none absolute inset-0 -z-20 opacity-[0.5] bg-grid mix-blend-soft-light" />
 
-      {/* Content wrapper with proper vertical centering */}
-      <motion.div style={{ y: contentY }} className="relative flex min-h-[100svh] items-center pt-20 pb-16 lg:pt-24">
-        <div className="mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12">
-          <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.25fr] lg:gap-8 xl:gap-16">
-            {/* LEFT — Premium copy section */}
-            <div className="relative z-10 flex flex-col items-start">
-              {/* Premium announcement badge */}
-              <AnnouncementBadge pulse>
-                Atendimento online agora
-              </AnnouncementBadge>
+      {/* Breathing ambient glow behind the visual */}
+      <motion.div
+        aria-hidden
+        animate={{ opacity: [0.45, 0.7, 0.45], scale: [1, 1.08, 1] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute right-[-10%] top-1/2 -z-20 h-[700px] w-[700px] -translate-y-1/2 rounded-full bg-primary/20 blur-[160px]"
+      />
+      <div className="pointer-events-none absolute left-[-5%] top-[18%] -z-20 h-72 w-72 rounded-full bg-amber-400/[0.05] blur-[120px]" />
 
-              {/* Hero headline - large and impactful */}
+      {/* Content */}
+      <div className="relative flex min-h-[100svh] items-center pt-28 pb-20 lg:pt-24">
+        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12">
+          <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-10 xl:gap-16">
+            {/* LEFT — copy */}
+            <motion.div style={{ y: contentY }} className="relative z-10 flex flex-col items-start lg:pr-8">
+              <AnnouncementBadge pulse>Atendimento online agora</AnnouncementBadge>
+
               <motion.h1
-                initial={{ opacity: 0, y: 32 }}
+                initial={{ opacity: 0, y: 28 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.9, delay: 0.1, ease }}
-                className="mt-8 text-balance text-5xl font-bold leading-[0.92] tracking-tight sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.25rem]"
+                className="mt-7 text-balance text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl xl:text-[4.5rem]"
               >
                 <span className="block">Seu entretenimento,</span>
-                <motion.span 
-                  className="mt-2 block text-gradient-blue"
-                  initial={{ opacity: 0, y: 20 }}
+                <motion.span
+                  className="mt-1.5 block text-gradient-blue"
+                  initial={{ opacity: 0, y: 18 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.9, delay: 0.2, ease }}
+                  transition={{ duration: 0.9, delay: 0.22, ease }}
                 >
                   pronto para usar.
                 </motion.span>
               </motion.h1>
 
-              {/* Subheadline */}
               <motion.p
-                initial={{ opacity: 0, y: 32 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.25, ease }}
-                className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-foreground/70 sm:text-xl lg:max-w-md xl:max-w-xl"
+                transition={{ duration: 0.9, delay: 0.3, ease }}
+                className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-foreground/65 sm:text-xl"
               >
                 Você escolhe o plano, chama nossa equipe e recebe ajuda para deixar tudo configurado
                 na sua TV, celular ou TV Box — sem complicação, sem termos difíceis e com suporte
                 humano pelo WhatsApp.
               </motion.p>
 
-              {/* Premium CTAs with glow effect */}
               <motion.div
-                initial={{ opacity: 0, y: 32 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.35, ease }}
+                transition={{ duration: 0.9, delay: 0.4, ease }}
                 className="mt-10 flex w-full flex-col gap-4 sm:flex-row sm:items-center"
               >
                 <a href={WHATSAPP_DEFAULT} target="_blank" rel="noopener noreferrer">
@@ -126,136 +127,59 @@ export function Hero() {
                 </a>
               </motion.div>
 
-              {/* Trust indicators as horizontal pills */}
               <motion.div
-                initial={{ opacity: 0, y: 32 }}
+                initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.45, ease }}
-                className="mt-12 flex flex-wrap items-center gap-3"
+                transition={{ duration: 0.9, delay: 0.5, ease }}
+                className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-foreground/55"
               >
                 {[
-                  { icon: Zap, label: "Configuração em minutos" },
+                  { icon: Clock, label: "Configuração em minutos" },
                   { icon: Headphones, label: "Suporte humano" },
                   { icon: BadgeCheck, label: "Sem fidelidade" },
-                ].map(({ icon: Icon, label }, i) => (
-                  <motion.span
-                    key={label}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.5 + i * 0.08, ease }}
-                    className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/5 px-4 py-2 text-sm font-medium text-foreground/70 backdrop-blur-sm transition-colors duration-300 hover:border-white/15 hover:bg-white/8 hover:text-foreground/90"
-                  >
+                ].map(({ icon: Icon, label }) => (
+                  <span key={label} className="inline-flex items-center gap-2">
                     <Icon className="size-4 text-primary" />
                     {label}
-                  </motion.span>
+                  </span>
                 ))}
               </motion.div>
-            </div>
+            </motion.div>
 
-            {/* RIGHT — Premium visual composition */}
-            <div className="relative mx-auto w-full max-w-2xl lg:max-w-none">
-              {/* Ambient glow behind composition */}
-              <div className="absolute inset-0 -z-10">
-                <div className="absolute left-1/2 top-1/2 h-[550px] w-[550px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/12 blur-[140px]" />
-                <div className="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-amber-500/6 blur-[100px]" />
-              </div>
-
-              {/* Main composition */}
+            {/* RIGHT — single strong visual */}
+            <motion.div style={{ y: visualY }} className="relative mx-auto w-full max-w-xl lg:max-w-none">
               <motion.div
-                initial={{ opacity: 0, scale: 0.94, y: 20 }}
+                initial={{ opacity: 0, scale: 0.95, y: 24 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.2, ease }}
-                className="relative aspect-[4/3] w-full lg:aspect-auto lg:h-[600px] xl:h-[680px]"
+                transition={{ duration: 1.2, delay: 0.25, ease }}
+                className="relative"
               >
-                {/* Premium TV with real interface */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative w-full max-w-[95%] sm:max-w-[90%]">
-                    {/* TV glow effect */}
-                    <div className="absolute -inset-6 -z-10 rounded-3xl bg-primary/8 blur-3xl" />
+                {/* soft glow halo behind the TV */}
+                <div className="absolute -inset-10 -z-10 rounded-[3rem] bg-primary/10 blur-[100px]" />
 
-                    {/* TV with interface */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 1, delay: 0.3, ease }}
-                      className="relative overflow-hidden rounded-2xl shadow-[0_60px_120px_-30px_rgba(0,0,0,0.8)]"
-                    >
-                      <Image
-                        src="/images/app-tv.png"
-                        alt="Central Play Plus - Interface na Smart TV"
-                        width={1000}
-                        height={563}
-                        priority
-                        className="w-full"
-                      />
-                      {/* Subtle screen reflection */}
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.03] via-transparent to-transparent" />
-                      {/* Screen edge glow */}
-                      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-white/10" />
-                    </motion.div>
-
-                    {/* TV reflection on surface */}
-                    <div className="absolute -bottom-8 left-1/2 -z-10 h-16 w-4/5 -translate-x-1/2">
-                      <div className="h-full w-full rounded-full bg-primary/10 blur-2xl" />
-                    </div>
+                {/* Main TV visual */}
+                <FloatingElement delay={0.4} duration={7} y={10}>
+                  <div className="relative overflow-hidden rounded-[1.75rem] shadow-[0_80px_140px_-40px_rgba(0,0,0,0.85)] ring-1 ring-white/10">
+                    <Image
+                      src="/images/tv-hero-clean.png"
+                      alt="Central Play Plus em uma Smart TV premium"
+                      width={1100}
+                      height={825}
+                      priority
+                      quality={95}
+                      className="w-full"
+                    />
+                    {/* subtle screen sheen */}
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.04] via-transparent to-transparent" />
                   </div>
-                </div>
-
-                {/* Floating smartphone */}
-                <FloatingElement
-                  delay={0.5}
-                  duration={6}
-                  y={12}
-                  className="absolute -right-2 bottom-0 z-20 w-[26%] sm:-right-6 sm:bottom-4 lg:-right-4 lg:bottom-8 xl:-right-8 xl:w-[24%]"
-                >
-                  <motion.div
-                    initial={{ opacity: 0, x: 50, y: 30 }}
-                    animate={{ opacity: 1, x: 0, y: 0 }}
-                    transition={{ duration: 1, delay: 0.55, ease }}
-                    className="relative"
-                  >
-                    {/* Phone glow */}
-                    <div className="absolute -inset-3 -z-10 rounded-[2.5rem] bg-primary/12 blur-2xl" />
-                    <Image
-                      src="/images/app-mobile.png"
-                      alt="Central Play Plus - Interface no celular"
-                      width={280}
-                      height={560}
-                      className="w-full rounded-[2rem] shadow-[0_50px_100px_-25px_rgba(0,0,0,0.8)]"
-                    />
-                    {/* Phone edge highlight */}
-                    <div className="pointer-events-none absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/10" />
-                  </motion.div>
                 </FloatingElement>
 
-                {/* Mascot with popcorn */}
-                <FloatingElement
-                  delay={0.7}
-                  duration={5}
-                  y={8}
-                  className="absolute -bottom-4 right-[12%] z-30 w-[32%] sm:-bottom-8 sm:right-[15%] sm:w-[30%] lg:right-[10%] lg:w-[28%]"
-                >
-                  <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.7, ease }}
-                  >
-                    <Image
-                      src="/images/mascot-cozy-v4.png"
-                      alt="Mascote Central Play Plus"
-                      width={320}
-                      height={320}
-                      className="w-full drop-shadow-[0_35px_60px_rgba(0,0,0,0.7)]"
-                    />
-                  </motion.div>
-                </FloatingElement>
-
-                {/* Floating Status Card — Plano Ativo */}
+                {/* Floating card — Plano ativo */}
                 <FloatingElement
                   delay={0.6}
-                  duration={5}
-                  y={10}
-                  className="absolute -left-2 top-[12%] z-20 sm:-left-6 lg:-left-10"
+                  duration={6}
+                  y={12}
+                  className="absolute -left-3 top-[14%] z-20 sm:-left-8 lg:-left-12"
                 >
                   <StatusCard
                     icon={<BadgeCheck className="size-5" />}
@@ -266,12 +190,12 @@ export function Hero() {
                   />
                 </FloatingElement>
 
-                {/* Floating Status Card — Suporte Humano */}
+                {/* Floating card — Suporte humano online */}
                 <FloatingElement
-                  delay={0.75}
-                  duration={5.5}
-                  y={10}
-                  className="absolute -left-2 bottom-[28%] z-20 sm:-left-6 lg:-left-10"
+                  delay={0.78}
+                  duration={6.5}
+                  y={12}
+                  className="absolute right-1 bottom-[12%] z-20 sm:-right-8 lg:-right-12"
                 >
                   <a
                     href={whatsappLink("Olá! Quero falar com o suporte humano da Central Play Plus.")}
@@ -292,33 +216,18 @@ export function Hero() {
                       title="Suporte humano"
                       subtitle="Online agora"
                       variant="success"
-                      delay={0.75}
+                      delay={0.78}
                     />
                   </a>
                 </FloatingElement>
-
-                {/* Floating Status Card — Configuração Rápida */}
-                <FloatingElement
-                  delay={0.85}
-                  duration={4.5}
-                  y={8}
-                  className="absolute -top-2 right-[5%] z-20 sm:right-[8%] sm:top-0"
-                >
-                  <StatusCard
-                    icon={<Sparkles className="size-4" />}
-                    title="Pronto em minutos"
-                    variant="accent"
-                    delay={0.85}
-                  />
-                </FloatingElement>
               </motion.div>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
-      {/* Bottom gradient fade to next section */}
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background via-background/80 to-transparent" />
+      {/* Bottom fade to next section */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
     </section>
   )
 }
