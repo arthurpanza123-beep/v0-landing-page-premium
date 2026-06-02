@@ -52,18 +52,20 @@ export function Hero() {
             fill
             priority
             unoptimized
-            className="object-cover object-center lg:object-[center_30%]"
+            className="object-cover object-left lg:object-[center_30%]"
           />
         </motion.div>
         {/* Vignette esquerdo elegante — concentrado nos primeiros 45%, dissolve suavemente */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/88 from-[0%] via-black/55 via-[30%] to-transparent to-[58%]" />
+        {/* No mobile, escurece mais o lado direito para isolar o texto */}
+        <div className="absolute inset-0 bg-black/30 lg:hidden" />
         {/* Bleed superior e inferior para suavidade */}
         <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/55 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/65 to-transparent" />
       </div>
 
       {/* ── CONTENT ── */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1280px] flex-col justify-center px-5 pb-32 pt-32 sm:px-8 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-4 lg:px-14 lg:pb-24 lg:pt-24">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1280px] flex-col justify-center px-5 pb-32 pt-32 sm:px-8 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-4 lg:pb-24 lg:pl-16 lg:pr-8 lg:pt-24">
 
         {/* ── LEFT — copy ── */}
         <motion.div
@@ -73,18 +75,18 @@ export function Hero() {
           {/* Badge */}
           <AnnouncementBadge pulse>Atendimento online agora</AnnouncementBadge>
 
-          {/* Headline — reduzida e com melhor respiro */}
+          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12, ease }}
-            className="mt-5 text-balance font-bold leading-[1.0] tracking-tight text-white
-                       text-[clamp(2.2rem,4.8vw,3.5rem)]"
+            className="mt-6 text-balance font-bold leading-[1.05] tracking-[-0.02em] text-white
+                       text-[clamp(2.4rem,4.6vw,3.75rem)]"
           >
             Seu entretenimento,{" "}
             <span
               style={{
-                background: "linear-gradient(110deg, #6ec6ff 0%, #3b82f6 100%)",
+                background: "linear-gradient(110deg, #93c5fd 0%, #3b82f6 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -100,7 +102,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.26, ease }}
-            className="mt-4 max-w-[440px] text-pretty text-[1rem] leading-[1.65] text-white/60 sm:text-[1.05rem]"
+            className="mt-5 max-w-[420px] text-pretty text-[0.975rem] leading-[1.7] text-white/55 sm:text-[1rem]"
           >
             Você escolhe o plano, fala com nossa equipe e nós te ajudamos a
             configurar sua TV, celular ou TV Box com suporte humano pelo
@@ -112,7 +114,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.38, ease }}
-            className="mt-7 flex w-full flex-col gap-3 sm:flex-row sm:items-center"
+            className="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:items-center"
           >
             {/* Primary */}
             <a
@@ -120,9 +122,9 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl
-                         bg-primary px-6 py-3.5 text-[0.95rem] font-semibold text-white
-                         shadow-[0_6px_24px_-6px] shadow-primary/60 transition-all duration-300
-                         hover:-translate-y-0.5 hover:shadow-[0_12px_32px_-6px] hover:shadow-primary/65
+                         bg-primary px-6 py-3.5 text-[0.9rem] font-semibold text-white
+                         shadow-[0_6px_24px_-6px] shadow-primary/55 transition-all duration-300
+                         hover:-translate-y-px hover:shadow-[0_12px_32px_-6px] hover:shadow-primary/60
                          active:translate-y-0 sm:w-auto"
             >
               <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
@@ -135,9 +137,9 @@ export function Hero() {
             <a
               href="#planos"
               className="group inline-flex items-center justify-center gap-2 rounded-xl
-                         border border-white/18 bg-white/[0.06] px-6 py-3.5 text-[0.95rem] font-semibold text-white/85
+                         border border-white/14 bg-white/[0.05] px-6 py-3.5 text-[0.9rem] font-semibold text-white/80
                          backdrop-blur-md transition-all duration-300
-                         hover:border-white/30 hover:bg-white/10 sm:w-auto"
+                         hover:border-white/25 hover:bg-white/[0.08] sm:w-auto"
             >
               Ver planos
               <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
@@ -148,8 +150,8 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease }}
-            className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2.5"
+            transition={{ duration: 0.8, delay: 0.52, ease }}
+            className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2"
           >
             {[
               { icon: Clock, label: "Configuração em minutos" },
@@ -160,11 +162,11 @@ export function Hero() {
                 key={label}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.55 + i * 0.08 }}
-                className="inline-flex items-center gap-2 text-[0.82rem] font-medium text-white/55"
+                transition={{ duration: 0.5, delay: 0.57 + i * 0.07 }}
+                className="inline-flex items-center gap-1.5 text-[0.8rem] font-medium text-white/45"
               >
-                <span className="flex size-6 items-center justify-center rounded-full border border-primary/25 bg-primary/10">
-                  <Icon className="size-3 text-primary" />
+                <span className="flex size-5 items-center justify-center rounded-full border border-white/15 bg-white/[0.07]">
+                  <Icon className="size-2.5 text-white/60" />
                 </span>
                 {label}
               </motion.span>
@@ -180,26 +182,26 @@ export function Hero() {
         >
           {/* Plano ativo — topo direito, acima da TV */}
           <FloatingElement
-            delay={0.55}
+            delay={0.6}
             duration={6.5}
-            y={10}
-            className="absolute right-0 top-[4%]"
+            y={9}
+            className="absolute right-2 top-[6%]"
           >
             <StatusCard
               icon={<BadgeCheck className="size-4" />}
               title="Plano ativo"
               subtitle="Configurado"
               variant="success"
-              delay={0.55}
+              delay={0.6}
             />
           </FloatingElement>
 
-          {/* Suporte humano — inferior esquerdo do quadrante, longe do mascote */}
+          {/* Suporte humano — inferior direito, longe do celular/mesa que fica no centro-inferior */}
           <FloatingElement
-            delay={0.78}
+            delay={0.82}
             duration={7}
-            y={10}
-            className="absolute bottom-[18%] left-4"
+            y={9}
+            className="absolute bottom-[12%] right-2"
           >
             <a
               href={whatsappLink("Olá! Quero falar com o suporte humano da Central Play Plus.")}
@@ -220,7 +222,7 @@ export function Hero() {
                 title="Suporte humano"
                 subtitle="Online agora"
                 variant="success"
-                delay={0.78}
+                delay={0.82}
               />
             </a>
           </FloatingElement>

@@ -6,9 +6,9 @@ export function Logo({ className }: { className?: string }) {
     <Image
       src="/images/logo.png"
       alt="Central Play Plus"
-      width={180}
-      height={45}
-      className={cn("h-10 w-auto object-contain", className)}
+      width={220}
+      height={55}
+      className={cn("h-12 w-auto object-contain", className)}
       priority
     />
   )

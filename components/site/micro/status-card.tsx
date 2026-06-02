@@ -31,10 +31,10 @@ export function StatusCard({
       }}
       whileHover={{ scale: 1.02, y: -2 }}
       className={cn(
-        "group relative flex items-center gap-2.5 rounded-xl border px-3.5 py-2.5 backdrop-blur-xl transition-all duration-300",
-        variant === "default" && "border-border/50 bg-card/60 hover:border-border/80 hover:bg-card/80",
-        variant === "success" && "border-emerald-500/25 bg-emerald-950/50 hover:border-emerald-500/40",
-        variant === "accent" && "border-primary/30 bg-primary/10 hover:border-primary/50",
+        "group relative flex items-center gap-2.5 rounded-xl border px-3 py-2 backdrop-blur-md transition-all duration-300",
+        variant === "default" && "border-white/12 bg-black/35 hover:bg-black/45",
+        variant === "success" && "border-white/10 bg-black/40 hover:bg-black/50",
+        variant === "accent"  && "border-primary/20 bg-black/40 hover:border-primary/35",
         className,
       )}
     >
@@ -51,25 +51,25 @@ export function StatusCard({
       {/* Icon container */}
       <div
         className={cn(
-          "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-colors duration-300",
-          variant === "default" && "bg-muted/80 text-foreground/80 group-hover:bg-muted",
+          "flex h-6 w-6 shrink-0 items-center justify-center rounded-lg transition-colors duration-300",
+          variant === "default" && "bg-white/10 text-white/70",
           variant === "success" && "bg-emerald-500/20 text-emerald-400",
-          variant === "accent" && "bg-primary/20 text-primary",
+          variant === "accent"  && "bg-primary/20 text-primary",
         )}
       >
         {icon}
       </div>
-      
+
       {/* Content */}
       <div className="flex flex-col">
-        <span className="text-[0.8rem] font-semibold leading-tight text-foreground">
+        <span className="text-[0.78rem] font-semibold leading-tight text-white/90">
           {title}
         </span>
         {subtitle && (
           <span
             className={cn(
-              "text-[0.72rem] leading-tight",
-              variant === "success" ? "text-emerald-400/80" : "text-muted-foreground",
+              "text-[0.7rem] leading-tight",
+              variant === "success" ? "text-emerald-400/75" : "text-white/45",
             )}
           >
             {subtitle}
