@@ -47,18 +47,18 @@ export function Hero() {
       <div className="absolute inset-0 z-0" aria-hidden>
         <motion.div style={{ y: bgY }} className="absolute inset-0">
           <Image
-            src="/images/hero-scene-final.png"
+            src="/images/hero-room-final.png"
             alt=""
             fill
             priority
             unoptimized
-            className="object-cover [object-position:60%_center] lg:[object-position:55%_top]"
+            className="object-cover object-center lg:object-[center_30%]"
           />
         </motion.div>
         {/* Directional overlays for legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/95 from-[8%] via-black/55 via-[36%] to-black/0 to-[68%]" />
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/70 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/92 from-[5%] via-black/50 via-[35%] to-black/0 to-[70%]" />
+        <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/60 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/75 to-transparent" />
       </div>
 
       {/* ── CONTENT ── */}
