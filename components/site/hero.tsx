@@ -3,14 +3,10 @@
 import { motion, useScroll, useTransform } from "motion/react"
 import {
   ArrowRight,
-  MessageCircle,
   Clock,
   Headphones,
   BadgeCheck,
-  Radio,
-  Film,
-  MonitorPlay,
-  Trophy,
+  Calendar,
 } from "lucide-react"
 import Image from "next/image"
 import { useRef } from "react"
@@ -22,11 +18,12 @@ import { FloatingElement } from "./micro/floating-element"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
-const CATEGORIES = [
-  { label: "Ao vivo", icon: Radio, color: "text-rose-300", ring: "ring-rose-400/40", glow: "bg-rose-500/20" },
-  { label: "Filmes", icon: Film, color: "text-sky-300", ring: "ring-sky-400/40", glow: "bg-sky-500/20" },
-  { label: "Séries", icon: MonitorPlay, color: "text-violet-300", ring: "ring-violet-400/40", glow: "bg-violet-500/20" },
-  { label: "Futebol", icon: Trophy, color: "text-emerald-300", ring: "ring-emerald-400/40", glow: "bg-emerald-500/20" },
+// Compatibility devices shown at the bottom of the hero
+const DEVICES = [
+  { icon: "📺", label: "Smart TV" },
+  { icon: "📦", label: "TV Box" },
+  { icon: "📱", label: "Celular" },
+  { icon: "⬛", label: "Tablet" },
 ]
 
 export function Hero() {
@@ -36,237 +33,256 @@ export function Hero() {
     offset: ["start start", "end start"],
   })
 
-  const visualY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"])
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"])
-  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.08])
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"])
+  const visualY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"])
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "16%"])
 
   return (
     <section
       ref={sectionRef}
       id="inicio"
-      className="relative min-h-[100svh] overflow-hidden bg-background"
+      className="relative overflow-hidden"
     >
-      {/* Cozy living room scene filling the hero */}
-      <motion.div style={{ scale: bgScale }} className="absolute inset-0 -z-40">
-        <Image
-          src="/images/hero-living-room.png"
-          alt=""
-          fill
-          priority
-          quality={95}
-          className="object-cover object-right brightness-110"
-        />
-      </motion.div>
-
-      {/* Warm + cool ambient wash to enrich the scene */}
-      <div className="pointer-events-none absolute inset-0 -z-30 bg-[radial-gradient(90%_70%_at_15%_30%,oklch(0.52_0.17_260/0.38)_0%,transparent_55%)]" />
-      <div className="pointer-events-none absolute inset-0 -z-30 bg-[radial-gradient(70%_75%_at_88%_60%,oklch(0.74_0.14_68/0.4)_0%,transparent_58%)]" />
-
-      {/* Legibility gradient — darker on the left where the copy sits, room shows warm on the right */}
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-gradient-to-r from-background from-5% via-background/65 via-38% to-transparent to-80%" />
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-gradient-to-t from-background/70 via-transparent to-background/15" />
-
-      {/* Soft grain for premium depth */}
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 bg-grid mix-blend-soft-light" />
-
-      {/* Content */}
-      <div className="relative flex min-h-[100svh] items-center pt-28 pb-20 lg:pt-24">
-        <div className="mx-auto w-full max-w-[1280px] px-5 sm:px-8 lg:px-12">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.02fr_1fr] lg:gap-8 xl:gap-14">
-            {/* LEFT — copy */}
-            <motion.div style={{ y: contentY }} className="relative z-10 flex flex-col items-start lg:pr-6">
-              <AnnouncementBadge pulse>Atendimento online agora</AnnouncementBadge>
-
-              <motion.h1
-                initial={{ opacity: 0, y: 28 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.1, ease }}
-                className="mt-7 text-balance text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl xl:text-[4.5rem]"
-              >
-                <span className="block">Seu entretenimento,</span>
-                <motion.span
-                  className="mt-1.5 block text-gradient-blue"
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.9, delay: 0.22, ease }}
-                >
-                  pronto para usar.
-                </motion.span>
-              </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.3, ease }}
-                className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-foreground/70 sm:text-xl"
-              >
-                Você escolhe o plano, chama nossa equipe e recebe ajuda para deixar tudo configurado
-                na sua TV, celular ou TV Box — sem complicação, sem termos difíceis e com suporte
-                humano pelo WhatsApp.
-              </motion.p>
-
-              {/* Colorful category chips */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4, ease }}
-                className="mt-7 flex flex-wrap gap-2.5"
-              >
-                {CATEGORIES.map(({ label, icon: Icon, color, ring, glow }, i) => (
-                  <motion.span
-                    key={label}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: 0.45 + i * 0.07, ease }}
-                    className={`group relative inline-flex items-center gap-2 rounded-full bg-card/50 px-3.5 py-2 text-sm font-medium text-foreground/80 ring-1 ${ring} backdrop-blur-md transition-all duration-300 hover:bg-card/80`}
-                  >
-                    <span className={`absolute inset-0 -z-10 rounded-full ${glow} opacity-0 blur-lg transition-opacity duration-300 group-hover:opacity-100`} />
-                    <Icon className={`size-4 ${color}`} />
-                    {label}
-                  </motion.span>
-                ))}
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.52, ease }}
-                className="mt-9 flex w-full flex-col gap-4 sm:flex-row sm:items-center"
-              >
-                <a href={WHATSAPP_DEFAULT} target="_blank" rel="noopener noreferrer">
-                  <GlowButton variant="whatsapp" size="lg" className="w-full sm:w-auto">
-                    <MessageCircle className="size-5" />
-                    Quero configurar agora
-                    <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
-                  </GlowButton>
-                </a>
-                <a href="#planos">
-                  <GlowButton variant="secondary" size="lg" className="w-full sm:w-auto">
-                    Ver planos
-                    <ArrowRight className="size-5" />
-                  </GlowButton>
-                </a>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.62, ease }}
-                className="mt-9 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-foreground/60"
-              >
-                {[
-                  { icon: Clock, label: "Configuração em minutos" },
-                  { icon: Headphones, label: "Suporte humano" },
-                  { icon: BadgeCheck, label: "Sem fidelidade" },
-                ].map(({ icon: Icon, label }) => (
-                  <span key={label} className="inline-flex items-center gap-2">
-                    <Icon className="size-4 text-primary" />
-                    {label}
-                  </span>
-                ))}
-              </motion.div>
-            </motion.div>
-
-            {/* RIGHT — rich visual composition */}
-            <motion.div style={{ y: visualY }} className="relative mx-auto w-full max-w-xl lg:max-w-none">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 24 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 1.2, delay: 0.25, ease }}
-                className="relative"
-              >
-                {/* soft glow halo behind the TV */}
-                <div className="absolute -inset-10 -z-10 rounded-[3rem] bg-primary/15 blur-[110px]" />
-
-                {/* Main integrated room + TV scene */}
-                <FloatingElement delay={0.4} duration={7} y={8}>
-                  <div className="relative overflow-hidden rounded-[1.5rem] shadow-[0_80px_140px_-40px_rgba(0,0,0,0.85)] ring-1 ring-white/10">
-                    <Image
-                      src="/images/hero-room-tv.png"
-                      alt="Central Play Plus em uma Smart TV em uma sala aconchegante com filmes, séries e canais ao vivo"
-                      width={1100}
-                      height={825}
-                      priority
-                      quality={95}
-                      className="w-full"
-                    />
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.05] via-transparent to-transparent" />
-                  </div>
-                </FloatingElement>
-
-                {/* Overlapping premium phone */}
-                <FloatingElement
-                  delay={0.7}
-                  duration={6.5}
-                  y={14}
-                  className="absolute -bottom-8 -left-6 z-20 w-[34%] max-w-[180px] sm:-left-10 lg:-bottom-10 lg:-left-14"
-                >
-                  <div className="overflow-hidden rounded-[1.5rem] shadow-[0_50px_90px_-30px_rgba(0,0,0,0.85)] ring-1 ring-white/10">
-                    <Image
-                      src="/images/phone-rich-ui.png"
-                      alt="Central Play Plus no celular"
-                      width={400}
-                      height={500}
-                      quality={95}
-                      className="w-full"
-                    />
-                  </div>
-                </FloatingElement>
-
-                {/* Floating card — Plano ativo */}
-                <FloatingElement
-                  delay={0.6}
-                  duration={6}
-                  y={12}
-                  className="absolute -right-2 top-[10%] z-20 sm:-right-6 lg:-right-10"
-                >
-                  <StatusCard
-                    icon={<BadgeCheck className="size-5" />}
-                    title="Plano ativo"
-                    subtitle="Configurado"
-                    variant="success"
-                    delay={0.6}
-                  />
-                </FloatingElement>
-
-                {/* Floating card — Suporte humano online */}
-                <FloatingElement
-                  delay={0.82}
-                  duration={6.8}
-                  y={12}
-                  className="absolute -right-1 bottom-[16%] z-20 sm:-right-6 lg:-right-12"
-                >
-                  <a
-                    href={whatsappLink("Olá! Quero falar com o suporte humano da Central Play Plus.")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block"
-                  >
-                    <StatusCard
-                      icon={
-                        <span className="relative">
-                          <Headphones className="size-5" />
-                          <span className="absolute -right-0.5 -top-0.5 flex size-2.5">
-                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-whatsapp/60" />
-                            <span className="relative inline-flex size-2.5 rounded-full bg-whatsapp" />
-                          </span>
-                        </span>
-                      }
-                      title="Suporte humano"
-                      subtitle="Online agora"
-                      variant="success"
-                      delay={0.82}
-                    />
-                  </a>
-                </FloatingElement>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
+      {/* ── BACKGROUND: integrated living room scene ── */}
+      <div className="absolute inset-0 z-0" aria-hidden>
+        <motion.div style={{ y: bgY }} className="absolute inset-0">
+          <Image
+            src="/images/hero-scene-final.png"
+            alt=""
+            fill
+            priority
+            unoptimized
+            className="object-cover [object-position:60%_center] lg:[object-position:55%_top]"
+          />
+        </motion.div>
+        {/* Directional overlays for legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/95 from-[8%] via-black/55 via-[36%] to-black/0 to-[68%]" />
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/70 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/80 to-transparent" />
       </div>
 
-      {/* Bottom fade to next section */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      {/* ── CONTENT ── */}
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1280px] flex-col justify-center px-5 pb-28 pt-28 sm:px-8 lg:grid lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-6 lg:px-12 lg:pb-24 lg:pt-24">
+
+        {/* ── LEFT — copy ── */}
+        <motion.div
+          style={{ y: contentY }}
+          className="relative z-10 flex flex-col items-start"
+        >
+          {/* Badge */}
+          <AnnouncementBadge pulse>Atendimento online agora</AnnouncementBadge>
+
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.12, ease }}
+            className="mt-6 text-balance font-bold leading-[0.93] tracking-tight text-white
+                       text-[clamp(2.75rem,6.5vw,4.5rem)]"
+          >
+            Seu entretenimento,{" "}
+            <span
+              style={{
+                background: "linear-gradient(100deg, #5badff 0%, #2979ff 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              pronto
+            </span>{" "}
+            para usar.
+          </motion.h1>
+
+          {/* Sub */}
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.26, ease }}
+            className="mt-5 max-w-[520px] text-pretty text-lg leading-relaxed text-white/65 sm:text-[1.125rem]"
+          >
+            Você escolhe o plano, fala com nossa equipe e nós te ajudamos a configurar
+            sua TV, celular ou TV Box com suporte humano pelo WhatsApp.
+          </motion.p>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.38, ease }}
+            className="mt-8 flex w-full flex-col gap-3.5 sm:flex-row sm:items-center"
+          >
+            {/* Primary CTA */}
+            <a
+              href={WHATSAPP_DEFAULT}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-xl
+                         bg-primary px-7 py-4 text-base font-semibold text-white
+                         shadow-[0_8px_32px_-8px] shadow-primary/70 transition-all duration-300
+                         hover:-translate-y-0.5 hover:shadow-[0_16px_40px_-8px] hover:shadow-primary/70
+                         active:translate-y-0 sm:w-auto"
+            >
+              <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              <Calendar className="size-5" />
+              Quero configurar agora
+              <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+            </a>
+
+            {/* Secondary CTA */}
+            <a
+              href="#planos"
+              className="group inline-flex items-center justify-center gap-2.5 rounded-xl
+                         border border-white/20 bg-white/5 px-7 py-4 text-base font-semibold text-white
+                         backdrop-blur-md transition-all duration-300
+                         hover:border-white/35 hover:bg-white/10 sm:w-auto"
+            >
+              Ver planos
+              <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
+            </a>
+          </motion.div>
+
+          {/* Trust pills */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease }}
+            className="mt-7 flex flex-wrap items-center gap-x-7 gap-y-3"
+          >
+            {[
+              { icon: Clock, label: "Configuração em minutos" },
+              { icon: Headphones, label: "Suporte humano" },
+              { icon: BadgeCheck, label: "Sem fidelidade" },
+            ].map(({ icon: Icon, label }, i) => (
+              <motion.span
+                key={label}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.55 + i * 0.08 }}
+                className="inline-flex items-center gap-2 text-sm font-medium text-white/60"
+              >
+                <span className="flex size-7 items-center justify-center rounded-full border border-primary/30 bg-primary/10">
+                  <Icon className="size-3.5 text-primary" />
+                </span>
+                {label}
+              </motion.span>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* ── RIGHT — visual area (scene is in the bg; floating cards anchor here) ── */}
+        <motion.div
+          style={{ y: visualY }}
+          className="relative z-10 hidden h-full min-h-[520px] lg:block"
+          aria-hidden
+        >
+          {/* Plano ativo card */}
+          <FloatingElement
+            delay={0.55}
+            duration={6.5}
+            y={14}
+            className="absolute right-0 top-[12%]"
+          >
+            <StatusCard
+              icon={<BadgeCheck className="size-5" />}
+              title="Plano ativo"
+              subtitle="Configurado"
+              variant="success"
+              delay={0.55}
+            />
+          </FloatingElement>
+
+          {/* Suporte humano card */}
+          <FloatingElement
+            delay={0.78}
+            duration={7}
+            y={12}
+            className="absolute bottom-[14%] right-4"
+          >
+            <a
+              href={whatsappLink("Olá! Quero falar com o suporte humano da Central Play Plus.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <StatusCard
+                icon={
+                  <span className="relative">
+                    <Headphones className="size-5" />
+                    <span className="absolute -right-0.5 -top-0.5 flex size-2.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-whatsapp/60" />
+                      <span className="relative inline-flex size-2.5 rounded-full bg-whatsapp" />
+                    </span>
+                  </span>
+                }
+                title="Suporte humano"
+                subtitle="Online agora"
+                variant="success"
+                delay={0.78}
+              />
+            </a>
+          </FloatingElement>
+        </motion.div>
+      </div>
+
+      {/* ── COMPATIBILITY BAR ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.7, ease }}
+        className="relative z-10 mx-auto mb-10 w-full max-w-[1280px] px-5 sm:px-8 lg:px-12"
+      >
+        <div className="flex flex-wrap items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-6 py-4 backdrop-blur-md sm:gap-6">
+          <span className="text-sm font-medium text-white/50">
+            Compatível com os principais dispositivos
+          </span>
+          <span className="hidden h-4 w-px bg-white/15 sm:block" />
+          {[
+            {
+              label: "Smart TV",
+              svg: (
+                <svg viewBox="0 0 24 24" className="size-5 fill-none stroke-current stroke-[1.5]" aria-hidden>
+                  <rect x="2" y="3" width="20" height="14" rx="2" />
+                  <path d="M8 21h8M12 17v4" />
+                </svg>
+              ),
+            },
+            {
+              label: "TV Box",
+              svg: (
+                <svg viewBox="0 0 24 24" className="size-5 fill-none stroke-current stroke-[1.5]" aria-hidden>
+                  <rect x="2" y="7" width="20" height="10" rx="2" />
+                  <circle cx="17" cy="12" r="1" className="fill-current" />
+                  <path d="M7 12h6" />
+                </svg>
+              ),
+            },
+            {
+              label: "Celular",
+              svg: (
+                <svg viewBox="0 0 24 24" className="size-5 fill-none stroke-current stroke-[1.5]" aria-hidden>
+                  <rect x="5" y="2" width="14" height="20" rx="2" />
+                  <path d="M12 18h.01" strokeLinecap="round" />
+                </svg>
+              ),
+            },
+            {
+              label: "Tablet",
+              svg: (
+                <svg viewBox="0 0 24 24" className="size-5 fill-none stroke-current stroke-[1.5]" aria-hidden>
+                  <rect x="3" y="2" width="18" height="20" rx="2" />
+                  <path d="M12 18h.01" strokeLinecap="round" />
+                </svg>
+              ),
+            },
+          ].map(({ label, svg }) => (
+            <span key={label} className="inline-flex items-center gap-2 text-sm font-medium text-white/70">
+              <span className="text-white/50">{svg}</span>
+              {label}
+            </span>
+          ))}
+        </div>
+      </motion.div>
     </section>
   )
 }
