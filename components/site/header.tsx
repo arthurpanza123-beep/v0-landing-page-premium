@@ -30,7 +30,7 @@ export function Header() {
     <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4 sm:px-8">
       <div
         className={cn(
-          "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border border-transparent px-5 py-3.5 transition-all duration-300",
+          "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border border-transparent px-5 py-3 transition-all duration-300 lg:py-3.5",
           scrolled
             ? "glass border-white/10 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.7)]"
             : "bg-black/20 backdrop-blur-sm",
@@ -70,7 +70,7 @@ export function Header() {
             aria-label={open ? "Fechar menu" : "Abrir menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="flex size-10 items-center justify-center rounded-lg border border-border/60 text-foreground lg:hidden"
+            className="flex size-10 items-center justify-center rounded-xl border border-white/20 bg-white/[0.07] text-white backdrop-blur-sm transition-colors hover:bg-white/10 lg:hidden"
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>

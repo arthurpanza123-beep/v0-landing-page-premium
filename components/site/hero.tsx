@@ -39,8 +39,8 @@ export function Hero() {
       id="inicio"
       className="relative overflow-hidden"
     >
-      {/* ── BACKGROUND: integrated living room scene ── */}
-      <div className="absolute inset-0 z-0" aria-hidden>
+      {/* ── BACKGROUND: desktop only — sala aconchegante ── */}
+      <div className="absolute inset-0 z-0 hidden lg:block" aria-hidden>
         <motion.div style={{ y: bgY }} className="absolute inset-0">
           <Image
             src="/images/hero-room-final.png"
@@ -48,47 +48,28 @@ export function Hero() {
             fill
             priority
             unoptimized
-            className="object-cover object-left lg:object-[center_30%]"
+            className="object-cover object-[center_30%]"
           />
-          {/* Mobile overlay com imagem alternativa */}
-          <div className="absolute inset-0 lg:hidden">
-            <Image
-              src="/images/hero-mobile-final.png"
-              alt=""
-              fill
-              priority
-              unoptimized
-              className="object-cover object-center"
-            />
-          </div>
         </motion.div>
-        {/* Vignette esquerdo elegante — concentrado nos primeiros 45%, dissolve suavemente */}
+        {/* Vignette esquerdo — concentrado nos primeiros 45% */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/88 from-[0%] via-black/55 via-[30%] to-transparent to-[58%]" />
-        {/* No mobile, escurece mais para legibilidade do texto */}
-        <div className="absolute inset-0 bg-black/35 lg:hidden" />
-        {/* Bleed superior e inferior para suavidade */}
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/60 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 to-transparent" />
       </div>
 
-      {/* ── CONTENT ── */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1280px] flex-col justify-center px-5 pb-32 pt-32 sm:px-8 lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-4 lg:pb-24 lg:pl-16 lg:pr-8 lg:pt-24">
-
-        {/* ── LEFT — copy ── */}
+      {/* ── DESKTOP layout ── */}
+      <div className="relative z-10 mx-auto hidden min-h-[100svh] w-full max-w-[1280px] lg:grid lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-4 lg:pb-28 lg:pl-16 lg:pr-8 lg:pt-28">
         <motion.div
           style={{ y: contentY }}
           className="relative z-10 flex flex-col items-start"
         >
-          {/* Badge */}
           <AnnouncementBadge pulse>Atendimento online agora</AnnouncementBadge>
 
-          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12, ease }}
-            className="mt-7 sm:mt-8 lg:mt-8 text-balance font-bold leading-[1.05] tracking-[-0.02em] text-white
-                       text-[clamp(2.4rem,4.6vw,3.75rem)]"
+            className="mt-8 text-balance font-bold leading-[1.05] tracking-[-0.02em] text-white text-[clamp(2.4rem,4.6vw,3.75rem)]"
           >
             Seu entretenimento,{" "}
             <span
@@ -104,26 +85,23 @@ export function Hero() {
             para usar.
           </motion.h1>
 
-          {/* Sub */}
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.26, ease }}
-            className="mt-6 max-w-[420px] text-pretty text-[0.975rem] leading-[1.7] text-white/55 sm:text-[1rem]"
+            className="mt-6 max-w-[420px] text-pretty text-[0.975rem] leading-[1.7] text-white/55"
           >
             Você escolhe o plano, fala com nossa equipe e nós te ajudamos a
             configurar sua TV, celular ou TV Box com suporte humano pelo
             WhatsApp.
           </motion.p>
 
-          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.38, ease }}
-            className="mt-9 flex w-full flex-col gap-3 sm:flex-row sm:items-center"
+            className="mt-9 flex items-center gap-3"
           >
-            {/* Primary */}
             <a
               href={WHATSAPP_DEFAULT}
               target="_blank"
@@ -131,29 +109,25 @@ export function Hero() {
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl
                          bg-primary px-6 py-3.5 text-[0.9rem] font-semibold text-white
                          shadow-[0_8px_28px_-6px] shadow-primary/60 transition-all duration-300
-                         hover:-translate-y-1 hover:shadow-[0_16px_40px_-4px] hover:shadow-primary/70
-                         active:translate-y-0 sm:w-auto"
+                         hover:-translate-y-1 hover:shadow-[0_16px_40px_-4px] hover:shadow-primary/70 active:translate-y-0"
             >
               <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <Calendar className="size-4 shrink-0" />
               Quero configurar agora
               <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
             </a>
-
-            {/* Secondary */}
             <a
               href="#planos"
               className="group inline-flex items-center justify-center gap-2 rounded-xl
                          border border-white/16 bg-white/[0.06] px-6 py-3.5 text-[0.9rem] font-semibold text-white/85
                          backdrop-blur-md transition-all duration-300
-                         hover:border-white/30 hover:bg-white/12 active:bg-white/[0.08] sm:w-auto"
+                         hover:border-white/30 hover:bg-white/12"
             >
               Ver planos
               <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
             </a>
           </motion.div>
 
-          {/* Trust pills */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -179,6 +153,134 @@ export function Hero() {
               </motion.span>
             ))}
           </motion.div>
+        </motion.div>
+      </div>
+
+      {/* ── MOBILE layout — texto acima, imagem abaixo ── */}
+      <div className="relative flex flex-col lg:hidden">
+
+        {/* Bloco 1: conteúdo textual com fundo sólido escuro */}
+        <div className="relative z-10 px-6 pb-10 pt-28 sm:px-8">
+          {/* Fundo escuro sólido atrás do texto — sem imagem passando */}
+          <div
+            className="absolute inset-0 -z-10"
+            style={{
+              background:
+                "linear-gradient(180deg, oklch(0.09 0.02 255) 0%, oklch(0.10 0.03 255) 75%, oklch(0.09 0.03 255 / 0) 100%)",
+            }}
+          />
+
+          <AnnouncementBadge pulse>Atendimento online agora</AnnouncementBadge>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease }}
+            className="mt-6 text-balance font-bold leading-[1.1] tracking-[-0.02em] text-white text-[clamp(2rem,8vw,2.75rem)]"
+          >
+            Seu entretenimento,{" "}
+            <span
+              style={{
+                background: "linear-gradient(110deg, #93c5fd 0%, #3b82f6 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              pronto
+            </span>{" "}
+            para usar.
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.22, ease }}
+            className="mt-5 max-w-[340px] text-pretty text-[0.9rem] leading-[1.75] text-white/60"
+          >
+            Você escolhe o plano e nós configuramos sua TV, celular ou TV Box
+            com suporte humano pelo WhatsApp.
+          </motion.p>
+
+          {/* Botões empilhados, largura total */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.34, ease }}
+            className="mt-8 flex flex-col gap-3"
+          >
+            <a
+              href={WHATSAPP_DEFAULT}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex w-full items-center justify-center gap-2.5 overflow-hidden
+                         rounded-xl bg-primary py-4 text-[0.95rem] font-semibold text-white
+                         shadow-[0_8px_28px_-6px] shadow-primary/60 transition-all duration-300
+                         active:scale-[0.98]"
+            >
+              <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              <Calendar className="size-4 shrink-0" />
+              Quero configurar agora
+              <ArrowRight className="size-4 shrink-0" />
+            </a>
+            <a
+              href="#planos"
+              className="inline-flex w-full items-center justify-center gap-2
+                         rounded-xl border border-white/18 bg-white/[0.07] py-3.5 text-[0.9rem] font-semibold text-white/80
+                         backdrop-blur-md transition-all duration-300 active:scale-[0.98]"
+            >
+              Ver planos
+              <ArrowRight className="size-4 shrink-0" />
+            </a>
+          </motion.div>
+
+          {/* Trust pills — 2 colunas no mobile */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.46, ease }}
+            className="mt-8 grid grid-cols-2 gap-x-4 gap-y-3"
+          >
+            {[
+              { icon: Clock, label: "Configuração em minutos" },
+              { icon: Headphones, label: "Suporte humano" },
+              { icon: BadgeCheck, label: "Sem fidelidade" },
+            ].map(({ icon: Icon, label }, i) => (
+              <motion.span
+                key={label}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 0.5 + i * 0.07 }}
+                className="inline-flex items-center gap-2 text-[0.82rem] font-medium text-white/65"
+              >
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/10">
+                  <Icon className="size-3 text-primary" />
+                </span>
+                {label}
+              </motion.span>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Bloco 2: imagem mobile como visual de apoio */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.5, ease }}
+          className="relative -mt-8 h-[55vw] min-h-[240px] max-h-[380px] w-full overflow-hidden"
+        >
+          <Image
+            src="/images/hero-mobile-final.png"
+            alt="Central Play Plus — sala aconchegante com TV, mascote e celular"
+            fill
+            priority
+            unoptimized
+            className="object-cover object-[center_35%]"
+          />
+          {/* Fade no topo para fundir com o bloco de texto */}
+          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[oklch(0.09_0.02_255)] to-transparent" />
+          {/* Fade na base para entrada suave na próxima seção */}
+          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
         </motion.div>
       </div>
 
