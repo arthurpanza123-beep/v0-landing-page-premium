@@ -188,24 +188,24 @@ export function Hero() {
         {/* Background: arte mobile cobrindo tudo desde o topo */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-mobile-room.png"
+            src="/images/hero-mobile-ambient.png"
             alt=""
             fill
             priority
             unoptimized
-            className="object-cover object-[center_55%]"
+            className="object-cover object-[40%_20%]"
           />
         </div>
 
-        {/* Camada 1: escurecimento global reduzido — cena deve aparecer */}
-        <div className="absolute inset-0 z-10 bg-black/10" />
+        {/* Camada 1: sombra mínima — arte já é escura por natureza */}
+        <div className="absolute inset-0 z-10 bg-black/5" />
 
-        {/* Camada 2: gradiente vertical — escuro apenas no terço superior, cena livre */}
+        {/* Camada 2: apenas escurece o topo para a copy, resto livre */}
         <div
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(5,8,20,0.88) 0%, rgba(5,8,20,0.70) 22%, rgba(5,8,20,0.32) 42%, rgba(5,8,20,0.06) 62%, rgba(5,8,20,0.0) 100%)",
+              "linear-gradient(to bottom, rgba(5,8,20,0.82) 0%, rgba(5,8,20,0.58) 18%, rgba(5,8,20,0.18) 36%, rgba(5,8,20,0.0) 50%)",
           }}
         />
 
