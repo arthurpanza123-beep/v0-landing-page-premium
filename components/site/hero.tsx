@@ -55,6 +55,32 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/88 from-[0%] via-black/55 via-[30%] to-transparent to-[58%]" />
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/60 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 to-transparent" />
+
+        {/* Glow animado da TV — posição da TV na arte desktop */}
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute z-10"
+          style={{ right: "14%", top: "22%", width: "38%", height: "40%" }}
+          animate={{ opacity: [0.35, 0.65, 0.35] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {/* Halo principal azul */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "radial-gradient(ellipse 70% 55% at 52% 48%, rgba(59,130,246,0.28) 0%, rgba(59,130,246,0.10) 50%, transparent 80%)",
+              filter: "blur(18px)",
+            }}
+          />
+          {/* Reflexo no rack — linha horizontal suave na parte inferior */}
+          <div
+            className="absolute bottom-0 left-[10%] h-6 w-[80%]"
+            style={{
+              background: "radial-gradient(ellipse 80% 100% at 50% 0%, rgba(59,130,246,0.22) 0%, transparent 100%)",
+              filter: "blur(8px)",
+            }}
+          />
+        </motion.div>
       </div>
 
       {/* ── DESKTOP layout ── */}
@@ -69,7 +95,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12, ease }}
-            className="mt-8 text-balance font-bold leading-[1.05] tracking-[-0.02em] text-white text-[clamp(2.4rem,4.6vw,3.75rem)]"
+            className="mt-8 text-balance font-bold leading-[1.05] tracking-[-0.02em] text-white text-[clamp(2rem,3.8vw,3.1rem)]"
           >
             Seu entretenimento,{" "}
             <span
@@ -241,12 +267,10 @@ export function Hero() {
             </a>
             <a
               href="#planos"
-              className="inline-flex w-full items-center justify-center gap-2
-                         rounded-xl border border-white/20 bg-white/[0.09] py-3.5 text-[0.9rem] font-semibold text-white/85
-                         backdrop-blur-md transition-all duration-300 active:scale-[0.98]"
+              className="inline-flex w-full items-center justify-center gap-1.5 text-[0.85rem] font-medium text-white/50 transition-colors hover:text-white/80"
             >
               Ver planos
-              <ArrowRight className="size-4 shrink-0" />
+              <ArrowRight className="size-3.5 shrink-0" />
             </a>
           </motion.div>
 
