@@ -162,7 +162,7 @@ export function Hero() {
         {/* Background: arte mobile cobrindo tudo desde o topo */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/hero-mobile-final.png"
+            src="/images/hero-mobile-room.png"
             alt=""
             fill
             priority
