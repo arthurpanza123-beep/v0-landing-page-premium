@@ -2,9 +2,11 @@ import { Header } from "@/components/site/header"
 import { Hero } from "@/components/site/hero"
 import { TrustBar } from "@/components/site/trust-bar"
 import { Steps } from "@/components/site/steps"
-import { Plans } from "@/components/site/plans"
 import { Compatibility } from "@/components/site/compatibility"
-import { Support } from "@/components/site/support"
+import { Catalog } from "@/components/site/catalog"
+import { Benefits } from "@/components/site/benefits"
+import { Plans } from "@/components/site/plans"
+import { SocialProof } from "@/components/site/social-proof"
 import { Faq } from "@/components/site/faq"
 import { FinalCta } from "@/components/site/final-cta"
 import { Footer } from "@/components/site/footer"
@@ -20,9 +22,11 @@ export default function Page() {
         <Hero />
         <TrustBar />
         <Steps />
-        <Plans />
         <Compatibility />
-        <Support />
+        <Catalog />
+        <Benefits />
+        <Plans />
+        <SocialProof />
         <Faq />
         <FinalCta />
       </main>
