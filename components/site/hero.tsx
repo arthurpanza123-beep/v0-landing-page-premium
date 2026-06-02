@@ -10,36 +10,45 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Container } from "./section"
 import { WHATSAPP_DEFAULT, whatsappLink } from "@/lib/site"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
 export function Hero() {
   return (
-    <section id="inicio" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 lg:pt-44 lg:pb-28">
-      {/* Hero background image */}
-      <div className="absolute inset-0 -z-20">
+    <section
+      id="inicio"
+      className="relative min-h-[100svh] overflow-hidden pt-28 pb-16 sm:pt-36 lg:flex lg:items-center lg:pt-0 lg:pb-0"
+    >
+      {/* Cinematic background */}
+      <div className="absolute inset-0 -z-30">
         <Image
-          src="/images/hero-bg.png"
+          src="/images/hero-bg-v3.png"
           alt=""
           fill
           priority
           className="object-cover object-center"
-          quality={90}
+          quality={95}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30" />
       </div>
 
-      <Container>
-        <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-12 xl:gap-20">
-          {/* LEFT — copy */}
-          <div className="flex flex-col items-start">
+      {/* Gradient overlays for depth */}
+      <div className="absolute inset-0 -z-20 bg-gradient-to-r from-background via-background/70 to-transparent" />
+      <div className="absolute inset-0 -z-20 bg-gradient-to-t from-background via-transparent to-background/50" />
+
+      {/* Ambient light accent */}
+      <div className="absolute right-0 top-1/4 -z-10 h-[600px] w-[600px] rounded-full bg-primary/10 blur-[150px]" />
+      <div className="absolute right-1/4 bottom-0 -z-10 h-[400px] w-[400px] rounded-full bg-primary/5 blur-[120px]" />
+
+      <div className="mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12">
+        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-8 xl:gap-16">
+          {/* LEFT — Copy */}
+          <div className="relative z-10 flex flex-col items-start lg:py-24">
             <motion.span
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease }}
-              className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 px-4 py-1.5 text-sm text-muted-foreground backdrop-blur"
+              className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-foreground/80 backdrop-blur-sm"
             >
               <span className="relative flex size-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-whatsapp/70" />
@@ -49,20 +58,20 @@ export function Hero() {
             </motion.span>
 
             <motion.h1
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.05, ease }}
-              className="mt-6 text-pretty text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl xl:text-[5.25rem]"
+              transition={{ duration: 0.8, delay: 0.08, ease }}
+              className="mt-8 text-balance text-5xl font-bold leading-[0.95] tracking-tight sm:text-6xl md:text-7xl lg:text-[4.5rem] xl:text-[5.5rem]"
             >
-              Seu entretenimento,{" "}
-              <span className="text-gradient-blue">pronto para usar.</span>
+              <span className="block">Seu entretenimento,</span>
+              <span className="mt-1 block text-gradient-blue">pronto para usar.</span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.12, ease }}
-              className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl"
+              transition={{ duration: 0.8, delay: 0.16, ease }}
+              className="mt-8 max-w-lg text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl lg:max-w-md xl:max-w-lg"
             >
               Você escolhe o plano, chama nossa equipe e recebe ajuda para deixar tudo configurado
               na sua TV, celular ou TV Box — sem complicação, sem termos difíceis e com suporte
@@ -70,27 +79,27 @@ export function Hero() {
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.18, ease }}
-              className="mt-9 flex w-full flex-col gap-3 sm:flex-row sm:items-center"
+              transition={{ duration: 0.8, delay: 0.24, ease }}
+              className="mt-10 flex w-full flex-col gap-4 sm:flex-row sm:items-center"
             >
               <Button
                 asChild
                 size="lg"
-                className="group h-14 rounded-full px-7 text-base shadow-glow"
+                className="group h-15 rounded-full px-8 text-base font-semibold shadow-glow"
               >
                 <a href={WHATSAPP_DEFAULT} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="size-5" />
                   Quero configurar agora
-                  <ArrowRight className="size-5 transition-transform group-hover:translate-x-0.5" />
+                  <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
               <Button
                 asChild
                 size="lg"
-                variant="outline"
-                className="h-14 rounded-full border-border/70 bg-card/40 px-7 text-base backdrop-blur hover:bg-card/70"
+                variant="ghost"
+                className="h-15 rounded-full px-8 text-base font-medium text-foreground/90 hover:bg-white/5 hover:text-foreground"
               >
                 <a href="#planos">
                   Ver planos
@@ -100,88 +109,141 @@ export function Hero() {
             </motion.div>
 
             <motion.ul
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.26, ease }}
-              className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-muted-foreground"
+              transition={{ duration: 0.8, delay: 0.32, ease }}
+              className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4 text-sm text-muted-foreground"
             >
-              <li className="flex items-center gap-2">
-                <Clock className="size-4 text-primary" />
+              <li className="flex items-center gap-2.5">
+                <span className="flex size-8 items-center justify-center rounded-full bg-primary/10">
+                  <Clock className="size-4 text-primary" />
+                </span>
                 Configuração em minutos
               </li>
-              <li className="flex items-center gap-2">
-                <Headphones className="size-4 text-primary" />
+              <li className="flex items-center gap-2.5">
+                <span className="flex size-8 items-center justify-center rounded-full bg-primary/10">
+                  <Headphones className="size-4 text-primary" />
+                </span>
                 Suporte humano
               </li>
-              <li className="flex items-center gap-2">
-                <BadgeCheck className="size-4 text-primary" />
+              <li className="flex items-center gap-2.5">
+                <span className="flex size-8 items-center justify-center rounded-full bg-primary/10">
+                  <BadgeCheck className="size-4 text-primary" />
+                </span>
                 Sem fidelidade
               </li>
             </motion.ul>
           </div>
 
-          {/* RIGHT — visual mockup with real assets */}
+          {/* RIGHT — Premium visual composition */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 30 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2, ease }}
-            className="relative mx-auto w-full max-w-xl lg:max-w-none"
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.1, delay: 0.15, ease }}
+            className="relative mx-auto w-full max-w-2xl lg:max-w-none"
           >
-            {/* glow behind */}
-            <div className="absolute -inset-8 -z-10 rounded-[2.5rem] bg-[radial-gradient(closest-side,oklch(0.55_0.18_255/0.35),transparent)] blur-2xl" />
-
-            {/* main app mockup image */}
-            <div className="relative">
-              <Image
-                src="/images/app-mockup.png"
-                alt="Interface do Central Play - seu entretenimento configurado"
-                width={600}
-                height={450}
-                priority
-                className="relative z-10 w-full rounded-2xl drop-shadow-2xl"
-              />
-              
-              {/* subtle overlay glow */}
-              <div className="absolute inset-0 z-0 rounded-2xl bg-gradient-to-tr from-primary/20 via-transparent to-transparent opacity-60" />
+            {/* Deep ambient glow */}
+            <div className="absolute inset-0 -z-10 scale-110">
+              <div className="absolute right-1/4 top-1/4 h-72 w-72 rounded-full bg-primary/25 blur-[100px]" />
+              <div className="absolute bottom-1/4 left-1/4 h-56 w-56 rounded-full bg-primary/15 blur-[80px]" />
             </div>
 
-            {/* floating card: plano ativo */}
+            {/* Main premium TV visual */}
+            <div className="relative">
+              <Image
+                src="/images/hero-visual-v3.png"
+                alt="Central Play Plus - Entretenimento premium na sua TV"
+                width={800}
+                height={600}
+                priority
+                className="relative z-10 w-full drop-shadow-[0_40px_100px_rgba(0,0,0,0.5)]"
+              />
+
+              {/* Reflection effect */}
+              <div className="absolute -bottom-20 left-1/2 -z-10 h-40 w-4/5 -translate-x-1/2">
+                <div className="h-full w-full bg-gradient-to-b from-primary/8 to-transparent blur-2xl" />
+              </div>
+            </div>
+
+            {/* Floating orb accent - top right */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.6, ease }}
-              className="animate-float-slow absolute -left-4 -top-6 z-20 sm:-left-8"
+              transition={{ duration: 0.9, delay: 0.7, ease }}
+              className="absolute -right-4 -top-8 z-0 sm:-right-12 sm:-top-12"
             >
               <Image
-                src="/images/float-plan-active.png"
-                alt="Plano ativo - Configurado em 4 minutos"
-                width={200}
+                src="/images/float-glow-orb.png"
+                alt=""
+                width={120}
                 height={120}
-                className="w-44 drop-shadow-xl sm:w-52"
+                className="w-20 animate-float-slow opacity-80 sm:w-28"
               />
             </motion.div>
 
-            {/* floating card: suporte humano */}
+            {/* Floating orb accent - bottom left */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.85, ease }}
+              className="absolute -bottom-4 -left-6 z-0 sm:-bottom-8 sm:-left-10"
+            >
+              <Image
+                src="/images/float-glow-orb.png"
+                alt=""
+                width={80}
+                height={80}
+                className="w-14 animate-float-slow opacity-60 sm:w-20"
+                style={{ animationDelay: "2s" }}
+              />
+            </motion.div>
+
+            {/* Premium status badge - floating */}
+            <motion.div
+              initial={{ opacity: 0, x: -20, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.55, ease }}
+              className="absolute -left-2 top-1/4 z-20 sm:-left-6"
+            >
+              <div className="animate-float-slow rounded-2xl border border-white/10 bg-black/60 p-4 shadow-2xl backdrop-blur-xl">
+                <div className="flex items-center gap-3">
+                  <span className="flex size-10 items-center justify-center rounded-xl bg-whatsapp/20">
+                    <BadgeCheck className="size-5 text-whatsapp" />
+                  </span>
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground">Plano ativo</p>
+                    <p className="text-sm font-semibold text-foreground">Configurado</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Support widget - floating */}
             <motion.a
               href={whatsappLink("Olá! Quero falar com o suporte humano da Central Play Plus.")}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.75, ease }}
-              className="absolute -bottom-7 -right-3 z-20 transition-transform hover:scale-105 sm:-right-8"
+              initial={{ opacity: 0, x: 20, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.7, ease }}
+              className="group absolute -bottom-2 -right-2 z-20 sm:-right-6 sm:bottom-1/4"
             >
-              <Image
-                src="/images/float-support.png"
-                alt="Suporte humano online agora"
-                width={240}
-                height={100}
-                className="w-52 drop-shadow-xl sm:w-60"
-              />
+              <div className="rounded-2xl border border-white/10 bg-black/60 p-4 shadow-2xl backdrop-blur-xl transition-all duration-300 group-hover:border-whatsapp/30 group-hover:bg-black/70">
+                <div className="flex items-center gap-3">
+                  <span className="relative flex size-10 items-center justify-center rounded-xl bg-whatsapp/20">
+                    <Headphones className="size-5 text-whatsapp" />
+                    <span className="absolute -right-0.5 -top-0.5 size-2.5 rounded-full bg-whatsapp" />
+                  </span>
+                  <div>
+                    <p className="text-xs font-medium text-muted-foreground">Suporte humano</p>
+                    <p className="text-sm font-semibold text-whatsapp">Online agora</p>
+                  </div>
+                </div>
+              </div>
             </motion.a>
           </motion.div>
         </div>
-      </Container>
+      </div>
     </section>
   )
 }
