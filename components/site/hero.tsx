@@ -50,14 +50,25 @@ export function Hero() {
             unoptimized
             className="object-cover object-left lg:object-[center_30%]"
           />
+          {/* Mobile overlay com imagem alternativa */}
+          <div className="absolute inset-0 lg:hidden">
+            <Image
+              src="/images/hero-mobile-final.png"
+              alt=""
+              fill
+              priority
+              unoptimized
+              className="object-cover object-center"
+            />
+          </div>
         </motion.div>
         {/* Vignette esquerdo elegante — concentrado nos primeiros 45%, dissolve suavemente */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/88 from-[0%] via-black/55 via-[30%] to-transparent to-[58%]" />
-        {/* No mobile, escurece mais o lado direito para isolar o texto */}
-        <div className="absolute inset-0 bg-black/30 lg:hidden" />
+        {/* No mobile, escurece mais para legibilidade do texto */}
+        <div className="absolute inset-0 bg-black/35 lg:hidden" />
         {/* Bleed superior e inferior para suavidade */}
-        <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-black/55 to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/65 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/60 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 to-transparent" />
       </div>
 
       {/* ── CONTENT ── */}
@@ -76,7 +87,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12, ease }}
-            className="mt-6 text-balance font-bold leading-[1.05] tracking-[-0.02em] text-white
+            className="mt-7 sm:mt-8 lg:mt-8 text-balance font-bold leading-[1.05] tracking-[-0.02em] text-white
                        text-[clamp(2.4rem,4.6vw,3.75rem)]"
           >
             Seu entretenimento,{" "}
@@ -98,7 +109,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.26, ease }}
-            className="mt-5 max-w-[420px] text-pretty text-[0.975rem] leading-[1.7] text-white/55 sm:text-[1rem]"
+            className="mt-6 max-w-[420px] text-pretty text-[0.975rem] leading-[1.7] text-white/55 sm:text-[1rem]"
           >
             Você escolhe o plano, fala com nossa equipe e nós te ajudamos a
             configurar sua TV, celular ou TV Box com suporte humano pelo
@@ -110,7 +121,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.38, ease }}
-            className="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:items-center"
+            className="mt-9 flex w-full flex-col gap-3 sm:flex-row sm:items-center"
           >
             {/* Primary */}
             <a
@@ -119,26 +130,26 @@ export function Hero() {
               rel="noopener noreferrer"
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl
                          bg-primary px-6 py-3.5 text-[0.9rem] font-semibold text-white
-                         shadow-[0_6px_24px_-6px] shadow-primary/55 transition-all duration-300
-                         hover:-translate-y-px hover:shadow-[0_12px_32px_-6px] hover:shadow-primary/60
+                         shadow-[0_8px_28px_-6px] shadow-primary/60 transition-all duration-300
+                         hover:-translate-y-1 hover:shadow-[0_16px_40px_-4px] hover:shadow-primary/70
                          active:translate-y-0 sm:w-auto"
             >
-              <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+              <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <Calendar className="size-4 shrink-0" />
               Quero configurar agora
-              <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
             </a>
 
             {/* Secondary */}
             <a
               href="#planos"
               className="group inline-flex items-center justify-center gap-2 rounded-xl
-                         border border-white/14 bg-white/[0.05] px-6 py-3.5 text-[0.9rem] font-semibold text-white/80
+                         border border-white/16 bg-white/[0.06] px-6 py-3.5 text-[0.9rem] font-semibold text-white/85
                          backdrop-blur-md transition-all duration-300
-                         hover:border-white/25 hover:bg-white/[0.08] sm:w-auto"
+                         hover:border-white/30 hover:bg-white/12 active:bg-white/[0.08] sm:w-auto"
             >
               Ver planos
-              <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
+              <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
             </a>
           </motion.div>
 
@@ -147,7 +158,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.52, ease }}
-            className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2"
+            className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-2"
           >
             {[
               { icon: Clock, label: "Configuração em minutos" },
