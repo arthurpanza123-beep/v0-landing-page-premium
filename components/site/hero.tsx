@@ -10,11 +10,8 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import { useRef } from "react"
-import { WHATSAPP_DEFAULT, whatsappLink } from "@/lib/site"
+import { WHATSAPP_DEFAULT } from "@/lib/site"
 import { AnnouncementBadge } from "./micro/announcement-badge"
-import { StatusCard } from "./micro/status-card"
-import { GlowButton } from "./micro/glow-button"
-import { FloatingElement } from "./micro/floating-element"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -34,7 +31,6 @@ export function Hero() {
   })
 
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"])
-  const visualY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"])
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "16%"])
 
   return (
@@ -172,60 +168,6 @@ export function Hero() {
               </motion.span>
             ))}
           </motion.div>
-        </motion.div>
-
-        {/* ── RIGHT — floating cards ancorados na área direita ── */}
-        <motion.div
-          style={{ y: visualY }}
-          className="relative z-10 hidden h-full min-h-[520px] lg:block"
-          aria-hidden
-        >
-          {/* Plano ativo — topo direito, acima da TV */}
-          <FloatingElement
-            delay={0.6}
-            duration={6.5}
-            y={9}
-            className="absolute right-2 top-[6%]"
-          >
-            <StatusCard
-              icon={<BadgeCheck className="size-4" />}
-              title="Plano ativo"
-              subtitle="Configurado"
-              variant="success"
-              delay={0.6}
-            />
-          </FloatingElement>
-
-          {/* Suporte humano — inferior direito, longe do celular/mesa que fica no centro-inferior */}
-          <FloatingElement
-            delay={0.82}
-            duration={7}
-            y={9}
-            className="absolute bottom-[12%] right-2"
-          >
-            <a
-              href={whatsappLink("Olá! Quero falar com o suporte humano da Central Play Plus.")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
-            >
-              <StatusCard
-                icon={
-                  <span className="relative">
-                    <Headphones className="size-4" />
-                    <span className="absolute -right-0.5 -top-0.5 flex size-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-whatsapp/60" />
-                      <span className="relative inline-flex size-2 rounded-full bg-whatsapp" />
-                    </span>
-                  </span>
-                }
-                title="Suporte humano"
-                subtitle="Online agora"
-                variant="success"
-                delay={0.82}
-              />
-            </a>
-          </FloatingElement>
         </motion.div>
       </div>
 
