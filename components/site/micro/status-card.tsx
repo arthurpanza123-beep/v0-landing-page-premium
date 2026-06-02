@@ -31,9 +31,9 @@ export function StatusCard({
       }}
       whileHover={{ scale: 1.02, y: -2 }}
       className={cn(
-        "group relative flex items-center gap-3 rounded-2xl border px-4 py-3 backdrop-blur-xl transition-all duration-300",
+        "group relative flex items-center gap-2.5 rounded-xl border px-3.5 py-2.5 backdrop-blur-xl transition-all duration-300",
         variant === "default" && "border-border/50 bg-card/60 hover:border-border/80 hover:bg-card/80",
-        variant === "success" && "border-emerald-500/30 bg-emerald-950/40 hover:border-emerald-500/50",
+        variant === "success" && "border-emerald-500/25 bg-emerald-950/50 hover:border-emerald-500/40",
         variant === "accent" && "border-primary/30 bg-primary/10 hover:border-primary/50",
         className,
       )}
@@ -51,7 +51,7 @@ export function StatusCard({
       {/* Icon container */}
       <div
         className={cn(
-          "flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition-colors duration-300",
+          "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-colors duration-300",
           variant === "default" && "bg-muted/80 text-foreground/80 group-hover:bg-muted",
           variant === "success" && "bg-emerald-500/20 text-emerald-400",
           variant === "accent" && "bg-primary/20 text-primary",
@@ -62,13 +62,13 @@ export function StatusCard({
       
       {/* Content */}
       <div className="flex flex-col">
-        <span className="text-sm font-semibold leading-tight text-foreground">
+        <span className="text-[0.8rem] font-semibold leading-tight text-foreground">
           {title}
         </span>
         {subtitle && (
           <span
             className={cn(
-              "text-xs leading-tight",
+              "text-[0.72rem] leading-tight",
               variant === "success" ? "text-emerald-400/80" : "text-muted-foreground",
             )}
           >

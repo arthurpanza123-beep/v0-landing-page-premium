@@ -27,23 +27,25 @@ export function Header() {
   }, [open])
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
+    <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4 sm:px-8">
       <div
         className={cn(
-          "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border border-transparent px-4 py-3 transition-all duration-300 sm:px-5",
-          scrolled && "glass border-border/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]",
+          "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border border-transparent px-5 py-3.5 transition-all duration-300",
+          scrolled
+            ? "glass border-white/10 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.7)]"
+            : "bg-black/20 backdrop-blur-sm",
         )}
       >
         <a href="#inicio" aria-label="Central Play Plus — início">
           <Logo />
         </a>
 
-        <nav className="hidden items-center gap-1 lg:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="rounded-lg px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="rounded-lg px-4 py-2 text-[0.875rem] font-medium text-white/70 transition-colors hover:text-white"
             >
               {link.label}
             </a>
