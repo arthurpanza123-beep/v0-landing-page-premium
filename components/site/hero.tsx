@@ -156,19 +156,35 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* ── MOBILE layout — texto acima, imagem abaixo ── */}
-      <div className="relative flex flex-col lg:hidden">
+      {/* ── MOBILE layout — imagem 9:16 como background de toda a hero ── */}
+      <div className="relative lg:hidden" style={{ aspectRatio: "9/16" }}>
 
-        {/* Bloco 1: conteúdo textual com fundo sólido escuro */}
-        <div className="relative z-10 px-6 pb-10 pt-28 sm:px-8">
-          {/* Fundo escuro sólido atrás do texto — sem imagem passando */}
-          <div
-            className="absolute inset-0 -z-10"
-            style={{
-              background:
-                "linear-gradient(180deg, oklch(0.09 0.02 255) 0%, oklch(0.10 0.03 255) 75%, oklch(0.09 0.03 255 / 0) 100%)",
-            }}
+        {/* Background: arte mobile cobrindo tudo desde o topo */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/hero-mobile-final.png"
+            alt=""
+            fill
+            priority
+            unoptimized
+            className="object-cover object-top"
           />
+        </div>
+
+        {/* Camada 1: escurecimento global base */}
+        <div className="absolute inset-0 z-10 bg-black/30" />
+
+        {/* Camada 2: gradiente vertical — escuro no topo, dissolve a partir de 55% */}
+        <div
+          className="absolute inset-0 z-10"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(5,8,20,0.90) 0%, rgba(5,8,20,0.78) 28%, rgba(5,8,20,0.48) 50%, rgba(5,8,20,0.10) 72%, rgba(5,8,20,0.0) 100%)",
+          }}
+        />
+
+        {/* Conteúdo: copy sobre a imagem */}
+        <div className="relative z-20 flex flex-col px-6 pb-10 pt-28 sm:px-8">
 
           <AnnouncementBadge pulse>Atendimento online agora</AnnouncementBadge>
 
@@ -196,7 +212,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.22, ease }}
-            className="mt-5 max-w-[340px] text-pretty text-[0.9rem] leading-[1.75] text-white/60"
+            className="mt-5 max-w-[340px] text-pretty text-[0.9rem] leading-[1.75] text-white/70"
           >
             Você escolhe o plano e nós configuramos sua TV, celular ou TV Box
             com suporte humano pelo WhatsApp.
@@ -226,7 +242,7 @@ export function Hero() {
             <a
               href="#planos"
               className="inline-flex w-full items-center justify-center gap-2
-                         rounded-xl border border-white/18 bg-white/[0.07] py-3.5 text-[0.9rem] font-semibold text-white/80
+                         rounded-xl border border-white/20 bg-white/[0.09] py-3.5 text-[0.9rem] font-semibold text-white/85
                          backdrop-blur-md transition-all duration-300 active:scale-[0.98]"
             >
               Ver planos
@@ -234,12 +250,12 @@ export function Hero() {
             </a>
           </motion.div>
 
-          {/* Trust pills — 2 colunas no mobile */}
+          {/* Trust pills — glass sutil, 2 colunas */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.46, ease }}
-            className="mt-8 grid grid-cols-2 gap-x-4 gap-y-3"
+            className="mt-8 grid grid-cols-2 gap-x-4 gap-y-3 rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-4 backdrop-blur-md"
           >
             {[
               { icon: Clock, label: "Configuração em minutos" },
@@ -251,9 +267,9 @@ export function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4, delay: 0.5 + i * 0.07 }}
-                className="inline-flex items-center gap-2 text-[0.82rem] font-medium text-white/65"
+                className="inline-flex items-center gap-2 text-[0.82rem] font-medium text-white/75"
               >
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full border border-primary/30 bg-primary/10">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full border border-primary/35 bg-primary/15">
                   <Icon className="size-3 text-primary" />
                 </span>
                 {label}
@@ -262,27 +278,8 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Bloco 2: arte mobile 9:16 — ocupa toda a largura, proporção preservada */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.5, ease }}
-          className="relative w-full"
-          style={{ aspectRatio: "9/16" }}
-        >
-          <Image
-            src="/images/hero-mobile-final.png"
-            alt="Central Play Plus — sala aconchegante com TV, mascote e celular"
-            fill
-            priority
-            unoptimized
-            className="object-cover object-top"
-          />
-          {/* Fade no topo para fundir com o bloco de texto */}
-          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-background to-transparent" />
-          {/* Fade na base para entrada suave na próxima seção */}
-          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />
-        </motion.div>
+        {/* Fade na base — dissolve para a próxima seção */}
+        <div className="absolute inset-x-0 bottom-0 z-20 h-32 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       {/* ── COMPATIBILITY BAR ── */}
