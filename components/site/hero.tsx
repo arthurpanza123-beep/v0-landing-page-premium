@@ -167,24 +167,24 @@ export function Hero() {
             fill
             priority
             unoptimized
-            className="object-cover object-top"
+            className="object-cover object-[center_55%]"
           />
         </div>
 
-        {/* Camada 1: escurecimento global base */}
-        <div className="absolute inset-0 z-10 bg-black/30" />
+        {/* Camada 1: escurecimento global reduzido — cena deve aparecer */}
+        <div className="absolute inset-0 z-10 bg-black/10" />
 
-        {/* Camada 2: gradiente vertical — escuro no topo, dissolve a partir de 55% */}
+        {/* Camada 2: gradiente vertical — escuro apenas no terço superior, cena livre */}
         <div
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(5,8,20,0.90) 0%, rgba(5,8,20,0.78) 28%, rgba(5,8,20,0.48) 50%, rgba(5,8,20,0.10) 72%, rgba(5,8,20,0.0) 100%)",
+              "linear-gradient(to bottom, rgba(5,8,20,0.88) 0%, rgba(5,8,20,0.70) 22%, rgba(5,8,20,0.32) 42%, rgba(5,8,20,0.06) 62%, rgba(5,8,20,0.0) 100%)",
           }}
         />
 
         {/* Conteúdo: copy sobre a imagem */}
-        <div className="relative z-20 flex flex-col px-6 pb-10 pt-28 sm:px-8">
+        <div className="relative z-20 flex flex-col px-6 pb-10 pt-36 sm:px-8">
 
           <AnnouncementBadge pulse>Atendimento online agora</AnnouncementBadge>
 
@@ -250,12 +250,12 @@ export function Hero() {
             </a>
           </motion.div>
 
-          {/* Trust pills — glass sutil, 2 colunas */}
+          {/* Trust pills — chips compactos estilo Apple, inline */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.46, ease }}
-            className="mt-8 grid grid-cols-2 gap-x-4 gap-y-3 rounded-2xl border border-white/10 bg-white/[0.06] px-4 py-4 backdrop-blur-md"
+            className="mt-6 flex flex-wrap gap-2"
           >
             {[
               { icon: Clock, label: "Configuração em minutos" },
@@ -267,11 +267,9 @@ export function Hero() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.4, delay: 0.5 + i * 0.07 }}
-                className="inline-flex items-center gap-2 text-[0.82rem] font-medium text-white/75"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.08] px-3 py-1.5 text-[0.78rem] font-medium text-white/75 backdrop-blur-sm"
               >
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full border border-primary/35 bg-primary/15">
-                  <Icon className="size-3 text-primary" />
-                </span>
+                <Icon className="size-3 shrink-0 text-primary" />
                 {label}
               </motion.span>
             ))}
