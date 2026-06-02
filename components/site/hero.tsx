@@ -182,8 +182,8 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* ── MOBILE layout — imagem 9:16 como background de toda a hero ── */}
-      <div className="relative lg:hidden" style={{ aspectRatio: "9/16" }}>
+      {/* ── MOBILE layout — imagem como background de tela cheia ── */}
+      <div className="relative min-h-[100svh] lg:hidden">
 
         {/* Background: arte mobile cobrindo tudo desde o topo */}
         <div className="absolute inset-0 z-0">
@@ -197,21 +197,63 @@ export function Hero() {
           />
         </div>
 
-        {/* Camada 1: sombra mínima — arte já é escura por natureza */}
+        {/* Camada 1: sombra mínima — arte já é escura */}
         <div className="absolute inset-0 z-10 bg-black/5" />
 
-        {/* Camada 2: apenas escurece o topo para a copy, resto livre */}
+        {/* Camada 2: gradiente concentrado só no topo */}
         <div
           className="absolute inset-0 z-10"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(5,8,20,0.82) 0%, rgba(5,8,20,0.58) 18%, rgba(5,8,20,0.18) 36%, rgba(5,8,20,0.0) 50%)",
+              "linear-gradient(to bottom, rgba(5,8,20,0.78) 0%, rgba(5,8,20,0.50) 18%, rgba(5,8,20,0.12) 36%, rgba(5,8,20,0.0) 50%)",
           }}
         />
 
-        {/* Conteúdo: copy sobre a imagem */}
-        <div className="relative z-20 flex flex-col px-6 pb-10 pt-36 sm:px-8">
+        {/* Camada 3: realce de luzes quentes (luminária + bokeh) via mix-blend-screen */}
+        <div
+          className="pointer-events-none absolute inset-0 z-10"
+          style={{ mixBlendMode: "screen", opacity: 0.18 }}
+        >
+          {/* Luminária — canto inferior direito da arte */}
+          <div
+            className="absolute"
+            style={{
+              right: "12%", bottom: "18%",
+              width: "30%", height: "25%",
+              background: "radial-gradient(ellipse at 60% 70%, rgba(255,180,60,1) 0%, rgba(255,140,30,0.5) 40%, transparent 75%)",
+              filter: "blur(22px)",
+            }}
+          />
+          {/* Bokeh da janela — canto superior esquerdo */}
+          <div
+            className="absolute"
+            style={{
+              left: "0%", top: "0%",
+              width: "55%", height: "55%",
+              background: "radial-gradient(ellipse at 30% 30%, rgba(80,140,255,0.9) 0%, rgba(40,90,200,0.4) 45%, transparent 75%)",
+              filter: "blur(28px)",
+            }}
+          />
+        </div>
 
+        {/* Conteúdo: copy com blur de vidro atrás do texto */}
+        <div
+          className="relative z-20 flex flex-col px-6 pb-12 pt-28 sm:px-8"
+        >
+          {/* Placa de vidro atrás da área de copy */}
+          <div
+            className="absolute inset-x-0 top-0 z-0"
+            style={{
+              height: "62%",
+              background: "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.20) 70%, transparent 100%)",
+              backdropFilter: "blur(18px)",
+              WebkitBackdropFilter: "blur(18px)",
+              maskImage: "linear-gradient(to bottom, black 0%, black 65%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, black 0%, black 65%, transparent 100%)",
+            }}
+          />
+
+          <div className="relative z-10 flex flex-col">
           <AnnouncementBadge pulse>Atendimento online agora</AnnouncementBadge>
 
           <motion.h1
@@ -298,6 +340,7 @@ export function Hero() {
               </motion.span>
             ))}
           </motion.div>
+          </div>{/* fim z-10 */}
         </div>
 
         {/* Fade na base — dissolve para a próxima seção */}
