@@ -148,3 +148,101 @@
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
+
+@utility text-gradient-blue {
+  background: linear-gradient(
+    100deg,
+    oklch(0.72 0.16 255) 0%,
+    oklch(0.62 0.18 250) 50%,
+    oklch(0.78 0.1 230) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Fine grid overlay for ambient depth */
+@utility bg-grid {
+  background-image: linear-gradient(
+      to right,
+      color-mix(in oklch, var(--foreground) 4%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--foreground) 4%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+}
+
+@utility dot-grid {
+  background-image: radial-gradient(
+    color-mix(in oklch, var(--foreground) 8%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+}
+
+/* Subtle gradient border via mask */
+@utility ring-gradient {
+  position: relative;
+}
+@utility ring-gradient::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in oklch, var(--primary) 60%, transparent),
+    transparent 40%,
+    color-mix(in oklch, var(--foreground) 10%, transparent)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@layer base {
+  .shadow-glow {
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--primary) 30%, transparent),
+      0 20px 60px -20px color-mix(in oklch, var(--primary) 55%, transparent);
+  }
+  .shadow-soft {
+    box-shadow: 0 24px 80px -32px oklch(0 0 0 / 0.7);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklch, var(--whatsapp) 55%, transparent);
+  }
+  70% {
+    box-shadow: 0 0 0 14px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+.animate-pulse-ring {
+  animation: pulse-ring 2.4s ease-out infinite;
+}

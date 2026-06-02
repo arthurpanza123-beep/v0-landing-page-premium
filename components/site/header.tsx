@@ -30,7 +30,7 @@ export function Header() {
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6">
       <div
         className={cn(
-          "mx-auto flex max-w-6xl items-center justify-between rounded-2xl border border-transparent px-4 py-3 transition-all duration-300 sm:px-5",
+          "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border border-transparent px-4 py-3 transition-all duration-300 sm:px-5",
           scrolled && "glass border-border/60 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.6)]",
         )}
       >
@@ -80,7 +80,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="mx-auto mt-2 max-w-6xl rounded-2xl glass border border-border/60 p-3 lg:hidden"
+            className="mx-auto mt-2 max-w-[1240px] rounded-2xl glass border border-border/60 p-3 lg:hidden"
           >
             <nav className="flex flex-col">
               {NAV_LINKS.map((link) => (

@@ -3,42 +3,47 @@
 import { ArrowRight, MessageCircle, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Reveal } from "./reveal"
+import { Container } from "./section"
 import { WHATSAPP_DEFAULT } from "@/lib/site"
 
 export function FinalCta() {
   return (
-    <section className="relative py-12 sm:py-20">
-      <div className="mx-auto max-w-5xl px-4 sm:px-6">
+    <section className="relative py-16 sm:py-24">
+      <Container>
         <Reveal>
-          <div className="relative overflow-hidden rounded-3xl border border-primary/30 bg-gradient-to-br from-primary/20 via-card to-card p-10 text-center sm:p-16">
+          <div className="ring-gradient relative overflow-hidden rounded-[2rem] border border-primary/40 bg-gradient-to-br from-primary/25 via-card to-card px-6 py-16 text-center shadow-soft sm:px-12 sm:py-24">
+            {/* layered glows */}
             <div
-              aria-hidden="true"
-              className="pointer-events-none absolute left-1/2 top-0 h-72 w-[600px] -translate-x-1/2 rounded-full bg-primary/20 blur-[120px]"
+              aria-hidden
+              className="pointer-events-none absolute left-1/2 top-0 h-80 w-[700px] -translate-x-1/2 rounded-full bg-primary/25 blur-[130px]"
             />
-            <div className="relative">
-              <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-3.5 py-1.5 text-xs font-medium text-muted-foreground">
-                <Sparkles className="size-3.5 text-primary" />
+            <div className="dot-grid pointer-events-none absolute inset-0 opacity-30 [mask-image:radial-gradient(70%_70%_at_50%_50%,#000,transparent)]" />
+
+            <div className="relative mx-auto max-w-3xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/50 px-4 py-1.5 text-sm font-medium text-muted-foreground backdrop-blur">
+                <Sparkles className="size-4 text-primary" />
                 Último passo
               </span>
-              <h2 className="mx-auto mt-6 max-w-2xl text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-                Quer deixar tudo pronto ainda hoje?
+              <h2 className="mt-7 text-balance text-4xl font-bold tracking-tight sm:text-6xl lg:text-[4rem] lg:leading-[1.02]">
+                Quer deixar tudo{" "}
+                <span className="text-gradient-blue">pronto ainda hoje?</span>
               </h2>
-              <p className="mx-auto mt-5 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+              <p className="mx-auto mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
                 Chame nossa equipe, confirme seu aparelho e escolha o melhor plano para começar sem
                 dor de cabeça.
               </p>
               <Button
                 asChild
                 size="lg"
-                className="mt-9 h-13 rounded-xl bg-primary px-7 text-base font-semibold text-primary-foreground shadow-[0_16px_40px_-12px] shadow-primary/60 transition-transform hover:scale-[1.02] hover:bg-primary/90"
+                className="group mt-10 h-15 rounded-full px-8 text-base shadow-glow"
               >
                 <a href={WHATSAPP_DEFAULT} target="_blank" rel="noopener noreferrer">
                   <MessageCircle className="size-5" />
                   Quero começar agora
-                  <ArrowRight className="size-4" />
+                  <ArrowRight className="size-5 transition-transform group-hover:translate-x-0.5" />
                 </a>
               </Button>
-              <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-sm text-muted-foreground">
                 <span>Resposta rápida</span>
                 <span className="hidden size-1 rounded-full bg-border sm:block" />
                 <span>Sem compromisso</span>
@@ -48,7 +53,7 @@ export function FinalCta() {
             </div>
           </div>
         </Reveal>
-      </div>
+      </Container>
     </section>
   )
 }

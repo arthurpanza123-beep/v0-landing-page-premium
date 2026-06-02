@@ -1,12 +1,16 @@
 "use client"
 
+import { MessageCircle } from "lucide-react"
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { Button } from "@/components/ui/button"
 import { Reveal } from "./reveal"
+import { Container, Eyebrow } from "./section"
+import { WHATSAPP_DEFAULT } from "@/lib/site"
 
 const FAQS = [
   {
@@ -33,34 +37,54 @@ const FAQS = [
 
 export function Faq() {
   return (
-    <section className="relative py-24 sm:py-32">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <Reveal className="text-center">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">Perguntas</p>
-          <h2 className="mt-4 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-            Dúvidas frequentes
-          </h2>
-        </Reveal>
-
-        <Reveal delay={0.1} className="mt-12">
-          <Accordion type="single" collapsible className="flex flex-col gap-3">
-            {FAQS.map((faq, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="rounded-2xl border border-border/70 bg-card/50 px-5 transition-colors data-[state=open]:border-primary/40 data-[state=open]:bg-card"
+    <section className="relative py-28 sm:py-36">
+      <Container>
+        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          {/* LEFT — heading + CTA */}
+          <Reveal>
+            <div className="lg:sticky lg:top-28">
+              <Eyebrow>Perguntas</Eyebrow>
+              <h2 className="mt-5 text-balance text-4xl font-bold tracking-tight sm:text-5xl lg:leading-[1.05]">
+                Dúvidas frequentes
+              </h2>
+              <p className="mt-6 max-w-sm text-pretty text-lg leading-relaxed text-muted-foreground">
+                Não achou o que procurava? Fale com a gente — respondemos rápido pelo WhatsApp.
+              </p>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="mt-7 h-12 rounded-full border-border/70 bg-card/40 px-6 backdrop-blur hover:bg-card/70"
               >
-                <AccordionTrigger className="py-5 text-left text-base font-medium hover:no-underline">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm leading-relaxed text-muted-foreground">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </Reveal>
-      </div>
+                <a href={WHATSAPP_DEFAULT} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle className="size-4" />
+                  Tirar uma dúvida
+                </a>
+              </Button>
+            </div>
+          </Reveal>
+
+          {/* RIGHT — accordion */}
+          <Reveal delay={0.1}>
+            <Accordion type="single" collapsible className="flex flex-col gap-3.5">
+              {FAQS.map((faq, i) => (
+                <AccordionItem
+                  key={i}
+                  value={`item-${i}`}
+                  className="rounded-2xl border border-border/70 bg-card/50 px-6 transition-colors data-[state=open]:border-primary/40 data-[state=open]:bg-card"
+                >
+                  <AccordionTrigger className="py-5 text-left text-lg font-medium hover:no-underline">
+                    {faq.q}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-[15px] leading-relaxed text-muted-foreground">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </Reveal>
+        </div>
+      </Container>
     </section>
   )
 }

@@ -27,7 +27,7 @@ export function WhatsappFloat() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.6, y: 20 }}
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="group fixed bottom-5 right-5 z-50 flex items-center gap-3 rounded-full bg-whatsapp py-3.5 pl-4 pr-5 text-whatsapp-foreground shadow-[0_12px_40px_-8px] shadow-whatsapp/70 sm:bottom-7 sm:right-7"
+          className="group animate-pulse-ring fixed bottom-5 right-5 z-50 flex items-center gap-3 rounded-full bg-whatsapp py-3.5 pl-4 pr-5 text-whatsapp-foreground shadow-[0_12px_40px_-8px] shadow-whatsapp/70 sm:bottom-7 sm:right-7"
         >
           <span className="absolute inset-0 -z-10 rounded-full bg-whatsapp opacity-60 blur-md transition-opacity group-hover:opacity-90" />
           <MessageCircle className="size-6" />

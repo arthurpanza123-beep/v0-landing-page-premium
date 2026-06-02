@@ -1,5 +1,6 @@
-import { MessageCircle } from "lucide-react"
+import { MessageCircle, Clock, Headphones, BadgeCheck } from "lucide-react"
 import { Logo } from "./logo"
+import { Container } from "./section"
 import { WHATSAPP_DEFAULT } from "@/lib/site"
 
 const COLUMNS = [
@@ -21,15 +22,34 @@ const COLUMNS = [
   },
 ]
 
+const BADGES = [
+  { icon: Clock, label: "Configuração em minutos" },
+  { icon: Headphones, label: "Suporte humano" },
+  { icon: BadgeCheck, label: "Sem fidelidade" },
+]
+
 export function Footer() {
   return (
-    <footer className="border-t border-border/60 py-14">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <footer className="relative border-t border-border/60 pt-16 pb-12">
+      <Container>
+        {/* trust badges band */}
+        <div className="mb-14 grid gap-4 rounded-3xl border border-border/60 bg-card/40 p-6 sm:grid-cols-3">
+          {BADGES.map((b) => (
+            <div key={b.label} className="flex items-center gap-3">
+              <span className="flex size-10 items-center justify-center rounded-xl bg-primary/15 text-primary ring-1 ring-primary/25">
+                <b.icon className="size-5" />
+              </span>
+              <span className="text-sm font-medium">{b.label}</span>
+            </div>
+          ))}
+        </div>
+
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div className="lg:col-span-2">
             <Logo />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Atendimento e suporte humano para o seu entretenimento digital.
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted-foreground">
+              Atendimento e suporte humano para o seu entretenimento digital. Você escolhe, a gente
+              configura.
             </p>
           </div>
 
@@ -38,7 +58,7 @@ export function Footer() {
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                 {col.title}
               </p>
-              <ul className="mt-4 flex flex-col gap-3">
+              <ul className="mt-5 flex flex-col gap-3">
                 {col.links.map((link) => (
                   <li key={link.label}>
                     <a
@@ -54,7 +74,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-8 sm:flex-row sm:items-center">
+        <div className="mt-14 flex flex-col items-start justify-between gap-4 border-t border-border/60 pt-8 sm:flex-row sm:items-center">
           <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Central Play Plus. Todos os direitos reservados.
           </p>
@@ -68,7 +88,7 @@ export function Footer() {
             Falar agora
           </a>
         </div>
-      </div>
+      </Container>
     </footer>
   )
 }
