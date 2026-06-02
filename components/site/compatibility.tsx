@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react"
 import { Tv, Smartphone, Box, MessageCircle, ArrowRight } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Reveal, Stagger, staggerItem } from "./reveal"
 import { Container, Eyebrow } from "./section"
@@ -86,18 +87,27 @@ export function Compatibility() {
               </motion.div>
             ))}
 
-            {/* accent tile */}
+            {/* accent tile with devices image */}
             <motion.div
               variants={staggerItem}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-primary/40 bg-gradient-to-br from-primary/20 via-card to-card p-7"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-primary/40 bg-gradient-to-br from-primary/20 via-card to-card p-0"
             >
-              <div className="dot-grid absolute inset-0 opacity-30" />
-              <p className="relative text-sm font-semibold uppercase tracking-[0.18em] text-primary/90">
-                Configuração guiada
-              </p>
-              <p className="relative mt-4 text-pretty text-lg font-medium leading-snug">
-                A gente te acompanha em cada toque até tudo estar pronto.
-              </p>
+              <Image
+                src="/images/devices-compatibility.png"
+                alt="Smart TV, celular e TV Box compatíveis com Central Play"
+                width={400}
+                height={300}
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/90">
+                  Multi-dispositivo
+                </p>
+                <p className="mt-2 text-pretty text-base font-medium leading-snug">
+                  Use em todos os seus aparelhos.
+                </p>
+              </div>
             </motion.div>
           </Stagger>
         </div>

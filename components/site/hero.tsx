@@ -4,36 +4,33 @@ import { motion } from "motion/react"
 import {
   ArrowRight,
   MessageCircle,
-  ShieldCheck,
-  Headphones,
   Clock,
+  Headphones,
   BadgeCheck,
-  Wifi,
-  Volume2,
-  Play,
-  Trophy,
-  Music,
-  Star,
-  Film,
 } from "lucide-react"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Container } from "./section"
 import { WHATSAPP_DEFAULT, whatsappLink } from "@/lib/site"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
-const tiles = [
-  "from-blue-500/30 to-indigo-600/10",
-  "from-rose-500/25 to-fuchsia-600/10",
-  "from-emerald-500/25 to-teal-600/10",
-  "from-amber-500/25 to-orange-600/10",
-  "from-sky-500/25 to-cyan-600/10",
-  "from-violet-500/25 to-purple-600/10",
-]
-
 export function Hero() {
   return (
     <section id="inicio" className="relative overflow-hidden pt-32 pb-20 sm:pt-40 lg:pt-44 lg:pb-28">
+      {/* Hero background image */}
+      <div className="absolute inset-0 -z-20">
+        <Image
+          src="/images/hero-bg.png"
+          alt=""
+          fill
+          priority
+          className="object-cover object-center"
+          quality={90}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30" />
+      </div>
+
       <Container>
         <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_1fr] lg:gap-12 xl:gap-20">
           {/* LEFT — copy */}
@@ -123,7 +120,7 @@ export function Hero() {
             </motion.ul>
           </div>
 
-          {/* RIGHT — cinematic interface mockup */}
+          {/* RIGHT — visual mockup with real assets */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -133,63 +130,19 @@ export function Hero() {
             {/* glow behind */}
             <div className="absolute -inset-8 -z-10 rounded-[2.5rem] bg-[radial-gradient(closest-side,oklch(0.55_0.18_255/0.35),transparent)] blur-2xl" />
 
-            {/* main screen */}
-            <div className="ring-gradient relative overflow-hidden rounded-3xl border border-border/60 bg-card/70 p-3 shadow-soft backdrop-blur-xl">
-              <div className="overflow-hidden rounded-2xl bg-background/80">
-                {/* top bar */}
-                <div className="flex items-center justify-between border-b border-border/50 px-5 py-3.5">
-                  <div className="flex items-center gap-2">
-                    <span className="flex size-7 items-center justify-center rounded-lg bg-primary/15 ring-1 ring-primary/30">
-                      <Play className="size-3.5 fill-primary text-primary" />
-                    </span>
-                    <span className="text-sm font-medium">Central Play</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-muted-foreground">
-                    <Wifi className="size-4" />
-                    <Volume2 className="size-4" />
-                    <span className="rounded-md bg-primary/15 px-1.5 py-0.5 text-[10px] font-bold text-primary">
-                      HD
-                    </span>
-                  </div>
-                </div>
-
-                {/* featured banner */}
-                <div className="px-5 pt-5">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-primary/80">
-                    Destaque da noite
-                  </p>
-                  <div className="relative mt-3 h-32 overflow-hidden rounded-xl bg-gradient-to-br from-primary/30 via-indigo-600/15 to-transparent ring-1 ring-border/50 sm:h-36">
-                    <div className="absolute inset-0 dot-grid opacity-40" />
-                    <div className="absolute bottom-3 left-4">
-                      <div className="h-2.5 w-28 rounded-full bg-foreground/70" />
-                      <div className="mt-2 h-2 w-20 rounded-full bg-foreground/25" />
-                    </div>
-                    <span className="absolute right-3 top-3 flex size-9 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-glow">
-                      <Play className="size-4 fill-current" />
-                    </span>
-                  </div>
-                </div>
-
-                {/* category grid */}
-                <div className="grid grid-cols-3 gap-3 p-5">
-                  {tiles.map((t, i) => (
-                    <div
-                      key={i}
-                      className={`relative h-16 overflow-hidden rounded-lg bg-gradient-to-br ${t} ring-1 ring-border/50 sm:h-20`}
-                    >
-                      <div className="absolute bottom-1.5 left-1.5 h-1.5 w-9 rounded-full bg-foreground/40" />
-                    </div>
-                  ))}
-                </div>
-
-                {/* quick row */}
-                <div className="flex items-center justify-around border-t border-border/50 px-5 py-3.5 text-muted-foreground">
-                  <Film className="size-4" />
-                  <Trophy className="size-4" />
-                  <Star className="size-4" />
-                  <Music className="size-4" />
-                </div>
-              </div>
+            {/* main app mockup image */}
+            <div className="relative">
+              <Image
+                src="/images/app-mockup.png"
+                alt="Interface do Central Play - seu entretenimento configurado"
+                width={600}
+                height={450}
+                priority
+                className="relative z-10 w-full rounded-2xl drop-shadow-2xl"
+              />
+              
+              {/* subtle overlay glow */}
+              <div className="absolute inset-0 z-0 rounded-2xl bg-gradient-to-tr from-primary/20 via-transparent to-transparent opacity-60" />
             </div>
 
             {/* floating card: plano ativo */}
@@ -197,16 +150,15 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.6, ease }}
-              className="animate-float-slow absolute -left-4 -top-6 w-52 rounded-2xl border border-border/60 bg-card/80 p-4 shadow-soft backdrop-blur-xl sm:-left-8"
+              className="animate-float-slow absolute -left-4 -top-6 z-20 sm:-left-8"
             >
-              <div className="flex items-center gap-2.5">
-                <span className="flex size-8 items-center justify-center rounded-full bg-primary/15 ring-1 ring-primary/30">
-                  <ShieldCheck className="size-4 text-primary" />
-                </span>
-                <span className="text-sm font-medium text-muted-foreground">Plano ativo</span>
-              </div>
-              <p className="mt-3 text-lg font-semibold">Configurado</p>
-              <p className="text-sm text-muted-foreground">em 4 minutos</p>
+              <Image
+                src="/images/float-plan-active.png"
+                alt="Plano ativo - Configurado em 4 minutos"
+                width={200}
+                height={120}
+                className="w-44 drop-shadow-xl sm:w-52"
+              />
             </motion.div>
 
             {/* floating card: suporte humano */}
@@ -217,18 +169,15 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.75, ease }}
-              className="absolute -bottom-7 -right-3 flex w-60 items-center gap-3 rounded-2xl border border-border/60 bg-card/80 p-4 shadow-soft backdrop-blur-xl transition-colors hover:bg-card sm:-right-8"
+              className="absolute -bottom-7 -right-3 z-20 transition-transform hover:scale-105 sm:-right-8"
             >
-              <span className="flex size-10 items-center justify-center rounded-full bg-whatsapp text-whatsapp-foreground">
-                <MessageCircle className="size-5" />
-              </span>
-              <div className="min-w-0">
-                <p className="text-sm font-medium">Suporte humano</p>
-                <p className="flex items-center gap-1.5 text-xs text-whatsapp">
-                  <span className="size-1.5 rounded-full bg-whatsapp" />
-                  online agora
-                </p>
-              </div>
+              <Image
+                src="/images/float-support.png"
+                alt="Suporte humano online agora"
+                width={240}
+                height={100}
+                className="w-52 drop-shadow-xl sm:w-60"
+              />
             </motion.a>
           </motion.div>
         </div>
