@@ -262,12 +262,13 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Bloco 2: imagem mobile como visual de apoio */}
+        {/* Bloco 2: arte mobile 9:16 — ocupa toda a largura, proporção preservada */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.5, ease }}
-          className="relative -mt-8 h-[55vw] min-h-[240px] max-h-[380px] w-full overflow-hidden"
+          className="relative w-full"
+          style={{ aspectRatio: "9/16" }}
         >
           <Image
             src="/images/hero-mobile-final.png"
@@ -275,12 +276,12 @@ export function Hero() {
             fill
             priority
             unoptimized
-            className="object-cover object-[center_35%]"
+            className="object-cover object-top"
           />
           {/* Fade no topo para fundir com o bloco de texto */}
-          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[oklch(0.09_0.02_255)] to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-background to-transparent" />
           {/* Fade na base para entrada suave na próxima seção */}
-          <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-background to-transparent" />
         </motion.div>
       </div>
 
