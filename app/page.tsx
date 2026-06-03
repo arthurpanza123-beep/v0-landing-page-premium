@@ -13,12 +13,10 @@ import { FinalCta } from "@/components/site/final-cta"
 import { Footer } from "@/components/site/footer"
 import { WhatsappFloat } from "@/components/site/whatsapp-float"
 import { Ambient } from "@/components/site/ambient"
-import { UrgencyBanner } from "@/components/site/urgency-banner"
 
 export default function Page() {
   return (
     <>
-      <UrgencyBanner />
       <Ambient />
       <Header />
       <main className="relative">

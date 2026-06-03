@@ -1,22 +1,51 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Menu, X, MessageCircle } from "lucide-react"
+import { Menu, X, MessageCircle, Clock, Flame } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { Logo } from "./logo"
 import { NAV_LINKS, WHATSAPP_DEFAULT } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
+// Calculate time until end of day
+function getTimeUntilMidnight() {
+  const now = new Date()
+  const midnight = new Date(now)
+  midnight.setHours(23, 59, 59, 999)
+  return midnight.getTime() - now.getTime()
+}
+
+function formatTime(ms: number) {
+  const hours = Math.floor(ms / (1000 * 60 * 60))
+  const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60))
+  const seconds = Math.floor((ms % (1000 * 60)) / 1000)
+  return {
+    hours: hours.toString().padStart(2, "0"),
+    minutes: minutes.toString().padStart(2, "0"),
+    seconds: seconds.toString().padStart(2, "0"),
+  }
+}
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [timeLeft, setTimeLeft] = useState(getTimeUntilMidnight())
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const onScroll = () => setScrolled(window.scrollY > 16)
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
+  }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft(getTimeUntilMidnight())
+    }, 1000)
+    return () => clearInterval(interval)
   }, [])
 
   useEffect(() => {
@@ -26,9 +55,51 @@ export function Header() {
     }
   }, [open])
 
+  const { hours, minutes, seconds } = formatTime(timeLeft)
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4 sm:px-8">
-      <div
+    <header className="fixed inset-x-0 top-0 z-50">
+      {/* Urgency Banner */}
+      {mounted && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="relative overflow-hidden bg-gradient-to-r from-amber-500/15 via-orange-500/15 to-amber-500/15 backdrop-blur-sm"
+        >
+          <div className="mx-auto flex max-w-7xl items-center justify-center gap-3 px-4 py-2 sm:gap-4 sm:py-2.5">
+            <div className="flex items-center gap-2">
+              <Flame className="size-4 text-amber-400 animate-pulse" />
+              <span className="text-[0.75rem] font-medium text-amber-200/90 sm:text-[0.8rem]">
+                Oferta válida até hoje
+              </span>
+            </div>
+            
+            <span className="hidden h-3.5 w-px bg-amber-500/30 sm:block" />
+            
+            <div className="flex items-center gap-1.5">
+              <Clock className="size-3 text-amber-400/70" />
+              <div className="flex items-center gap-0.5 font-mono text-[0.75rem] font-semibold text-white sm:text-[0.8rem]">
+                <span className="rounded bg-amber-500/25 px-1 py-0.5">{hours}</span>
+                <span className="text-amber-400">:</span>
+                <span className="rounded bg-amber-500/25 px-1 py-0.5">{minutes}</span>
+                <span className="text-amber-400">:</span>
+                <span className="rounded bg-amber-500/25 px-1 py-0.5">{seconds}</span>
+              </div>
+            </div>
+
+            <span className="hidden h-3.5 w-px bg-amber-500/30 lg:block" />
+            
+            <span className="hidden text-[0.75rem] text-amber-200/70 lg:inline">
+              Aproveite o desconto especial
+            </span>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Navigation */}
+      <div className="px-5 pt-3 sm:px-8 sm:pt-4">
+        <div
         className={cn(
           "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border border-transparent px-5 py-3 transition-all duration-300 lg:py-3.5",
           scrolled
@@ -74,6 +145,7 @@ export function Header() {
           >
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
+        </div>
         </div>
       </div>
 
