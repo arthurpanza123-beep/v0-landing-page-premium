@@ -11,24 +11,36 @@ import {
   Star,
 } from "lucide-react"
 import Image from "next/image"
-import { useRef } from "react"
+import { useRef, useState, useEffect, useMemo } from "react"
 import { WHATSAPP_DEFAULT } from "@/lib/site"
 import { AnnouncementBadge } from "./micro/announcement-badge"
 import { TypingText } from "./micro/typing-text"
+import { ScrollIndicator } from "./scroll-indicator"
 
 const ease = [0.22, 1, 0.36, 1] as const
+
+// Pre-generated particle positions to avoid hydration mismatch
+const PARTICLE_POSITIONS = [
+  { left: 12, top: 8 }, { left: 85, top: 23 }, { left: 34, top: 67 },
+  { left: 67, top: 45 }, { left: 23, top: 89 }, { left: 91, top: 12 },
+  { left: 45, top: 34 }, { left: 78, top: 78 }, { left: 5, top: 56 },
+  { left: 56, top: 91 }, { left: 39, top: 18 }, { left: 72, top: 63 },
+  { left: 18, top: 42 }, { left: 95, top: 85 }, { left: 28, top: 73 },
+  { left: 63, top: 28 }, { left: 8, top: 95 }, { left: 82, top: 52 },
+  { left: 48, top: 5 }, { left: 15, top: 38 },
+]
 
 // Floating particles component
 function FloatingParticles() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      {[...Array(20)].map((_, i) => (
+      {PARTICLE_POSITIONS.map((pos, i) => (
         <motion.div
           key={i}
           className="absolute size-1 rounded-full bg-primary/30"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            left: `${pos.left}%`,
+            top: `${pos.top}%`,
           }}
           animate={{
             y: [0, -30, 0],
@@ -36,9 +48,9 @@ function FloatingParticles() {
             scale: [1, 1.2, 1],
           }}
           transition={{
-            duration: 4 + Math.random() * 3,
+            duration: 4 + (i % 5) * 0.6,
             repeat: Infinity,
-            delay: Math.random() * 2,
+            delay: (i % 8) * 0.25,
             ease: "easeInOut",
           }}
         />
@@ -276,6 +288,11 @@ export function Hero() {
             </div>
           </motion.div>
         </motion.div>
+        
+        {/* Scroll indicator - bottom center */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <ScrollIndicator />
+        </div>
       </div>
 
       {/* ── MOBILE layout — imagem como background de tela cheia ── */}

@@ -19,18 +19,51 @@ export const metadata: Metadata = {
     'TV Box',
   ],
   generator: 'v0.app',
+  metadataBase: new URL('https://centralplayplus.com.br'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Central Play Plus — Filmes, séries e canais ao vivo na sua tela hoje',
     description:
-      'Filmes, séries, canais ao vivo e futebol. Configuração em minutos com suporte humano pelo WhatsApp. Sem fidelidade.',
+      'Mais de 30.000 conteúdos entre filmes, séries, canais ao vivo e futebol. Configuração em minutos com suporte humano pelo WhatsApp. Planos a partir de R$ 20/mês. Sem fidelidade.',
     type: 'website',
     locale: 'pt_BR',
+    siteName: 'Central Play Plus',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Central Play Plus - Entretenimento na sua tela',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Central Play Plus — Filmes, séries e canais ao vivo',
-    description: 'Configure em minutos com suporte humano pelo WhatsApp. Sem fidelidade.',
+    description: 'Configure em minutos com suporte humano pelo WhatsApp. Planos a partir de R$ 20/mês. Sem fidelidade.',
+    images: ['/og-image.png'],
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/manifest.json',
 }
 
 export const viewport: Viewport = {
