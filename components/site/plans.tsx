@@ -50,7 +50,7 @@ export function Plans() {
               )}
               
               {plan.badge && (
-                <span className="absolute -top-3.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-r from-primary to-primary/90 px-4 py-1.5 text-xs font-semibold text-primary-foreground shadow-[0_8px_24px_-6px_oklch(0.65_0.20_255/0.6)]">
+                <span className="absolute -top-3.5 left-1/2 z-50 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-r from-primary to-primary/90 px-4 py-1.5 text-xs font-semibold text-primary-foreground shadow-[0_8px_24px_-6px_oklch(0.65_0.20_255/0.6)]">
                   <Sparkles className="size-3.5" />
                   {plan.badge}
                 </span>
