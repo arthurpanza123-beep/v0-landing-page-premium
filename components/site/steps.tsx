@@ -58,7 +58,7 @@ const STEPS = [
 
 export function Steps() {
   return (
-    <section id="como-funciona" className="relative overflow-hidden py-20 sm:py-32">
+    <section id="como-funciona" className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
       {/* Ambient */}
       <div
         aria-hidden

@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 
 export function Plans() {
   return (
-    <section id="planos" className="relative py-20 sm:py-32 lg:py-40">
+    <section id="planos" className="relative py-16 sm:py-20 lg:py-24">
       {/* Ambient glows — blue center, warm accents */}
       <div
         aria-hidden

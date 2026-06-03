@@ -97,7 +97,7 @@ function DeviceCard({
 
 export function Compatibility() {
   return (
-    <section id="compatibilidade" className="relative py-20 sm:py-32 lg:py-40">
+    <section id="compatibilidade" className="relative py-16 sm:py-20 lg:py-24">
       {/* Ambient glow — blue right, warm left bottom */}
       <div
         aria-hidden

@@ -80,7 +80,7 @@ const UPTIME_BARS = [95, 99, 97, 100, 98, 100, 99]
 
 export function SocialProof() {
   return (
-    <section id="diferenciais" className="relative py-20 sm:py-28 lg:py-36">
+    <section id="diferenciais" className="relative py-16 sm:py-20 lg:py-24">
       {/* Ambient */}
       <div
         aria-hidden
@@ -108,7 +108,7 @@ export function SocialProof() {
         </motion.div>
 
         {/* Bento grid — 1 large card + 4 small */}
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+        <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 lg:gap-4">
 
           {/* Large card — servidor */}
           <motion.div
@@ -116,7 +116,8 @@ export function SocialProof() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="group relative overflow-hidden rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/10 via-white/[0.03] to-transparent p-6 sm:col-span-2 lg:col-span-1 lg:row-span-2 sm:p-8"
+            whileHover={{ y: -4 }}
+            className="group relative overflow-hidden rounded-2xl border border-blue-500/20 bg-gradient-to-br from-blue-500/10 via-white/[0.03] to-transparent p-6 sm:col-span-2 lg:col-span-1 lg:row-span-2 sm:p-7"
           >
             <div className="flex size-12 items-center justify-center rounded-xl border border-blue-500/25 bg-blue-500/10">
               <Server className="size-6 text-blue-400" />
@@ -169,19 +170,24 @@ export function SocialProof() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.55, delay: 0.1 + i * 0.08 }}
-                className={`group relative overflow-hidden rounded-2xl border p-5 transition-all duration-500 hover:border-white/15 sm:p-6 ${benefit.accentBorder} bg-gradient-to-br from-white/[0.04] to-transparent`}
+                whileHover={{ y: -4, scale: 1.01 }}
+                className={`group relative overflow-hidden rounded-2xl border p-5 transition-all duration-500 hover:border-white/15 sm:p-5 ${benefit.accentBorder} bg-gradient-to-br from-white/[0.04] to-transparent`}
               >
                 <div className="flex items-start justify-between">
-                  <div className={`flex size-10 items-center justify-center rounded-xl border ${benefit.accentBorder} ${benefit.accentBg}`}>
+                  <motion.div 
+                    className={`flex size-10 items-center justify-center rounded-xl border ${benefit.accentBorder} ${benefit.accentBg}`}
+                    whileHover={{ rotate: [0, -10, 10, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <Icon className={`size-5 ${benefit.accentColor}`} />
-                  </div>
+                  </motion.div>
                   <div className="text-right">
                     <span className={`text-2xl font-black ${benefit.accentColor}`}>{benefit.highlight}</span>
                     <p className="text-[0.65rem] text-white/35">{benefit.highlightLabel}</p>
                   </div>
                 </div>
-                <h3 className="mt-4 text-[1rem] font-bold text-white leading-tight">{benefit.title}</h3>
-                <p className="mt-1.5 text-[0.82rem] leading-[1.65] text-white/55">{benefit.description}</p>
+                <h3 className="mt-4 text-[0.95rem] font-bold text-white leading-tight">{benefit.title}</h3>
+                <p className="mt-1.5 text-[0.8rem] leading-[1.6] text-white/55">{benefit.description}</p>
               </motion.div>
             )
           })}
@@ -193,19 +199,21 @@ export function SocialProof() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+          className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
         >
           <p className="text-[0.9rem] text-white/55">Ficou com dúvida? Fale com a gente agora.</p>
-          <a
+          <motion.a
             href={whatsappLink("Olá! Gostaria de saber mais sobre a Central Play Plus.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 rounded-xl bg-whatsapp px-5 py-3 text-[0.9rem] font-semibold text-white shadow-[0_8px_24px_-8px_rgba(37,211,102,0.5)] transition-all duration-300 hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 rounded-xl bg-whatsapp px-5 py-2.5 text-[0.9rem] font-semibold text-white shadow-[0_8px_24px_-8px_rgba(37,211,102,0.5)] transition-all duration-300"
+            whileHover={{ y: -2, scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
             <MessageCircle className="size-4" />
             Falar no WhatsApp
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
-          </a>
+          </motion.a>
         </motion.div>
       </Container>
     </section>
