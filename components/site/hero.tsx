@@ -370,29 +370,36 @@ export function Hero() {
             </a>
           </motion.div>
 
-          {/* Trust pills — chips compactos estilo Apple, inline */}
+          {/* Trust pills — organized grid for mobile */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.46, ease }}
-            className="mt-6 flex flex-wrap gap-2"
+            className="mt-8 flex flex-col gap-3"
           >
             {[
               { icon: Clock, label: "Configuração em minutos" },
-              { icon: Headphones, label: "Suporte humano" },
-              { icon: BadgeCheck, label: "Sem fidelidade" },
-            ].map(({ icon: Icon, label }, i) => (
-              <motion.span
+              { icon: Headphones, label: "Suporte humano real" },
+              { icon: MessageCircle, label: "Atendimento no WhatsApp" },
+            ].map(({ icon: Icon, label }) => (
+              <span
                 key={label}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 0.5 + i * 0.07 }}
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.08] px-3 py-1.5 text-[0.78rem] font-medium text-white/75 backdrop-blur-sm"
+                className="inline-flex items-center gap-3 text-[0.9rem] text-white/70"
               >
-                <Icon className="size-3 shrink-0 text-primary" />
+                <Icon className="size-4 shrink-0 text-primary" />
                 {label}
-              </motion.span>
+              </span>
             ))}
+            <div className="mt-2 flex items-center gap-4">
+              <span className="inline-flex items-center gap-2 text-[0.85rem] text-white/55">
+                <BadgeCheck className="size-4 shrink-0 text-white/40" />
+                Pagamento via Pix
+              </span>
+              <span className="inline-flex items-center gap-2 text-[0.85rem] text-white/55">
+                <BadgeCheck className="size-4 shrink-0 text-white/40" />
+                Sem fidelidade
+              </span>
+            </div>
           </motion.div>
           </div>{/* fim z-10 */}
         </div>

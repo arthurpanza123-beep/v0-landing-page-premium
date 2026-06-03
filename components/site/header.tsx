@@ -35,13 +35,13 @@ export function Header() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className={cn(
-            "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border px-5 py-3 transition-all duration-500 lg:py-3.5",
+            "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border px-4 py-2.5 transition-all duration-500 sm:px-5 sm:py-3 lg:py-3.5",
             scrolled
               ? "border-white/[0.08] bg-background/70 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-xl backdrop-saturate-150"
               : "border-transparent bg-white/[0.03] backdrop-blur-sm",
           )}
         >
-        <a href="#inicio" aria-label="Central Play Plus — inicio">
+        <a href="#inicio" aria-label="Central Play Plus — início" className="ml-1 flex-shrink-0 sm:ml-0">
           <Logo />
         </a>
 
@@ -102,35 +102,48 @@ export function Header() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="mx-auto mt-2 max-w-[1240px] rounded-2xl glass border border-border/60 p-3 lg:hidden"
-          >
-            <nav className="flex flex-col">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-xl px-4 py-3 text-base font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          <>
+            {/* Backdrop blur overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-background/80 backdrop-blur-md lg:hidden"
+              onClick={() => setOpen(false)}
+            />
+            
+            {/* Menu content */}
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="relative z-50 mx-4 mt-2 max-w-[1240px] rounded-2xl border border-white/10 bg-card/95 p-4 backdrop-blur-xl lg:hidden sm:mx-auto"
+            >
+              <nav className="flex flex-col gap-1">
+                {NAV_LINKS.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-xl px-4 py-3 text-base font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <Button
+                  asChild
+                  className="mt-3 bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90"
                 >
-                  {link.label}
-                </a>
-              ))}
-              <Button
-                asChild
-                className="mt-2 bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90"
-              >
-                <a href={WHATSAPP_DEFAULT} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="size-4" />
-                  Falar no WhatsApp
-                </a>
-              </Button>
-            </nav>
-          </motion.div>
+                  <a href={WHATSAPP_DEFAULT} target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="size-4" />
+                    Falar no WhatsApp
+                  </a>
+                </Button>
+              </nav>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

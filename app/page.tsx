@@ -14,9 +14,12 @@ import { Footer } from "@/components/site/footer"
 import { WhatsappFloat } from "@/components/site/whatsapp-float"
 import { Ambient } from "@/components/site/ambient"
 import { SectionDivider } from "@/components/site/section-divider"
+import { AnimatedNoise } from "@/components/site/animated-noise"
+
 export default function Page() {
   return (
     <>
+      <AnimatedNoise />
       <Ambient />
       <Header />
       <main className="relative">

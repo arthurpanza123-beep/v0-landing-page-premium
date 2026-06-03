@@ -108,7 +108,7 @@ function AnimatedNumber({ value, suffix = "" }: { value: number; suffix?: string
 
 export function Catalog() {
   return (
-    <section id="catalogo" className="relative py-16 sm:py-20 lg:py-24">
+    <section id="catalogo" className="relative py-20 sm:py-24 lg:py-32">
       <Container>
         {/* Header */}
         <div className="flex flex-col items-center text-center">
@@ -129,7 +129,7 @@ export function Catalog() {
         </div>
 
         {/* Category cards - premium grid with hover effects */}
-        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5 lg:gap-4">
+        <div className="mx-auto mt-12 grid max-w-4xl grid-cols-2 gap-4 sm:mt-14 sm:grid-cols-3 sm:gap-5 lg:mt-16 lg:grid-cols-5 lg:gap-5">
           {CATEGORIES.map((cat, i) => (
             <motion.div
               key={cat.id}
@@ -137,32 +137,22 @@ export function Catalog() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ y: -6, scale: 1.02 }}
-              className="group relative flex cursor-default flex-col items-center rounded-2xl border border-white/8 bg-gradient-to-b from-white/[0.05] to-transparent p-5 text-center transition-colors duration-500 hover:border-white/15 sm:p-6"
-              style={{ 
-                boxShadow: `0 0 0 0 ${cat.glowColor}`,
-                transition: "box-shadow 0.5s ease, border-color 0.5s ease"
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.boxShadow = `0 20px 50px -10px ${cat.glowColor}`
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.boxShadow = `0 0 0 0 ${cat.glowColor}`
-              }}
+              className="group relative flex cursor-default flex-col items-center rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.08] sm:p-7"
             >
-              {/* Gradient glow on hover */}
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-b ${cat.gradient} opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
+              {/* Animated glow overlay */}
+              <div 
+                className="absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                style={{ 
+                  background: `radial-gradient(circle at 50% 0%, ${cat.glowColor} 0%, transparent 70%)` 
+                }}
+              />
               
-              <motion.div 
-                className={`relative z-10 flex size-12 items-center justify-center rounded-xl ${cat.iconBg} sm:size-14`}
-                whileHover={{ rotate: [0, -5, 5, 0] }}
-                transition={{ duration: 0.5 }}
-              >
-                <cat.icon className={`size-6 ${cat.iconColor} sm:size-7`} />
-              </motion.div>
+              <div className={`relative z-10 flex size-14 items-center justify-center rounded-xl ${cat.iconBg} transition-transform duration-300 group-hover:scale-110 sm:size-16`}>
+                <cat.icon className={`size-7 ${cat.iconColor} sm:size-8`} />
+              </div>
               
-              <span className="relative z-10 mt-3 text-[0.9rem] font-semibold text-white sm:mt-4 sm:text-base">{cat.label}</span>
-              <span className="relative z-10 mt-1 text-xs text-white/45 sm:text-[0.8rem]">{cat.count}</span>
+              <span className="relative z-10 mt-4 text-[0.95rem] font-semibold text-white sm:text-base">{cat.label}</span>
+              <span className="relative z-10 mt-1.5 text-xs text-white/50 sm:text-[0.8rem]">{cat.count}</span>
             </motion.div>
           ))}
         </div>
@@ -173,21 +163,16 @@ export function Catalog() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-2.5"
+          className="mt-12 flex flex-wrap items-center justify-center gap-2.5 sm:mt-14 sm:gap-3"
         >
           {HIGHLIGHTS.map((item, i) => (
-            <motion.span
+            <span
               key={item}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: 0.4 + i * 0.05 }}
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.08)" }}
-              className="inline-flex cursor-default items-center gap-1.5 rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-[0.75rem] text-white/60 transition-colors sm:px-4 sm:py-2 sm:text-[0.8rem]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[0.8rem] text-white/65 transition-colors hover:bg-white/[0.08] sm:px-5 sm:py-2.5 sm:text-[0.85rem]"
             >
-              <Sparkles className="size-3 text-primary/70" />
+              <Sparkles className="size-3.5 text-primary/80" />
               {item}
-            </motion.span>
+            </span>
           ))}
         </motion.div>
 
@@ -197,31 +182,23 @@ export function Catalog() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mx-auto mt-8 flex max-w-2xl items-center justify-center divide-x divide-white/10 rounded-2xl border border-white/8 bg-white/[0.03] py-5 sm:py-6"
+          className="mx-auto mt-12 flex max-w-2xl items-center justify-center divide-x divide-white/10 rounded-2xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-transparent py-6 sm:mt-14 sm:py-8"
         >
-          <motion.div 
-            className="flex flex-1 flex-col items-center px-4 sm:px-8"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <span className="text-xl font-bold text-white sm:text-2xl">
+          <div className="flex flex-1 flex-col items-center px-6 sm:px-10">
+            <span className="text-2xl font-bold text-white sm:text-3xl">
               +<AnimatedNumber value={30000} />
             </span>
-            <span className="mt-1 text-[0.7rem] text-white/40 sm:text-xs">Conteúdos</span>
-          </motion.div>
-          <motion.div 
-            className="flex flex-1 flex-col items-center px-4 sm:px-8"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <span className="text-xl font-bold text-white sm:text-2xl">
+            <span className="mt-1.5 text-xs text-white/45 sm:text-sm">Conteúdos</span>
+          </div>
+          <div className="flex flex-1 flex-col items-center px-6 sm:px-10">
+            <span className="text-2xl font-bold text-white sm:text-3xl">
               +<AnimatedNumber value={1500} />
             </span>
-            <span className="mt-1 text-[0.7rem] text-white/40 sm:text-xs">Canais ao vivo</span>
-          </motion.div>
-          <div className="flex flex-1 flex-col items-center px-4 sm:px-8">
-            <span className="text-xl font-bold text-white sm:text-2xl">4K</span>
-            <span className="mt-1 text-[0.7rem] text-white/40 sm:text-xs">Ultra HD</span>
+            <span className="mt-1.5 text-xs text-white/45 sm:text-sm">Canais ao vivo</span>
+          </div>
+          <div className="flex flex-1 flex-col items-center px-6 sm:px-10">
+            <span className="text-2xl font-bold text-white sm:text-3xl">4K</span>
+            <span className="mt-1.5 text-xs text-white/45 sm:text-sm">Ultra HD</span>
           </div>
         </motion.div>
       </Container>
