@@ -113,9 +113,7 @@ export function Plans() {
                 )}
               >
                 <a
-                  href={whatsappLink(
-                    `Olá! Quero contratar o plano ${plan.name} (R$ ${plan.price}) da Central Play Plus.`,
-                  )}
+                  href={whatsappLink(plan.whatsappMessage)}
                   target="_blank"
                   rel="noopener noreferrer"
                 >

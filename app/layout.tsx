@@ -1,29 +1,35 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
 
 export const metadata: Metadata = {
-  title: 'Central Play Plus — Seu entretenimento, pronto para usar',
+  title: 'Central Play Plus — Filmes, séries e canais ao vivo na sua tela hoje',
   description:
-    'Você escolhe o plano, chama nossa equipe e recebe ajuda para deixar tudo configurado na sua TV, celular ou TV Box. Suporte humano pelo WhatsApp, sem complicação e sem fidelidade.',
+    'Filmes, séries, canais ao vivo e futebol na sua Smart TV, celular ou TV Box. Configuração em minutos com suporte humano pelo WhatsApp. Sem fidelidade, sem complicação.',
   keywords: [
     'Central Play Plus',
-    'entretenimento',
-    'configuração de TV',
-    'suporte humano',
-    'planos de entretenimento',
+    'IPTV',
+    'filmes series canais ao vivo',
+    'configuração Smart TV',
+    'suporte humano WhatsApp',
+    'planos entretenimento',
+    'TV Box',
   ],
   generator: 'v0.app',
   openGraph: {
-    title: 'Central Play Plus — Seu entretenimento, pronto para usar',
+    title: 'Central Play Plus — Filmes, séries e canais ao vivo na sua tela hoje',
     description:
-      'Escolha o plano, fale com a equipe e receba ajuda para configurar tudo na sua TV, celular ou TV Box. Suporte humano pelo WhatsApp.',
+      'Filmes, séries, canais ao vivo e futebol. Configuração em minutos com suporte humano pelo WhatsApp. Sem fidelidade.',
     type: 'website',
     locale: 'pt_BR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Central Play Plus — Filmes, séries e canais ao vivo',
+    description: 'Configure em minutos com suporte humano pelo WhatsApp. Sem fidelidade.',
   },
 }
 
@@ -62,7 +68,6 @@ export default function RootLayout({
           />
         </div>
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )

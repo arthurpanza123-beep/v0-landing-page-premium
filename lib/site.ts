@@ -1,13 +1,11 @@
-export const WHATSAPP_NUMBER = "5500000000000"
+export const WHATSAPP_NUMBER = "5521995570902"
 
 export function whatsappLink(message: string) {
   const text = encodeURIComponent(message)
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`
 }
 
-export const WHATSAPP_DEFAULT = whatsappLink(
-  "Olá! Quero configurar meu plano da Central Play Plus.",
-)
+export const WHATSAPP_DEFAULT = "https://wa.me/5521995570902?text=%F0%9F%9F%A2%20Ol%C3%A1!%20Tenho%20interesse%20e%20quero%20saber%20mais."
 
 export const NAV_LINKS = [
   { label: "Início", href: "#inicio" },
@@ -27,6 +25,7 @@ export type Plan = {
   highlight?: boolean
   badge?: string
   features: string[]
+  whatsappMessage: string
 }
 
 export const PLANS: Plan[] = [
@@ -37,6 +36,7 @@ export const PLANS: Plan[] = [
     period: "/mês",
     description: "Para começar hoje com praticidade.",
     features: ["Configuração guiada", "Suporte humano", "Ativação imediata", "Sem fidelidade"],
+    whatsappMessage: "Olá, tudo bom?\nVim pelo site e gostaria do plano Mensal.",
   },
   {
     id: "trimestral",
@@ -48,6 +48,7 @@ export const PLANS: Plan[] = [
     highlight: true,
     badge: "Mais escolhido",
     features: ["Configuração guiada", "Suporte humano", "Ativação imediata", "Sem fidelidade"],
+    whatsappMessage: "Olá, tudo bom?\nVim pelo site e gostaria do plano Trimestral.",
   },
   {
     id: "semestral",
@@ -57,6 +58,7 @@ export const PLANS: Plan[] = [
     equivalent: "equivalente a R$ 15,00/mês",
     description: "Mais tempo de uso com melhor custo-benefício.",
     features: ["Configuração guiada", "Suporte humano", "Ativação imediata", "Sem fidelidade"],
+    whatsappMessage: "Olá, tudo bom?\nVim pelo site e gostaria do plano Semestral.",
   },
   {
     id: "anual",
@@ -66,5 +68,6 @@ export const PLANS: Plan[] = [
     equivalent: "equivalente a R$ 12,50/mês",
     description: "A opção mais econômica para o ano todo.",
     features: ["Configuração guiada", "Suporte humano", "Ativação imediata", "Sem fidelidade"],
+    whatsappMessage: "Olá, tudo bom?\nVim pelo site e gostaria do plano Anual.",
   },
 ]

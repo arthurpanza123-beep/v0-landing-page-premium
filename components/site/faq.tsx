@@ -101,7 +101,7 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
   return (
-    <section className="relative py-32 sm:py-44">
+    <section className="relative py-20 sm:py-32">
       {/* Ambient — blue top, warm bottom right */}
       <div
         aria-hidden
@@ -129,10 +129,10 @@ export function Faq() {
             className="lg:sticky lg:top-28"
           >
             <Eyebrow>Perguntas frequentes</Eyebrow>
-            <h2 className="mt-5 text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:leading-[1.06]">
-              Dúvidas que todo mundo tem.
+            <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl lg:leading-[1.06]">
+              Dúvidas? A gente responde.
             </h2>
-            <p className="mt-5 max-w-sm text-pretty text-[15px] leading-relaxed text-white/50">
+            <p className="mt-5 max-w-sm text-pretty text-[15px] leading-relaxed text-white/55">
               Não achou o que procurava? Nossa equipe responde rápido pelo WhatsApp.
             </p>
 

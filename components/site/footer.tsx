@@ -1,7 +1,7 @@
-import { MessageCircle, Clock, Headphones, BadgeCheck } from "lucide-react"
+import { MessageCircle, Clock, Headphones, BadgeCheck, Phone } from "lucide-react"
 import { Logo } from "./logo"
 import { Container } from "./section"
-import { WHATSAPP_DEFAULT } from "@/lib/site"
+import { WHATSAPP_DEFAULT, WHATSAPP_NUMBER } from "@/lib/site"
 
 const COLUMNS = [
   {
@@ -54,9 +54,17 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Logo />
             <p className="mt-6 max-w-xs text-[0.9rem] leading-[1.7] text-muted-foreground/70">
-              Atendimento e suporte humano para o seu entretenimento digital. Você escolhe, a gente
-              configura.
+              Atendimento e suporte humano para o seu entretenimento digital. Você escolhe, a gente configura.
             </p>
+            <a
+              href={WHATSAPP_DEFAULT}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-5 inline-flex items-center gap-2 text-[0.85rem] font-medium text-whatsapp/80 transition-colors hover:text-whatsapp"
+            >
+              <Phone className="size-4" />
+              (21) 99557-0902
+            </a>
           </div>
 
           {COLUMNS.map((col) => (
