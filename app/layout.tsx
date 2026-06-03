@@ -39,7 +39,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR" className={`${geist.variable} ${geistMono.variable} bg-background`}>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased grain">
+        {/* Ambient background gradients for cozy atmosphere */}
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-0 -z-50 overflow-hidden"
+        >
+          {/* Blue glow — top left */}
+          <div
+            className="absolute -left-[20%] -top-[10%] h-[600px] w-[800px] rounded-full opacity-[0.06]"
+            style={{ background: "radial-gradient(ellipse, oklch(0.62 0.18 255) 0%, transparent 70%)", filter: "blur(100px)" }}
+          />
+          {/* Warm glow — bottom right */}
+          <div
+            className="absolute -bottom-[15%] -right-[15%] h-[500px] w-[700px] rounded-full opacity-[0.05]"
+            style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65) 0%, transparent 70%)", filter: "blur(100px)" }}
+          />
+          {/* Subtle center vignette */}
+          <div
+            className="absolute inset-0"
+            style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, oklch(0.08 0.02 264 / 0.5) 100%)" }}
+          />
+        </div>
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>

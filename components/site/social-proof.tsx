@@ -119,7 +119,7 @@ function TestimonialCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className="group flex flex-col justify-between rounded-[1.5rem] border border-white/6 bg-white/[0.03] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-primary/18 hover:bg-white/[0.05]"
+      className="group flex flex-col justify-between rounded-[1.5rem] border border-white/8 bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-amber-400/20 hover:bg-white/[0.05]"
     >
       {/* Stars */}
       <div className="flex gap-1">
@@ -157,10 +157,22 @@ export function SocialProof() {
           src="/images/social-proof-bg.png"
           alt=""
           fill
-          className="object-cover opacity-20"
+          className="object-cover opacity-15"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.13_0.012_264)] via-transparent to-[oklch(0.13_0.012_264)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.11_0.018_264)] via-transparent to-[oklch(0.11_0.018_264)]" />
       </div>
+
+      {/* Warm glow accents */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-0 top-[30%] -z-10 h-[400px] w-[400px] -translate-x-1/2 rounded-full opacity-12"
+        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.35) 0%, transparent 70%)", filter: "blur(70px)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-0 bottom-[20%] -z-10 h-[350px] w-[350px] translate-x-1/2 rounded-full opacity-10"
+        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.3) 0%, transparent 70%)", filter: "blur(60px)" }}
+      />
 
       <Container>
         {/* Heading */}

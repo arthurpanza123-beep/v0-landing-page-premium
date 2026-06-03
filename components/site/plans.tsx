@@ -11,9 +11,20 @@ import { cn } from "@/lib/utils"
 export function Plans() {
   return (
     <section id="planos" className="relative py-32 sm:py-44">
+      {/* Ambient glows — blue center, warm accents */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/4 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/8 blur-[180px]"
+        className="pointer-events-none absolute left-1/2 top-1/4 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/6 blur-[180px]"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-[20%] bottom-[15%] -z-10 h-[350px] w-[350px] rounded-full opacity-12"
+        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.35) 0%, transparent 70%)", filter: "blur(70px)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-[15%] top-[30%] -z-10 h-[300px] w-[300px] rounded-full opacity-10"
+        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.3) 0%, transparent 70%)", filter: "blur(60px)" }}
       />
       <Container>
         <Reveal>
@@ -37,8 +48,8 @@ export function Plans() {
               className={cn(
                 "group relative flex flex-col rounded-[1.75rem] border p-8 transition-all duration-500",
                 plan.highlight
-                  ? "ring-gradient z-10 border-primary/40 bg-gradient-to-b from-primary/12 via-card to-card shadow-[0_20px_70px_-20px_oklch(0.62_0.18_255/0.35)] lg:scale-[1.04]"
-                  : "border-border/50 bg-card/40 hover:-translate-y-1.5 hover:border-primary/25 hover:bg-card/70 hover:shadow-[0_16px_50px_-16px_oklch(0_0_0/0.5)]",
+                  ? "ring-gradient z-10 border-primary/35 bg-gradient-to-b from-primary/10 via-card to-card shadow-[0_24px_80px_-24px_oklch(0.62_0.18_255/0.35),0_0_0_1px_oklch(0.72_0.14_65/0.08)_inset] lg:scale-[1.04]"
+                  : "border-border/40 bg-gradient-to-b from-card/60 to-card/30 hover:-translate-y-1.5 hover:border-primary/25 hover:bg-card/70 hover:shadow-[0_16px_50px_-16px_oklch(0_0_0/0.5)]",
               )}
             >
               {plan.badge && (

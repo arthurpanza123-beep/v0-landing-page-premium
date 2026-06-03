@@ -102,15 +102,20 @@ export function Faq() {
 
   return (
     <section className="relative py-32 sm:py-44">
-      {/* Ambient */}
+      {/* Ambient — blue top, warm bottom right */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-20 -z-10 h-[300px] w-[600px] -translate-x-1/2 rounded-full opacity-20"
+        className="pointer-events-none absolute left-1/2 top-20 -z-10 h-[300px] w-[600px] -translate-x-1/2 rounded-full opacity-18"
         style={{ background: "radial-gradient(ellipse, oklch(0.62 0.18 255 / 0.35) 0%, transparent 70%)", filter: "blur(70px)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-0 bottom-[10%] -z-10 h-[350px] w-[400px] translate-x-1/3 rounded-full opacity-12"
+        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.35) 0%, transparent 70%)", filter: "blur(70px)" }}
       />
 
       <Container>

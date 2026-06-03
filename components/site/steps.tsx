@@ -55,7 +55,7 @@ function StepCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.7, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-      className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/6 bg-white/[0.02] transition-all duration-500 hover:-translate-y-2 hover:border-primary/25 hover:shadow-[0_24px_70px_-24px_oklch(0_0_0/0.6)]"
+      className="group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/8 bg-gradient-to-b from-white/[0.04] to-white/[0.01] transition-all duration-500 hover:-translate-y-2 hover:border-primary/25 hover:shadow-[0_24px_70px_-24px_oklch(0_0_0/0.6)]"
     >
       {/* Image */}
       <div className="relative h-52 overflow-hidden sm:h-56">
@@ -108,15 +108,19 @@ export function Steps() {
 
   return (
     <section id="como-funciona" ref={sectionRef} className="relative overflow-hidden py-32 sm:py-44">
-      {/* Ambient background glow */}
+      {/* Ambient background glow — blue + warm */}
       <motion.div
         style={{ y: bgY }}
         aria-hidden
         className="pointer-events-none absolute inset-0 -z-10"
       >
         <div
-          className="absolute left-1/4 top-0 h-[500px] w-[700px] -translate-x-1/2 rounded-full opacity-30"
-          style={{ background: "radial-gradient(ellipse, oklch(0.62 0.18 255 / 0.18) 0%, transparent 70%)", filter: "blur(80px)" }}
+          className="absolute left-1/4 top-0 h-[500px] w-[700px] -translate-x-1/2 rounded-full opacity-25"
+          style={{ background: "radial-gradient(ellipse, oklch(0.62 0.18 255 / 0.2) 0%, transparent 70%)", filter: "blur(80px)" }}
+        />
+        <div
+          className="absolute right-0 bottom-[20%] h-[400px] w-[500px] rounded-full opacity-20"
+          style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.2) 0%, transparent 70%)", filter: "blur(70px)" }}
         />
       </motion.div>
 

@@ -4,9 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.13 0.012 264);
+  --background: oklch(0.11 0.018 264);
   --foreground: oklch(0.97 0.005 264);
-  --card: oklch(0.17 0.015 264);
+  --card: oklch(0.15 0.02 264);
+  --warm: oklch(0.72 0.14 65);
   --card-foreground: oklch(0.97 0.005 264);
   --popover: oklch(0.16 0.015 264);
   --popover-foreground: oklch(0.97 0.005 264);
@@ -97,6 +98,7 @@
   --color-destructive-foreground: var(--destructive-foreground);
   --color-whatsapp: var(--whatsapp);
   --color-whatsapp-foreground: var(--whatsapp-foreground);
+  --color-warm: var(--warm);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
@@ -189,24 +191,27 @@
 @utility ring-gradient {
   position: relative;
 }
-@utility ring-gradient::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    135deg,
-    color-mix(in oklch, var(--primary) 60%, transparent),
-    transparent 40%,
-    color-mix(in oklch, var(--foreground) 10%, transparent)
-  );
-  -webkit-mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+
+@layer base {
+  .ring-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      color-mix(in oklch, var(--primary) 60%, transparent),
+      transparent 40%,
+      color-mix(in oklch, var(--foreground) 10%, transparent)
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
 }
 
 @layer base {
@@ -245,4 +250,56 @@
 }
 .animate-pulse-ring {
   animation: pulse-ring 2.4s ease-out infinite;
+}
+
+/* Film grain texture for cozy depth */
+@utility grain {
+  position: relative;
+}
+
+@layer base {
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    mix-blend-mode: overlay;
+  }
+}
+
+/* Ambient warm glow utility */
+@utility glow-warm {
+  position: relative;
+}
+
+@layer base {
+  .glow-warm::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    z-index: -1;
+    background: radial-gradient(ellipse 50% 50% at 70% 80%, oklch(0.72 0.14 65 / 0.08) 0%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+}
+
+/* Ambient blue glow utility */
+@utility glow-blue {
+  position: relative;
+}
+
+@layer base {
+  .glow-blue::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    z-index: -1;
+    background: radial-gradient(ellipse 50% 50% at 30% 20%, oklch(0.62 0.18 255 / 0.08) 0%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
 }

@@ -68,7 +68,7 @@ function CatalogCard({
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.55, delay: index * 0.09, ease: [0.22, 1, 0.36, 1] }}
-      className={`group relative overflow-hidden rounded-[1.75rem] border border-white/6 bg-white/[0.02] transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/20 hover:shadow-[0_20px_60px_-20px_oklch(0_0_0/0.6)] ${className}`}
+      className={`group relative overflow-hidden rounded-[1.75rem] border border-white/8 bg-gradient-to-b from-white/[0.04] to-white/[0.01] transition-all duration-500 hover:-translate-y-1.5 hover:border-primary/25 hover:shadow-[0_20px_60px_-20px_oklch(0_0_0/0.6)] ${className}`}
     >
       <Image
         src={item.image}
@@ -111,11 +111,16 @@ function CatalogCard({
 export function Catalog() {
   return (
     <section id="catalogo" className="relative py-32 sm:py-44">
-      {/* Ambient glow */}
+      {/* Ambient glow — blue left, warm right bottom */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-0 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-15"
+        className="pointer-events-none absolute left-0 top-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-12"
         style={{ background: "radial-gradient(ellipse, oklch(0.62 0.18 255 / 0.5) 0%, transparent 70%)", filter: "blur(100px)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-0 bottom-[15%] -z-10 h-[450px] w-[450px] translate-x-1/3 rounded-full opacity-12"
+        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.35) 0%, transparent 70%)", filter: "blur(80px)" }}
       />
 
       <Container>

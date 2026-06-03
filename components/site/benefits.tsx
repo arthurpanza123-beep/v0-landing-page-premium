@@ -16,11 +16,21 @@ const CHAT_MSGS = [
 export function Benefits() {
   return (
     <section id="beneficios" className="relative py-32 sm:py-44">
-      {/* Ambient */}
+      {/* Ambient — blue center, warm bottom corners */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-15"
+        className="pointer-events-none absolute left-1/2 top-1/3 -z-10 h-[600px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-12"
         style={{ background: "radial-gradient(ellipse, oklch(0.62 0.18 255 / 0.5) 0%, transparent 65%)", filter: "blur(120px)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute left-0 bottom-[5%] -z-10 h-[400px] w-[400px] -translate-x-1/2 rounded-full opacity-15"
+        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.35) 0%, transparent 70%)", filter: "blur(80px)" }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-0 bottom-[15%] -z-10 h-[350px] w-[350px] translate-x-1/2 rounded-full opacity-12"
+        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.3) 0%, transparent 70%)", filter: "blur(70px)" }}
       />
 
       <Container>
@@ -51,7 +61,7 @@ export function Benefits() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative overflow-hidden rounded-3xl border border-white/8 bg-white/[0.04] p-8 backdrop-blur-sm transition-all duration-500 hover:border-primary/20 lg:p-10"
+              className="group relative overflow-hidden rounded-3xl border border-white/8 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-8 transition-all duration-500 hover:border-primary/25 lg:p-10"
             >
               <div className="flex items-center gap-3">
                 <div className="flex size-12 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10">
@@ -106,7 +116,7 @@ export function Benefits() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative overflow-hidden rounded-3xl border border-white/8 bg-white/[0.04] p-8 backdrop-blur-sm transition-all duration-500 hover:border-primary/20 lg:p-10"
+              className="group relative overflow-hidden rounded-3xl border border-white/8 bg-gradient-to-b from-white/[0.05] to-white/[0.02] p-8 transition-all duration-500 hover:border-whatsapp/25 lg:p-10"
             >
               <div className="flex items-center gap-3">
                 <div className="flex size-12 items-center justify-center rounded-2xl border border-whatsapp/30 bg-whatsapp/10">
@@ -173,7 +183,7 @@ export function Benefits() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-            className="group relative overflow-hidden rounded-3xl border border-white/8 bg-white/[0.04] backdrop-blur-sm transition-all duration-500 hover:border-primary/20"
+            className="group relative overflow-hidden rounded-3xl border border-white/8 bg-gradient-to-b from-white/[0.05] to-white/[0.02] transition-all duration-500 hover:border-amber-400/25"
           >
             <div className="grid lg:grid-cols-[1fr_1.1fr]">
               {/* Copy */}
