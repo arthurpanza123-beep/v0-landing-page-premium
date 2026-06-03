@@ -38,6 +38,7 @@ export function Plans() {
               variants={staggerItem}
               className={cn(
                 "group relative flex flex-col overflow-hidden rounded-[1.75rem] border p-6 transition-all duration-500 sm:p-7 lg:p-8",
+                plan.badge && "pt-16 sm:pt-20 lg:pt-24",
                 plan.highlight
                   ? "z-10 border-primary/40 bg-gradient-to-b from-primary/12 via-primary/5 to-card/80 shadow-[0_0_80px_-20px_oklch(0.65_0.20_255/0.35),inset_0_1px_0_0_rgba(255,255,255,0.05)] lg:scale-[1.03]"
                   : "border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-card/50 hover:-translate-y-1 hover:border-white/10 hover:shadow-[0_24px_60px_-20px_oklch(0_0_0/0.6)]",
