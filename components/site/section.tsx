@@ -25,12 +25,13 @@ export function Eyebrow({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.22em] text-primary/80",
+        "inline-flex items-center gap-2.5 text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-primary",
         className,
       )}
     >
-      <span className="h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_12px_var(--primary)]" />
+      <span className="h-px w-8 bg-gradient-to-r from-transparent via-primary to-transparent" />
       {children}
+      <span className="h-px w-8 bg-gradient-to-r from-transparent via-primary to-transparent" />
     </span>
   )
 }
@@ -51,19 +52,19 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "flex flex-col gap-4",
+        "flex flex-col gap-5",
         align === "center" ? "items-center text-center" : "items-start text-left",
         className,
       )}
     >
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h2 className="text-balance text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-[3.25rem] lg:leading-[1.05]">
+      <h2 className="text-balance text-[1.875rem] font-bold tracking-[-0.025em] sm:text-4xl md:text-5xl lg:text-[3.5rem] lg:leading-[1.08]">
         {title}
       </h2>
       {description ? (
         <p
           className={cn(
-            "max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg",
+            "max-w-2xl text-pretty text-[1rem] leading-[1.8] text-muted-foreground sm:text-[1.125rem]",
             align === "center" && "mx-auto",
           )}
         >

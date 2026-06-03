@@ -119,17 +119,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12, ease }}
-            className="mt-8 text-balance font-bold leading-[1.05] tracking-[-0.025em] text-white text-[clamp(2.2rem,3.8vw,3.4rem)]"
+            className="mt-8 text-balance font-bold leading-[1.02] tracking-[-0.035em] text-white text-[clamp(2.4rem,4vw,3.75rem)]"
           >
             Filmes, séries e canais ao vivo{" "}
-            <span
-              style={{
-                background: "linear-gradient(110deg, #93c5fd 0%, #3b82f6 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span className="text-gradient-premium">
               na sua tela hoje.
             </span>
           </motion.h1>
@@ -154,22 +147,25 @@ export function Hero() {
               href={WHATSAPP_DEFAULT}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl
-                         bg-primary px-7 py-4 text-[0.95rem] font-semibold text-white
-                         shadow-[0_8px_28px_-6px] shadow-primary/65 transition-all duration-300
-                         hover:-translate-y-1 hover:shadow-[0_16px_40px_-4px] hover:shadow-primary/75 active:translate-y-0"
+              className="group relative inline-flex items-center justify-center gap-2.5 overflow-hidden rounded-2xl
+                         bg-gradient-to-b from-primary to-primary/90 px-8 py-4.5 text-[0.95rem] font-semibold text-white
+                         shadow-[0_0_0_1px_rgba(255,255,255,0.1)_inset,0_12px_40px_-8px_rgba(59,130,246,0.5)]
+                         transition-all duration-500 hover:-translate-y-0.5
+                         hover:shadow-[0_0_0_1px_rgba(255,255,255,0.15)_inset,0_20px_50px_-8px_rgba(59,130,246,0.6)]
+                         active:translate-y-0"
             >
-              <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              <MessageCircle className="size-4 shrink-0" />
-              Falar no WhatsApp
-              <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
+              <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-1000 group-hover:translate-x-full" />
+              <span className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent" />
+              <MessageCircle className="relative size-4 shrink-0" />
+              <span className="relative">Falar no WhatsApp</span>
+              <ArrowRight className="relative size-4 shrink-0 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#planos"
-              className="group inline-flex items-center justify-center gap-2 rounded-xl
-                         border border-white/16 bg-white/[0.06] px-6 py-3.5 text-[0.9rem] font-semibold text-white/85
-                         backdrop-blur-md transition-all duration-300
-                         hover:border-white/30 hover:bg-white/12"
+              className="group inline-flex items-center justify-center gap-2 rounded-2xl
+                         border border-white/10 bg-white/[0.04] px-7 py-4 text-[0.9rem] font-semibold text-white/80
+                         backdrop-blur-xl transition-all duration-500
+                         hover:border-white/20 hover:bg-white/[0.08] hover:text-white"
             >
               Ver planos
               <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
@@ -315,17 +311,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease }}
-            className="mt-6 text-balance font-bold leading-[1.08] tracking-[-0.025em] text-white text-[clamp(2rem,8vw,2.75rem)]"
+            className="mt-6 text-balance font-bold leading-[1.05] tracking-[-0.03em] text-white text-[clamp(2.1rem,8.5vw,3rem)]"
           >
             Filmes, séries e canais ao vivo{" "}
-            <span
-              style={{
-                background: "linear-gradient(110deg, #93c5fd 0%, #3b82f6 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span className="text-gradient-premium">
               na sua tela hoje.
             </span>
           </motion.h1>

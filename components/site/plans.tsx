@@ -10,11 +10,12 @@ import { cn } from "@/lib/utils"
 
 export function Plans() {
   return (
-    <section id="planos" className="relative py-16 sm:py-20 lg:py-24">
-      {/* Ambient glows — blue center, warm accents */}
+    <section id="planos" className="relative py-24 sm:py-28 lg:py-36">
+      {/* Ambient glows — premium depth */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/4 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/6 blur-[180px]"
+        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[800px] w-[1200px] -translate-x-1/2 -translate-y-1/4 opacity-50"
+        style={{ background: "radial-gradient(ellipse, oklch(0.65 0.20 255 / 0.12) 0%, transparent 60%)", filter: "blur(100px)" }}
       />
       <Container>
         <Reveal>
@@ -30,75 +31,75 @@ export function Plans() {
           />
         </Reveal>
 
-        <Stagger className="mt-12 grid gap-4 sm:mt-16 sm:grid-cols-2 sm:gap-5 lg:mt-20 lg:grid-cols-4 lg:items-stretch lg:gap-5">
+        <Stagger className="mt-14 grid gap-5 sm:mt-18 sm:grid-cols-2 sm:gap-6 lg:mt-24 lg:grid-cols-4 lg:items-stretch lg:gap-6">
           {PLANS.map((plan) => (
             <motion.div
               key={plan.id}
               variants={staggerItem}
               className={cn(
-                "group relative flex flex-col rounded-[1.5rem] border p-5 transition-all duration-300 sm:p-6 lg:p-8",
+                "group relative flex flex-col overflow-hidden rounded-[1.75rem] border p-6 transition-all duration-500 sm:p-7 lg:p-8",
                 plan.highlight
-                  ? "z-10 border-primary/50 bg-gradient-to-b from-primary/15 via-primary/5 to-card shadow-[0_0_60px_-12px_oklch(0.62_0.18_255/0.4),0_24px_80px_-24px_oklch(0.62_0.18_255/0.35)] lg:scale-[1.04]"
-                  : "border-border/40 bg-gradient-to-b from-card/60 to-card/30 hover:-translate-y-2 hover:border-primary/25 hover:bg-card/70 hover:shadow-[0_16px_50px_-16px_oklch(0_0_0/0.5)]",
+                  ? "z-10 border-primary/40 bg-gradient-to-b from-primary/12 via-primary/5 to-card/80 shadow-[0_0_80px_-20px_oklch(0.65_0.20_255/0.35),inset_0_1px_0_0_rgba(255,255,255,0.05)] lg:scale-[1.03]"
+                  : "border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-card/50 hover:-translate-y-1 hover:border-white/10 hover:shadow-[0_24px_60px_-20px_oklch(0_0_0/0.6)]",
               )}
             >
-              {/* Glow effect for highlight card */}
+              {/* Premium glow line at top for highlighted card */}
               {plan.highlight && (
-                <div className="pointer-events-none absolute -inset-px rounded-[1.5rem] bg-gradient-to-b from-primary/20 via-transparent to-transparent opacity-60" />
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/80 to-transparent" />
               )}
               
               {plan.badge && (
-                <span className="absolute -top-3.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-4 py-1.5 text-xs font-semibold text-primary-foreground shadow-[0_8px_32px_-8px_oklch(0.62_0.18_255/0.6)]">
+                <span className="absolute -top-3.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-r from-primary to-primary/90 px-4 py-1.5 text-xs font-semibold text-primary-foreground shadow-[0_8px_24px_-6px_oklch(0.65_0.20_255/0.6)]">
                   <Sparkles className="size-3.5" />
                   {plan.badge}
                 </span>
               )}
 
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+              <p className="text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                 {plan.name}
               </p>
 
-              <div className="mt-6 flex items-baseline gap-1">
-                <span className="text-sm font-medium text-muted-foreground/70">R$</span>
+              <div className="mt-7 flex items-baseline gap-1">
+                <span className="text-sm font-medium text-muted-foreground/60">R$</span>
                 <span
                   className={cn(
-                    "text-[3.5rem] font-bold tracking-[-0.03em] leading-none",
+                    "text-[3.75rem] font-bold tracking-[-0.04em] leading-none",
                     plan.highlight && "text-gradient-blue",
                   )}
                 >
                   {plan.price}
                 </span>
-                <span className="ml-1 text-sm text-muted-foreground/60">{plan.period}</span>
+                <span className="ml-1.5 text-sm text-muted-foreground/50">{plan.period}</span>
               </div>
 
-              <div className="mt-2 flex flex-col gap-1">
-                <p className="h-4 text-xs font-medium text-primary/90">
+              <div className="mt-3 flex flex-col gap-1.5">
+                <p className="h-4 text-xs font-medium text-primary/80">
                   {plan.equivalent ?? "pago de uma vez"}
                 </p>
                 {plan.savings && (
-                  <span className="inline-flex w-fit items-center gap-1 rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-semibold text-emerald-400">
+                  <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-emerald-500/12 px-3 py-1.5 text-xs font-semibold text-emerald-400">
                     <TrendingDown className="size-3" />
                     {plan.savings}
                   </span>
                 )}
               </div>
 
-              <p className="mt-5 text-[15px] leading-relaxed text-muted-foreground">
+              <p className="mt-6 text-[0.9rem] leading-[1.7] text-muted-foreground/80">
                 {plan.description}
               </p>
 
-              <ul className="mt-8 flex flex-col gap-4 border-t border-border/40 pt-8">
+              <ul className="mt-8 flex flex-col gap-4 border-t border-white/[0.06] pt-8">
                 {plan.features.map((feature) => (
                   <li 
                     key={feature} 
-                    className="flex items-center gap-3 text-[14.5px] text-foreground/85"
+                    className="flex items-center gap-3 text-[0.875rem] text-foreground/80"
                   >
                     <span
                       className={cn(
-                        "flex size-[1.125rem] shrink-0 items-center justify-center rounded-full",
+                        "flex size-5 shrink-0 items-center justify-center rounded-full",
                         plan.highlight
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-primary/12 text-primary",
+                          ? "bg-primary text-primary-foreground shadow-[0_0_12px_-2px_oklch(0.65_0.20_255/0.5)]"
+                          : "bg-primary/10 text-primary",
                       )}
                     >
                       <Check className="size-2.5" strokeWidth={3} />
@@ -113,10 +114,10 @@ export function Plans() {
                   asChild
                   size="lg"
                   className={cn(
-                    "h-[3.25rem] w-full rounded-2xl text-[0.9rem] font-semibold transition-all duration-300",
+                    "h-14 w-full rounded-2xl text-[0.9rem] font-semibold transition-all duration-500",
                     plan.highlight
-                      ? "bg-primary text-primary-foreground shadow-[0_8px_30px_-6px_oklch(0.62_0.18_255/0.5)] hover:bg-primary/90 hover:shadow-[0_12px_40px_-6px_oklch(0.62_0.18_255/0.6)]"
-                      : "bg-secondary/80 text-secondary-foreground hover:bg-accent",
+                      ? "bg-gradient-to-b from-primary to-primary/90 text-primary-foreground shadow-[0_0_0_1px_rgba(255,255,255,0.1)_inset,0_12px_32px_-8px_oklch(0.65_0.20_255/0.5)] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.15)_inset,0_16px_40px_-8px_oklch(0.65_0.20_255/0.6)]"
+                      : "bg-white/[0.04] text-foreground/80 hover:bg-white/[0.08]",
                   )}
                 >
                   <a
@@ -125,7 +126,7 @@ export function Plans() {
                     rel="noopener noreferrer"
                   >
                     Escolher {plan.name.toLowerCase()}
-                    {plan.highlight && <ArrowRight className="ml-1 size-4" />}
+                    {plan.highlight && <ArrowRight className="ml-2 size-4" />}
                   </a>
                 </Button>
               </div>
@@ -133,7 +134,7 @@ export function Plans() {
           ))}
         </Stagger>
 
-        <Reveal delay={0.1} className="mt-12 text-center text-sm text-muted-foreground">
+        <Reveal delay={0.1} className="mt-14 text-center text-[0.875rem] text-muted-foreground/60">
           Pagamento à vista no Pix &bull; Sem renovação automática &bull; Ativação no mesmo dia
         </Reveal>
       </Container>
