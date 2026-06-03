@@ -102,35 +102,48 @@ export function Header() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="px-4 mx-auto mt-2 max-w-[1240px] rounded-2xl glass border border-border/60 p-3 lg:hidden"
-          >
-            <nav className="flex flex-col">
-              {NAV_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-xl px-4 py-3 text-base font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          <>
+            {/* Backdrop blur overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-background/80 backdrop-blur-md lg:hidden"
+              onClick={() => setOpen(false)}
+            />
+            
+            {/* Menu content */}
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2 }}
+              className="relative z-50 mx-4 mt-2 max-w-[1240px] rounded-2xl border border-white/10 bg-card/95 p-4 backdrop-blur-xl lg:hidden sm:mx-auto"
+            >
+              <nav className="flex flex-col gap-1">
+                {NAV_LINKS.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-xl px-4 py-3 text-base font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <Button
+                  asChild
+                  className="mt-3 bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90"
                 >
-                  {link.label}
-                </a>
-              ))}
-              <Button
-                asChild
-                className="mt-2 bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90"
-              >
-                <a href={WHATSAPP_DEFAULT} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle className="size-4" />
-                  Falar no WhatsApp
-                </a>
-              </Button>
-            </nav>
-          </motion.div>
+                  <a href={WHATSAPP_DEFAULT} target="_blank" rel="noopener noreferrer">
+                    <MessageCircle className="size-4" />
+                    Falar no WhatsApp
+                  </a>
+                </Button>
+              </nav>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>

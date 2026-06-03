@@ -38,7 +38,7 @@ const DEVICES = [
   {
     id: "firestick",
     title: "Fire Stick",
-    desc: "Compativel com Fire TV Stick e similares.",
+    desc: "Compatível com Fire TV Stick e similares.",
     image: "/images/device-firestick.png",
     icon: Flame,
   },
@@ -99,10 +99,10 @@ export function Compatibility() {
             <Eyebrow>Compatibilidade</Eyebrow>
             <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
               Funciona no aparelho{" "}
-              <span className="text-muted-foreground">que voce ja tem.</span>
+              <span className="text-muted-foreground">que você já tem.</span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-pretty text-base leading-relaxed text-white/50">
-              Smart TV, celular, TV Box, tablet ou computador. Antes de comecar, nossa equipe confirma a compatibilidade.
+              Smart TV, celular, TV Box, tablet ou computador. Antes de começar, nossa equipe confirma a compatibilidade.
             </p>
           </motion.div>
         </div>
@@ -127,7 +127,7 @@ export function Compatibility() {
               <Wifi className="size-5 text-primary" />
             </div>
             <div>
-              <p className="font-semibold text-white">Nao sabe se funciona no seu aparelho?</p>
+              <p className="font-semibold text-white">Não sabe se funciona no seu aparelho?</p>
               <p className="mt-0.5 text-sm text-white/50">Manda uma mensagem e a gente verifica na hora.</p>
             </div>
           </div>
