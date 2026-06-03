@@ -1,30 +1,69 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
 
 export const metadata: Metadata = {
-  title: 'Central Play Plus — Seu entretenimento, pronto para usar',
+  title: 'Central Play Plus — Filmes, séries e canais ao vivo na sua tela hoje',
   description:
-    'Você escolhe o plano, chama nossa equipe e recebe ajuda para deixar tudo configurado na sua TV, celular ou TV Box. Suporte humano pelo WhatsApp, sem complicação e sem fidelidade.',
+    'Filmes, séries, canais ao vivo e futebol na sua Smart TV, celular ou TV Box. Configuração em minutos com suporte humano pelo WhatsApp. Sem fidelidade, sem complicação.',
   keywords: [
     'Central Play Plus',
-    'entretenimento',
-    'configuração de TV',
-    'suporte humano',
-    'planos de entretenimento',
+    'IPTV',
+    'filmes series canais ao vivo',
+    'configuração Smart TV',
+    'suporte humano WhatsApp',
+    'planos entretenimento',
+    'TV Box',
   ],
   generator: 'v0.app',
+  metadataBase: new URL('https://centralplayplus.com.br'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: 'Central Play Plus — Seu entretenimento, pronto para usar',
+    title: 'Central Play Plus — Filmes, séries e canais ao vivo na sua tela hoje',
     description:
-      'Escolha o plano, fale com a equipe e receba ajuda para configurar tudo na sua TV, celular ou TV Box. Suporte humano pelo WhatsApp.',
+      'Mais de 30.000 conteúdos entre filmes, séries, canais ao vivo e futebol. Configuração em minutos com suporte humano pelo WhatsApp. Planos a partir de R$ 20/mês. Sem fidelidade.',
     type: 'website',
     locale: 'pt_BR',
+    siteName: 'Central Play Plus',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Central Play Plus - Entretenimento na sua tela',
+      },
+    ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Central Play Plus — Filmes, séries e canais ao vivo',
+    description: 'Configure em minutos com suporte humano pelo WhatsApp. Planos a partir de R$ 20/mês. Sem fidelidade.',
+    images: ['/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+  manifest: '/manifest.json',
 }
 
 export const viewport: Viewport = {
@@ -62,7 +101,6 @@ export default function RootLayout({
           />
         </div>
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )

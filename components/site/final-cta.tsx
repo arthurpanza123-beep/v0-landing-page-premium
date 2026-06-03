@@ -8,7 +8,7 @@ import { WHATSAPP_DEFAULT } from "@/lib/site"
 
 export function FinalCta() {
   return (
-    <section className="relative py-20 sm:py-32">
+    <section className="relative py-16 sm:py-20">
       <Container>
         <Reveal>
           <div className="ring-gradient relative overflow-hidden rounded-[2.5rem] border border-primary/30 bg-gradient-to-br from-primary/18 via-card/90 to-card px-6 py-20 text-center shadow-[0_32px_100px_-24px_oklch(0.62_0.18_255/0.25)] sm:px-12 sm:py-28">

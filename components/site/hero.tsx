@@ -6,23 +6,58 @@ import {
   Clock,
   Headphones,
   BadgeCheck,
-  Calendar,
+  MessageCircle,
+  Users,
+  Star,
 } from "lucide-react"
 import Image from "next/image"
-import { useRef } from "react"
+import { useRef, useState, useEffect, useMemo } from "react"
 import { WHATSAPP_DEFAULT } from "@/lib/site"
 import { AnnouncementBadge } from "./micro/announcement-badge"
 import { TypingText } from "./micro/typing-text"
+import { ScrollIndicator } from "./scroll-indicator"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
-// Compatibility devices shown at the bottom of the hero
-const DEVICES = [
-  { icon: "📺", label: "Smart TV" },
-  { icon: "📦", label: "TV Box" },
-  { icon: "📱", label: "Celular" },
-  { icon: "⬛", label: "Tablet" },
+// Pre-generated particle positions to avoid hydration mismatch
+const PARTICLE_POSITIONS = [
+  { left: 12, top: 8 }, { left: 85, top: 23 }, { left: 34, top: 67 },
+  { left: 67, top: 45 }, { left: 23, top: 89 }, { left: 91, top: 12 },
+  { left: 45, top: 34 }, { left: 78, top: 78 }, { left: 5, top: 56 },
+  { left: 56, top: 91 }, { left: 39, top: 18 }, { left: 72, top: 63 },
+  { left: 18, top: 42 }, { left: 95, top: 85 }, { left: 28, top: 73 },
+  { left: 63, top: 28 }, { left: 8, top: 95 }, { left: 82, top: 52 },
+  { left: 48, top: 5 }, { left: 15, top: 38 },
 ]
+
+// Floating particles component
+function FloatingParticles() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      {PARTICLE_POSITIONS.map((pos, i) => (
+        <motion.div
+          key={i}
+          className="absolute size-1 rounded-full bg-primary/30"
+          style={{
+            left: `${pos.left}%`,
+            top: `${pos.top}%`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0.2, 0.6, 0.2],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 4 + (i % 5) * 0.6,
+            repeat: Infinity,
+            delay: (i % 8) * 0.25,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  )
+}
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -42,6 +77,45 @@ export function Hero() {
     >
       {/* ── BACKGROUND: desktop only — sala aconchegante ── */}
       <div className="absolute inset-0 z-0 hidden lg:block" aria-hidden>
+        {/* Mesh gradient animado */}
+        <div className="absolute inset-0">
+          <motion.div
+            className="absolute inset-0 opacity-60"
+            style={{
+              background: "radial-gradient(ellipse 80% 60% at 20% 40%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)",
+            }}
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.4, 0.6, 0.4],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute inset-0 opacity-40"
+            style={{
+              background: "radial-gradient(ellipse 60% 80% at 80% 20%, rgba(147, 51, 234, 0.12) 0%, transparent 50%)",
+            }}
+            animate={{
+              scale: [1.1, 1, 1.1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          />
+          <motion.div
+            className="absolute inset-0 opacity-30"
+            style={{
+              background: "radial-gradient(ellipse 50% 50% at 60% 70%, rgba(236, 72, 153, 0.1) 0%, transparent 50%)",
+            }}
+            animate={{
+              scale: [1, 1.15, 1],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          />
+        </div>
+        
+        <FloatingParticles />
+        
         <motion.div style={{ y: bgY }} className="absolute inset-0">
           <Image
             src="/images/hero-room-final.png"
@@ -96,9 +170,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12, ease }}
-            className="mt-8 text-balance font-bold leading-[1.05] tracking-[-0.02em] text-white text-[clamp(2rem,3.8vw,3.1rem)]"
+            className="mt-8 text-balance font-bold leading-[1.05] tracking-[-0.025em] text-white text-[clamp(2.2rem,3.8vw,3.4rem)]"
           >
-            Sua TV pronta para assistir,{" "}
+            Filmes, séries e canais ao vivo{" "}
             <span
               style={{
                 background: "linear-gradient(110deg, #93c5fd 0%, #3b82f6 100%)",
@@ -107,7 +181,7 @@ export function Hero() {
                 backgroundClip: "text",
               }}
             >
-              sem complicação.
+              na sua tela hoje.
             </span>
           </motion.h1>
 
@@ -115,9 +189,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.26, ease }}
-            className="mt-6 max-w-[420px] text-pretty text-[0.975rem] leading-[1.7] text-white/60"
+            className="mt-6 max-w-[420px] text-pretty text-[1rem] leading-[1.75] text-white/65"
           >
-            Ative em <TypingText /> com suporte humano pelo WhatsApp. Sem complicação, sem fidelidade.
+            Ative em <TypingText /> com suporte humano pelo WhatsApp.{" "}
+            <span className="text-white/45">Sem fidelidade, sem complicação.</span>
           </motion.p>
 
           <motion.div
@@ -131,13 +206,13 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl
-                         bg-primary px-6 py-3.5 text-[0.9rem] font-semibold text-white
-                         shadow-[0_8px_28px_-6px] shadow-primary/60 transition-all duration-300
-                         hover:-translate-y-1 hover:shadow-[0_16px_40px_-4px] hover:shadow-primary/70 active:translate-y-0"
+                         bg-primary px-7 py-4 text-[0.95rem] font-semibold text-white
+                         shadow-[0_8px_28px_-6px] shadow-primary/65 transition-all duration-300
+                         hover:-translate-y-1 hover:shadow-[0_16px_40px_-4px] hover:shadow-primary/75 active:translate-y-0"
             >
               <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              <Calendar className="size-4 shrink-0" />
-              Configurar minha TV
+              <MessageCircle className="size-4 shrink-0" />
+              Falar no WhatsApp
               <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
             </a>
             <a
@@ -165,9 +240,10 @@ export function Hero() {
             ].map(({ icon: Icon, label }, i) => (
               <motion.span
                 key={label}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.57 + i * 0.07 }}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 + i * 0.12 }}
+                whileHover={{ scale: 1.05 }}
                 className="inline-flex items-center gap-1.5 text-[0.8rem] font-medium text-white/45"
               >
                 <span className="flex size-5 items-center justify-center rounded-full border border-white/15 bg-white/[0.07]">
@@ -177,7 +253,46 @@ export function Hero() {
               </motion.span>
             ))}
           </motion.div>
+          
+          {/* Social proof counter */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.85, ease }}
+            className="mt-8 flex items-center gap-3"
+          >
+            <div className="flex -space-x-2">
+              {[...Array(4)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: 0.9 + i * 0.08 }}
+                  className="flex size-8 items-center justify-center rounded-full border-2 border-background bg-gradient-to-br from-primary/80 to-primary text-[0.65rem] font-bold text-white"
+                >
+                  {["C", "P", "P", "+"][i]}
+                </motion.div>
+              ))}
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1.5">
+                <Users className="size-3.5 text-primary" />
+                <span className="text-sm font-semibold text-white">+2.500 clientes</span>
+              </div>
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="size-3 fill-amber-400 text-amber-400" />
+                ))}
+                <span className="ml-1 text-xs text-white/50">satisfeitos</span>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
+        
+        {/* Scroll indicator - bottom center */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <ScrollIndicator />
+        </div>
       </div>
 
       {/* ── MOBILE layout — imagem como background de tela cheia ── */}
@@ -258,9 +373,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease }}
-            className="mt-6 text-balance font-bold leading-[1.1] tracking-[-0.02em] text-white text-[clamp(2rem,8vw,2.75rem)]"
+            className="mt-6 text-balance font-bold leading-[1.08] tracking-[-0.025em] text-white text-[clamp(2rem,8vw,2.75rem)]"
           >
-            Sua TV pronta para assistir,{" "}
+            Filmes, séries e canais ao vivo{" "}
             <span
               style={{
                 background: "linear-gradient(110deg, #93c5fd 0%, #3b82f6 100%)",
@@ -269,7 +384,7 @@ export function Hero() {
                 backgroundClip: "text",
               }}
             >
-              sem complicação.
+              na sua tela hoje.
             </span>
           </motion.h1>
 
@@ -277,9 +392,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.22, ease }}
-            className="mt-5 max-w-[340px] text-pretty text-[0.9rem] leading-[1.75] text-white/70"
+            className="mt-5 max-w-[340px] text-pretty text-[0.95rem] leading-[1.75] text-white/70"
           >
-            Ative em <TypingText /> com suporte humano pelo WhatsApp. Sem complicação.
+            Ative em <TypingText /> com suporte humano pelo WhatsApp.{" "}
+            <span className="text-white/45">Sem fidelidade.</span>
           </motion.p>
 
           {/* Botões empilhados, largura total */}
@@ -294,13 +410,13 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               className="group relative inline-flex w-full items-center justify-center gap-2.5 overflow-hidden
-                         rounded-xl bg-primary py-4 text-[0.95rem] font-semibold text-white
-                         shadow-[0_8px_28px_-6px] shadow-primary/60 transition-all duration-300
+                         rounded-xl bg-primary py-4 text-[1rem] font-semibold text-white
+                         shadow-[0_8px_28px_-6px] shadow-primary/65 transition-all duration-300
                          active:scale-[0.98]"
             >
               <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              <Calendar className="size-4 shrink-0" />
-              Configurar minha TV
+              <MessageCircle className="size-5 shrink-0" />
+              Falar no WhatsApp
               <ArrowRight className="size-4 shrink-0" />
             </a>
             <a

@@ -97,7 +97,7 @@ function DeviceCard({
 
 export function Compatibility() {
   return (
-    <section id="compatibilidade" className="relative py-20 sm:py-32 lg:py-40">
+    <section id="compatibilidade" className="relative py-16 sm:py-20 lg:py-24">
       {/* Ambient glow — blue right, warm left bottom */}
       <div
         aria-hidden
@@ -154,11 +154,11 @@ export function Compatibility() {
             </div>
             <div>
               <p className="font-semibold text-white">Não sabe se funciona no seu aparelho?</p>
-              <p className="mt-0.5 text-sm text-white/50">Nossa equipe verifica por você antes de qualquer compromisso.</p>
+              <p className="mt-0.5 text-sm text-white/50">Manda uma mensagem e a gente verifica na hora, sem compromisso.</p>
             </div>
           </div>
           <a
-            href={whatsappLink("Olá! Quero saber se a Central Play Plus funciona no meu aparelho.")}
+            href={whatsappLink("Oi! Quero saber se a Central Play Plus funciona no meu aparelho. Pode me ajudar?")}
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-whatsapp px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-whatsapp/90"

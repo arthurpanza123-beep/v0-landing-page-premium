@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Menu, X, MessageCircle } from "lucide-react"
+import { Menu, X, MessageCircle, Circle } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { Logo } from "./logo"
@@ -30,34 +30,54 @@ export function Header() {
     <header className="fixed inset-x-0 top-0 z-50">
       {/* Navigation */}
       <div className="px-4 pt-3 sm:px-6 sm:pt-4">
-        <div
-        className={cn(
-          "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border border-transparent px-5 py-3 transition-all duration-300 lg:py-3.5",
-          scrolled
-            ? "glass border-white/10 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.7)]"
-            : "bg-black/20 backdrop-blur-sm",
-        )}
-      >
-        <a href="#inicio" aria-label="Central Play Plus — início">
+        <motion.div
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className={cn(
+            "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border px-5 py-3 transition-all duration-500 lg:py-3.5",
+            scrolled
+              ? "border-white/[0.08] bg-background/70 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-xl backdrop-saturate-150"
+              : "border-transparent bg-white/[0.03] backdrop-blur-sm",
+          )}
+        >
+        <a href="#inicio" aria-label="Central Play Plus — inicio">
           <Logo />
         </a>
 
         <nav className="hidden items-center gap-0.5 lg:flex">
-          {NAV_LINKS.map((link) => (
-            <a
+          {NAV_LINKS.map((link, i) => (
+            <motion.a
               key={link.href}
               href={link.href}
-              className="rounded-lg px-4 py-2 text-[0.875rem] font-medium text-white/70 transition-colors hover:text-white"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 + i * 0.05 }}
+              className="relative rounded-lg px-4 py-2 text-[0.875rem] font-medium text-white/70 transition-colors hover:text-white"
             >
               {link.label}
-            </a>
+            </motion.a>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          {/* Online badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="hidden items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 sm:flex"
+          >
+            <span className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
+            </span>
+            <span className="text-xs font-medium text-emerald-400">Online agora</span>
+          </motion.div>
+
           <Button
             asChild
-            className="hidden bg-whatsapp text-whatsapp-foreground shadow-[0_8px_24px_-8px] shadow-whatsapp/60 hover:bg-whatsapp/90 sm:inline-flex"
+            className="hidden bg-whatsapp text-whatsapp-foreground shadow-[0_8px_24px_-8px] shadow-whatsapp/60 transition-all duration-300 hover:bg-whatsapp/90 hover:shadow-[0_12px_32px_-8px] hover:shadow-whatsapp/70 sm:inline-flex"
           >
             <a href={WHATSAPP_DEFAULT} target="_blank" rel="noopener noreferrer">
               <svg viewBox="0 0 24 24" className="size-4 fill-current" aria-hidden="true">
@@ -77,7 +97,7 @@ export function Header() {
             {open ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
         </div>
-        </div>
+        </motion.div>
       </div>
 
       <AnimatePresence>
