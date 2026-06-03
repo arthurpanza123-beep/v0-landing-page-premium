@@ -37,8 +37,8 @@ export function Header() {
           className={cn(
             "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border px-4 py-2.5 transition-all duration-500 sm:px-5 sm:py-3 lg:py-3.5",
             scrolled
-              ? "border-blue-400/40 bg-blue-600/80 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.6),inset_0_1px_0_0_rgba(255,255,255,0.2)] backdrop-blur-xl backdrop-saturate-150"
-              : "border-blue-400/30 bg-blue-600/70 backdrop-blur-xl",
+              ? "border-white/[0.08] bg-background/70 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-xl backdrop-saturate-150"
+              : "border-transparent bg-white/[0.03] backdrop-blur-sm",
           )}
         >
         <a href="#inicio" aria-label="Central Play Plus — início" className="flex-shrink-0">
@@ -107,7 +107,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="px-4 mx-auto mt-2 max-w-[1240px] rounded-2xl border border-blue-400/40 bg-blue-600/80 p-3 backdrop-blur-xl lg:hidden"
+            className="px-4 mx-auto mt-2 max-w-[1240px] rounded-2xl glass border border-border/60 p-3 lg:hidden"
           >
             <nav className="flex flex-col">
               {NAV_LINKS.map((link) => (
