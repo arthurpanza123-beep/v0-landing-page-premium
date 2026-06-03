@@ -36,25 +36,28 @@ export function Plans() {
             <motion.div
               key={plan.id}
               variants={staggerItem}
-              className={cn(
-                "group relative flex flex-col overflow-hidden rounded-[1.75rem] border p-6 transition-all duration-500 sm:p-7 lg:p-8",
-                plan.badge && "pt-16 sm:pt-20 lg:pt-24",
-                plan.highlight
-                  ? "z-10 border-primary/40 bg-gradient-to-b from-primary/12 via-primary/5 to-card/80 shadow-[0_0_80px_-20px_oklch(0.65_0.20_255/0.35),inset_0_1px_0_0_rgba(255,255,255,0.05)] lg:scale-[1.03]"
-                  : "border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-card/50 hover:-translate-y-1 hover:border-white/10 hover:shadow-[0_24px_60px_-20px_oklch(0_0_0/0.6)]",
-              )}
+              className={cn("relative", plan.badge && "mt-4")}
             >
-              {/* Premium glow line at top for highlighted card */}
-              {plan.highlight && (
-                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/80 to-transparent" />
-              )}
-              
+              {/* Badge FORA do card para não ser cortado pelo overflow-hidden */}
               {plan.badge && (
                 <span className="absolute -top-3.5 left-1/2 z-50 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-r from-primary to-primary/90 px-4 py-1.5 text-xs font-semibold text-primary-foreground shadow-[0_8px_24px_-6px_oklch(0.65_0.20_255/0.6)]">
                   <Sparkles className="size-3.5" />
                   {plan.badge}
                 </span>
               )}
+              
+              <div
+                className={cn(
+                  "group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border p-6 transition-all duration-500 sm:p-7 lg:p-8",
+                  plan.highlight
+                    ? "z-10 border-primary/40 bg-gradient-to-b from-primary/12 via-primary/5 to-card/80 shadow-[0_0_80px_-20px_oklch(0.65_0.20_255/0.35),inset_0_1px_0_0_rgba(255,255,255,0.05)] lg:scale-[1.03]"
+                    : "border-white/[0.06] bg-gradient-to-b from-white/[0.04] to-card/50 hover:-translate-y-1 hover:border-white/10 hover:shadow-[0_24px_60px_-20px_oklch(0_0_0/0.6)]",
+                )}
+              >
+                {/* Premium glow line at top for highlighted card */}
+                {plan.highlight && (
+                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/80 to-transparent" />
+                )}
 
               <p className="text-[0.7rem] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
                 {plan.name}
@@ -130,6 +133,7 @@ export function Plans() {
                     {plan.highlight && <ArrowRight className="ml-2 size-4" />}
                   </a>
                 </Button>
+              </div>
               </div>
             </motion.div>
           ))}
