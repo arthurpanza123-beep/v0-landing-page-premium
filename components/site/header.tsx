@@ -41,7 +41,7 @@ export function Header() {
               : "border-transparent bg-white/[0.03] backdrop-blur-sm",
           )}
         >
-        <a href="#inicio" aria-label="Central Play Plus — inicio">
+        <a href="#inicio" aria-label="Central Play Plus — início">
           <Logo />
         </a>
 
