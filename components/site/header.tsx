@@ -35,13 +35,13 @@ export function Header() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className={cn(
-            "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border px-5 py-3 transition-all duration-500 lg:py-3.5",
+            "mx-auto flex max-w-[1240px] items-center justify-between rounded-2xl border px-4 py-2.5 transition-all duration-500 sm:px-5 sm:py-3 lg:py-3.5",
             scrolled
-              ? "border-white/[0.08] bg-background/70 shadow-[0_8px_40px_-12px_rgba(0,0,0,0.8),inset_0_1px_0_0_rgba(255,255,255,0.05)] backdrop-blur-xl backdrop-saturate-150"
-              : "border-transparent bg-white/[0.03] backdrop-blur-sm",
+              ? "border-primary/20 bg-primary/10 shadow-[0_8px_40px_-12px_rgba(59,130,246,0.4),inset_0_1px_0_0_rgba(255,255,255,0.1)] backdrop-blur-xl backdrop-saturate-150"
+              : "border-primary/10 bg-primary/5 backdrop-blur-md",
           )}
         >
-        <a href="#inicio" aria-label="Central Play Plus — início">
+        <a href="#inicio" aria-label="Central Play Plus — início" className="flex-shrink-0">
           <Logo />
         </a>
 
@@ -107,7 +107,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="mx-auto mt-2 max-w-[1240px] rounded-2xl glass border border-border/60 p-3 lg:hidden"
+            className="mx-auto mt-2 max-w-[1240px] rounded-2xl border border-primary/20 bg-primary/10 p-3 backdrop-blur-xl lg:hidden"
           >
             <nav className="flex flex-col">
               {NAV_LINKS.map((link) => (
