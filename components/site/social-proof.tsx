@@ -7,10 +7,10 @@ import Image from "next/image"
 import { Container, Eyebrow } from "./section"
 
 const STATS = [
-  { value: 4800, suffix: "+", label: "Clientes ativos" },
-  { value: 99, suffix: "%", label: "Satisfação geral" },
+  { value: 800, suffix: "+", label: "Clientes atendidos" },
+  { value: 98, suffix: "%", label: "Recomendam" },
   { value: 5, suffix: " min", label: "Tempo médio de ativação" },
-  { value: 4.9, suffix: "/5", label: "Avaliação média", isFloat: true },
+  { value: 4.8, suffix: "/5", label: "Avaliação média", isFloat: true },
 ]
 
 const TESTIMONIALS = [
@@ -129,7 +129,7 @@ function TestimonialCard({
       </div>
 
       {/* Quote */}
-      <p className="mt-5 text-[0.9rem] leading-[1.7] text-white/70">&ldquo;{t.text}&rdquo;</p>
+      <p className="mt-5 text-[0.9rem] leading-[1.7] text-white/75">&ldquo;{t.text}&rdquo;</p>
 
       {/* Author */}
       <div className="mt-7 flex items-center gap-3.5">
@@ -138,7 +138,7 @@ function TestimonialCard({
         </div>
         <div>
           <p className="text-[0.9rem] font-semibold text-white">{t.name}</p>
-          <p className="mt-0.5 text-[0.8rem] text-white/35">{t.location}</p>
+          <p className="mt-0.5 text-[0.8rem] text-white/45">{t.location}</p>
         </div>
         <span className="ml-auto flex size-7 items-center justify-center rounded-full bg-whatsapp/15">
           <Star className="size-3 fill-whatsapp text-whatsapp" />
@@ -150,7 +150,7 @@ function TestimonialCard({
 
 export function SocialProof() {
   return (
-    <section id="depoimentos" className="relative py-32 sm:py-44">
+    <section id="depoimentos" className="relative py-20 sm:py-32 lg:py-40">
       {/* Background image */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <Image
@@ -188,8 +188,8 @@ export function SocialProof() {
               Quem já usa,{" "}
               <span className="text-muted-foreground">aprova.</span>
             </h2>
-            <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-white/50 sm:text-lg">
-              Mais de 4.800 clientes ativos. Atendimento humano, ativação rápida e conteúdo de qualidade.
+            <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-white/55 sm:text-lg">
+              Centenas de clientes atendidos. Atendimento humano, ativação rápida e conteúdo de qualidade.
             </p>
           </motion.div>
         </div>
@@ -212,7 +212,7 @@ export function SocialProof() {
                   isFloat={stat.isFloat}
                 />
               </span>
-              <span className="mt-2.5 text-[0.8rem] text-white/40">{stat.label}</span>
+      <span className="mt-2.5 text-[0.8rem] text-white/50">{stat.label}</span>
             </motion.div>
           ))}
         </div>

@@ -98,7 +98,7 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.12, ease }}
             className="mt-8 text-balance font-bold leading-[1.05] tracking-[-0.02em] text-white text-[clamp(2rem,3.8vw,3.1rem)]"
           >
-            Seu entretenimento,{" "}
+            Sua TV pronta para assistir,{" "}
             <span
               style={{
                 background: "linear-gradient(110deg, #93c5fd 0%, #3b82f6 100%)",
@@ -107,19 +107,17 @@ export function Hero() {
                 backgroundClip: "text",
               }}
             >
-              pronto
-            </span>{" "}
-            para usar.
+              sem complicação.
+            </span>
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.26, ease }}
-            className="mt-6 max-w-[420px] text-pretty text-[0.975rem] leading-[1.7] text-white/55"
+            className="mt-6 max-w-[420px] text-pretty text-[0.975rem] leading-[1.7] text-white/60"
           >
-            Configure <TypingText /> em minutos, com suporte humano pelo
-            WhatsApp. Sem complicação, sem fidelidade.
+            Você escolhe o plano, chama no WhatsApp e nossa equipe configura tudo com suporte humano. Simples assim.
           </motion.p>
 
           <motion.div
@@ -139,7 +137,7 @@ export function Hero() {
             >
               <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <Calendar className="size-4 shrink-0" />
-              Quero configurar agora
+              Configurar minha TV
               <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" />
             </a>
             <a
@@ -262,7 +260,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.1, ease }}
             className="mt-6 text-balance font-bold leading-[1.1] tracking-[-0.02em] text-white text-[clamp(2rem,8vw,2.75rem)]"
           >
-            Seu entretenimento,{" "}
+            Sua TV pronta para assistir,{" "}
             <span
               style={{
                 background: "linear-gradient(110deg, #93c5fd 0%, #3b82f6 100%)",
@@ -271,9 +269,8 @@ export function Hero() {
                 backgroundClip: "text",
               }}
             >
-              pronto
-            </span>{" "}
-            para usar.
+              sem complicação.
+            </span>
           </motion.h1>
 
           <motion.p
@@ -282,8 +279,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.22, ease }}
             className="mt-5 max-w-[340px] text-pretty text-[0.9rem] leading-[1.75] text-white/70"
           >
-            Você escolhe o plano e nós configuramos sua TV, celular ou TV Box
-            com suporte humano pelo WhatsApp.
+            Você escolhe o plano, chama no WhatsApp e nossa equipe configura tudo com suporte humano.
           </motion.p>
 
           {/* Botões empilhados, largura total */}
@@ -304,7 +300,7 @@ export function Hero() {
             >
               <span className="absolute inset-0 -translate-x-full skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
               <Calendar className="size-4 shrink-0" />
-              Quero configurar agora
+              Configurar minha TV
               <ArrowRight className="size-4 shrink-0" />
             </a>
             <a

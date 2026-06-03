@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 
 export function Plans() {
   return (
-    <section id="planos" className="relative py-32 sm:py-44">
+    <section id="planos" className="relative py-20 sm:py-32 lg:py-40">
       {/* Ambient glows — blue center, warm accents */}
       <div
         aria-hidden
@@ -40,13 +40,13 @@ export function Plans() {
           />
         </Reveal>
 
-        <Stagger className="mt-20 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:items-center lg:gap-5">
+        <Stagger className="mt-12 grid gap-4 sm:mt-16 sm:grid-cols-2 sm:gap-5 lg:mt-20 lg:grid-cols-4 lg:items-center lg:gap-5">
           {PLANS.map((plan) => (
             <motion.div
               key={plan.id}
               variants={staggerItem}
               className={cn(
-                "group relative flex flex-col rounded-[1.75rem] border p-8 transition-all duration-500",
+                "group relative flex flex-col rounded-[1.5rem] border p-5 transition-all duration-500 sm:p-6 lg:p-8",
                 plan.highlight
                   ? "ring-gradient z-10 border-primary/35 bg-gradient-to-b from-primary/10 via-card to-card shadow-[0_24px_80px_-24px_oklch(0.62_0.18_255/0.35),0_0_0_1px_oklch(0.72_0.14_65/0.08)_inset] lg:scale-[1.04]"
                   : "border-border/40 bg-gradient-to-b from-card/60 to-card/30 hover:-translate-y-1.5 hover:border-primary/25 hover:bg-card/70 hover:shadow-[0_16px_50px_-16px_oklch(0_0_0/0.5)]",

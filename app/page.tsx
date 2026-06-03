@@ -5,7 +5,6 @@ import { Steps } from "@/components/site/steps"
 import { Compatibility } from "@/components/site/compatibility"
 import { Catalog } from "@/components/site/catalog"
 import { Benefits } from "@/components/site/benefits"
-import { Comparison } from "@/components/site/comparison"
 import { Plans } from "@/components/site/plans"
 import { SocialProof } from "@/components/site/social-proof"
 import { Faq } from "@/components/site/faq"
@@ -26,7 +25,6 @@ export default function Page() {
         <Compatibility />
         <Catalog />
         <Benefits />
-        <Comparison />
         <Plans />
         <SocialProof />
         <Faq />

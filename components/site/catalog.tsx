@@ -110,7 +110,7 @@ function CatalogCard({
 
 export function Catalog() {
   return (
-    <section id="catalogo" className="relative py-32 sm:py-44">
+    <section id="catalogo" className="relative py-20 sm:py-32 lg:py-40">
       {/* Ambient glow — blue left, warm right bottom */}
       <div
         aria-hidden
@@ -132,9 +132,9 @@ export function Catalog() {
             transition={{ duration: 0.7 }}
           >
             <Eyebrow>Catálogo</Eyebrow>
-            <h2 className="mt-5 text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-[3.1rem] lg:leading-[1.06]">
-              Um universo de conteúdo{" "}
-              <span className="text-muted-foreground">esperando por você.</span>
+            <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[3.1rem] lg:leading-[1.06]">
+              Tudo que você quer assistir,{" "}
+              <span className="text-muted-foreground">num só lugar.</span>
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-white/50 sm:text-lg">
               Filmes, séries, canais ao vivo, futebol e muito mais. Tudo em um único lugar, na palma da sua mão.
@@ -148,10 +148,10 @@ export function Catalog() {
           style={{ gridTemplateRows: "auto" }}
         >
           {/* Hero tile — filmes */}
-          <CatalogCard item={CATEGORIES[0]} index={0} className="min-h-[280px] lg:col-span-2 lg:row-span-2 lg:min-h-[420px]" />
+          <CatalogCard item={CATEGORIES[0]} index={0} className="min-h-[200px] lg:col-span-2 lg:row-span-2 lg:min-h-[380px]" />
           {/* Others */}
           {CATEGORIES.slice(1).map((item, i) => (
-            <CatalogCard key={item.id} item={item} index={i + 1} className="min-h-[160px] lg:min-h-0" />
+            <CatalogCard key={item.id} item={item} index={i + 1} className="min-h-[140px] lg:min-h-0" />
           ))}
         </div>
 

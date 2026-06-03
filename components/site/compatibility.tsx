@@ -97,7 +97,7 @@ function DeviceCard({
 
 export function Compatibility() {
   return (
-    <section id="compatibilidade" className="relative py-32 sm:py-44">
+    <section id="compatibilidade" className="relative py-20 sm:py-32 lg:py-40">
       {/* Ambient glow — blue right, warm left bottom */}
       <div
         aria-hidden
@@ -131,12 +131,12 @@ export function Compatibility() {
         </div>
 
         {/* Device bento grid */}
-        <div className="mt-14 grid h-auto grid-cols-2 gap-4 lg:grid-cols-4 lg:grid-rows-2 lg:gap-5" style={{ minHeight: "520px" }}>
+        <div className="mt-12 grid h-auto grid-cols-2 gap-3 sm:gap-4 lg:mt-14 lg:grid-cols-4 lg:grid-rows-2 lg:gap-5" style={{ minHeight: "400px" }}>
           {/* Smart TV — large hero tile */}
-          <DeviceCard device={DEVICES[0]} index={0} className="col-span-2 min-h-[280px] lg:row-span-2 lg:min-h-0" />
+          <DeviceCard device={DEVICES[0]} index={0} className="col-span-2 min-h-[200px] lg:row-span-2 lg:min-h-0" />
           {/* Others */}
           {DEVICES.slice(1).map((device, i) => (
-            <DeviceCard key={device.id} device={device} index={i + 1} className="min-h-[160px] lg:min-h-0" />
+            <DeviceCard key={device.id} device={device} index={i + 1} className="min-h-[130px] lg:min-h-0" />
           ))}
         </div>
 
