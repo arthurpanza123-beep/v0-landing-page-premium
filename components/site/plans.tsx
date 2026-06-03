@@ -16,16 +16,6 @@ export function Plans() {
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-1/4 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/6 blur-[180px]"
       />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-[20%] bottom-[15%] -z-10 h-[350px] w-[350px] rounded-full opacity-12"
-        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.35) 0%, transparent 70%)", filter: "blur(70px)" }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute right-[15%] top-[30%] -z-10 h-[300px] w-[300px] rounded-full opacity-10"
-        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.3) 0%, transparent 70%)", filter: "blur(60px)" }}
-      />
       <Container>
         <Reveal>
           <SectionHeading
@@ -45,13 +35,11 @@ export function Plans() {
             <motion.div
               key={plan.id}
               variants={staggerItem}
-              whileHover={plan.highlight ? { scale: 1.02 } : { y: -8, scale: 1.01 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className={cn(
-                "group relative flex flex-col rounded-[1.5rem] border p-5 transition-all duration-500 sm:p-6 lg:p-8",
+                "group relative flex flex-col rounded-[1.5rem] border p-5 transition-all duration-300 sm:p-6 lg:p-8",
                 plan.highlight
-                  ? "z-10 border-primary/50 bg-gradient-to-b from-primary/15 via-primary/5 to-card shadow-[0_0_60px_-12px_oklch(0.62_0.18_255/0.4),0_24px_80px_-24px_oklch(0.62_0.18_255/0.35)] lg:scale-[1.06]"
-                  : "border-border/40 bg-gradient-to-b from-card/60 to-card/30 hover:border-primary/25 hover:bg-card/70 hover:shadow-[0_16px_50px_-16px_oklch(0_0_0/0.5)]",
+                  ? "z-10 border-primary/50 bg-gradient-to-b from-primary/15 via-primary/5 to-card shadow-[0_0_60px_-12px_oklch(0.62_0.18_255/0.4),0_24px_80px_-24px_oklch(0.62_0.18_255/0.35)] lg:scale-[1.04]"
+                  : "border-border/40 bg-gradient-to-b from-card/60 to-card/30 hover:-translate-y-2 hover:border-primary/25 hover:bg-card/70 hover:shadow-[0_16px_50px_-16px_oklch(0_0_0/0.5)]",
               )}
             >
               {/* Glow effect for highlight card */}
@@ -60,15 +48,10 @@ export function Plans() {
               )}
               
               {plan.badge && (
-                <motion.span 
-                  initial={{ y: -10, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.3, type: "spring" }}
-                  className="absolute -top-3.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-4 py-1.5 text-xs font-semibold text-primary-foreground shadow-[0_8px_32px_-8px_oklch(0.62_0.18_255/0.6)]"
-                >
+                <span className="absolute -top-3.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-primary px-4 py-1.5 text-xs font-semibold text-primary-foreground shadow-[0_8px_32px_-8px_oklch(0.62_0.18_255/0.6)]">
                   <Sparkles className="size-3.5" />
                   {plan.badge}
-                </motion.span>
+                </span>
               )}
 
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
@@ -93,15 +76,10 @@ export function Plans() {
                   {plan.equivalent ?? "pago de uma vez"}
                 </p>
                 {plan.savings && (
-                  <motion.span 
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="inline-flex w-fit items-center gap-1 rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-semibold text-emerald-400"
-                  >
+                  <span className="inline-flex w-fit items-center gap-1 rounded-full bg-emerald-500/15 px-2.5 py-1 text-xs font-semibold text-emerald-400">
                     <TrendingDown className="size-3" />
                     {plan.savings}
-                  </motion.span>
+                  </span>
                 )}
               </div>
 
@@ -110,13 +88,9 @@ export function Plans() {
               </p>
 
               <ul className="mt-8 flex flex-col gap-4 border-t border-border/40 pt-8">
-                {plan.features.map((feature, i) => (
-                  <motion.li 
+                {plan.features.map((feature) => (
+                  <li 
                     key={feature} 
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
                     className="flex items-center gap-3 text-[14.5px] text-foreground/85"
                   >
                     <span
@@ -130,7 +104,7 @@ export function Plans() {
                       <Check className="size-2.5" strokeWidth={3} />
                     </span>
                     {feature}
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
 

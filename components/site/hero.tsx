@@ -11,7 +11,7 @@ import {
   Star,
 } from "lucide-react"
 import Image from "next/image"
-import { useRef, useState, useEffect, useMemo } from "react"
+import { useRef } from "react"
 import { WHATSAPP_DEFAULT } from "@/lib/site"
 import { AnnouncementBadge } from "./micro/announcement-badge"
 import { TypingText } from "./micro/typing-text"
@@ -19,39 +19,19 @@ import { ScrollIndicator } from "./scroll-indicator"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
-// Pre-generated particle positions to avoid hydration mismatch
-const PARTICLE_POSITIONS = [
-  { left: 12, top: 8 }, { left: 85, top: 23 }, { left: 34, top: 67 },
-  { left: 67, top: 45 }, { left: 23, top: 89 }, { left: 91, top: 12 },
-  { left: 45, top: 34 }, { left: 78, top: 78 }, { left: 5, top: 56 },
-  { left: 56, top: 91 }, { left: 39, top: 18 }, { left: 72, top: 63 },
-  { left: 18, top: 42 }, { left: 95, top: 85 }, { left: 28, top: 73 },
-  { left: 63, top: 28 }, { left: 8, top: 95 }, { left: 82, top: 52 },
-  { left: 48, top: 5 }, { left: 15, top: 38 },
-]
-
-// Floating particles component
+// CSS-only floating particles - much more performant than Framer Motion
 function FloatingParticles() {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      {PARTICLE_POSITIONS.map((pos, i) => (
-        <motion.div
+      {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+        <div
           key={i}
-          className="absolute size-1 rounded-full bg-primary/30"
+          className="absolute size-1 rounded-full bg-primary/40 animate-float-particle"
           style={{
-            left: `${pos.left}%`,
-            top: `${pos.top}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.2, 0.6, 0.2],
-            scale: [1, 1.2, 1],
-          }}
-          transition={{
-            duration: 4 + (i % 5) * 0.6,
-            repeat: Infinity,
-            delay: (i % 8) * 0.25,
-            ease: "easeInOut",
+            left: `${12 + i * 11}%`,
+            top: `${15 + (i % 3) * 25}%`,
+            animationDelay: `${i * 0.5}s`,
+            animationDuration: `${4 + (i % 3)}s`,
           }}
         />
       ))}
@@ -77,40 +57,19 @@ export function Hero() {
     >
       {/* ── BACKGROUND: desktop only — sala aconchegante ── */}
       <div className="absolute inset-0 z-0 hidden lg:block" aria-hidden>
-        {/* Mesh gradient animado */}
+        {/* Mesh gradient com CSS animation - mais performante */}
         <div className="absolute inset-0">
-          <motion.div
-            className="absolute inset-0 opacity-60"
+          <div
+            className="absolute inset-0 opacity-50 animate-pulse-slow"
             style={{
               background: "radial-gradient(ellipse 80% 60% at 20% 40%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)",
             }}
-            animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.4, 0.6, 0.4],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
-          <motion.div
-            className="absolute inset-0 opacity-40"
+          <div
+            className="absolute inset-0 opacity-35 animate-pulse-slower"
             style={{
               background: "radial-gradient(ellipse 60% 80% at 80% 20%, rgba(147, 51, 234, 0.12) 0%, transparent 50%)",
             }}
-            animate={{
-              scale: [1.1, 1, 1.1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          />
-          <motion.div
-            className="absolute inset-0 opacity-30"
-            style={{
-              background: "radial-gradient(ellipse 50% 50% at 60% 70%, rgba(236, 72, 153, 0.1) 0%, transparent 50%)",
-            }}
-            animate={{
-              scale: [1, 1.15, 1],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           />
         </div>
         
@@ -131,13 +90,11 @@ export function Hero() {
         <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-black/60 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/70 to-transparent" />
 
-        {/* Glow animado da TV — posição da TV na arte desktop */}
-        <motion.div
+        {/* Glow da TV — CSS animation */}
+        <div
           aria-hidden
-          className="pointer-events-none absolute z-10"
+          className="pointer-events-none absolute z-10 animate-pulse-slow"
           style={{ right: "14%", top: "22%", width: "38%", height: "40%" }}
-          animate={{ opacity: [0.35, 0.65, 0.35] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
         >
           {/* Halo principal azul */}
           <div
@@ -147,15 +104,7 @@ export function Hero() {
               filter: "blur(18px)",
             }}
           />
-          {/* Reflexo no rack — linha horizontal suave na parte inferior */}
-          <div
-            className="absolute bottom-0 left-[10%] h-6 w-[80%]"
-            style={{
-              background: "radial-gradient(ellipse 80% 100% at 50% 0%, rgba(59,130,246,0.22) 0%, transparent 100%)",
-              filter: "blur(8px)",
-            }}
-          />
-        </motion.div>
+        </div>
       </div>
 
       {/* ── DESKTOP layout ── */}
@@ -237,20 +186,16 @@ export function Hero() {
               { icon: Clock, label: "Configuração em minutos" },
               { icon: Headphones, label: "Suporte humano" },
               { icon: BadgeCheck, label: "Sem fidelidade" },
-            ].map(({ icon: Icon, label }, i) => (
-              <motion.span
+            ].map(({ icon: Icon, label }) => (
+              <span
                 key={label}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.6 + i * 0.12 }}
-                whileHover={{ scale: 1.05 }}
-                className="inline-flex items-center gap-1.5 text-[0.8rem] font-medium text-white/45"
+                className="inline-flex items-center gap-1.5 text-[0.8rem] font-medium text-white/45 transition-transform hover:scale-105"
               >
                 <span className="flex size-5 items-center justify-center rounded-full border border-white/15 bg-white/[0.07]">
                   <Icon className="size-2.5 text-white/60" />
                 </span>
                 {label}
-              </motion.span>
+              </span>
             ))}
           </motion.div>
           
@@ -262,16 +207,13 @@ export function Hero() {
             className="mt-8 flex items-center gap-3"
           >
             <div className="flex -space-x-2">
-              {[...Array(4)].map((_, i) => (
-                <motion.div
+              {["C", "P", "P", "+"].map((letter, i) => (
+                <div
                   key={i}
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.9 + i * 0.08 }}
                   className="flex size-8 items-center justify-center rounded-full border-2 border-background bg-gradient-to-br from-primary/80 to-primary text-[0.65rem] font-bold text-white"
                 >
-                  {["C", "P", "P", "+"][i]}
-                </motion.div>
+                  {letter}
+                </div>
               ))}
             </div>
             <div className="flex flex-col">
@@ -280,7 +222,7 @@ export function Hero() {
                 <span className="text-sm font-semibold text-white">+2.500 clientes</span>
               </div>
               <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, i) => (
+                {[0, 1, 2, 3, 4].map((i) => (
                   <Star key={i} className="size-3 fill-amber-400 text-amber-400" />
                 ))}
                 <span className="ml-1 text-xs text-white/50">satisfeitos</span>
