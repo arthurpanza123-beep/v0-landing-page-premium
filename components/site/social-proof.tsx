@@ -1,60 +1,50 @@
 "use client"
 
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react"
+import { motion } from "motion/react"
 import { useEffect, useRef, useState } from "react"
-import { Star } from "lucide-react"
-import Image from "next/image"
+import { Clock, HeartHandshake, Tv2, Ban, MessageCircle, ArrowRight, Zap, Users, Shield } from "lucide-react"
 import { Container, Eyebrow } from "./section"
+import { whatsappLink } from "@/lib/site"
 
 const STATS = [
-  { value: 800, suffix: "+", label: "Clientes atendidos" },
-  { value: 98, suffix: "%", label: "Recomendam" },
-  { value: 5, suffix: " min", label: "Tempo médio de ativação" },
-  { value: 4.8, suffix: "/5", label: "Avaliação média", isFloat: true },
+  { value: 800, suffix: "+", label: "Clientes atendidos", icon: Users },
+  { value: 98, suffix: "%", label: "Recomendam", icon: HeartHandshake },
+  { value: 5, suffix: " min", label: "Ativação média", icon: Zap },
+  { value: 4.8, suffix: "/5", label: "Avaliação", isFloat: true, icon: Shield },
 ]
 
-const TESTIMONIALS = [
+const DIFFERENTIALS = [
   {
-    name: "Rafaela M.",
-    location: "São Paulo, SP",
-    rating: 5,
-    text: "Configuraram na hora, minha TV LG ficou perfeita. O suporte foi melhor do que qualquer empresa grande que já usei.",
-    initials: "RM",
+    icon: Zap,
+    title: "Ativação rápida",
+    desc: "Em minutos você já está assistindo. Sem burocracia, sem espera.",
+    color: "text-amber-400",
+    bgColor: "bg-amber-400/10",
+    borderColor: "border-amber-400/25",
   },
   {
-    name: "Carlos S.",
-    location: "Rio de Janeiro, RJ",
-    rating: 5,
-    text: "Não esperava atendimento tão rápido. Em menos de 10 minutos tava assistindo. Recomendo demais.",
-    initials: "CS",
+    icon: HeartHandshake,
+    title: "Suporte humano",
+    desc: "Atendimento real pelo WhatsApp. Nada de robôs ou respostas automáticas.",
+    color: "text-green-400",
+    bgColor: "bg-green-400/10",
+    borderColor: "border-green-400/25",
   },
   {
-    name: "Juliana F.",
-    location: "Belo Horizonte, MG",
-    rating: 5,
-    text: "Perfeito para quem não entende de tecnologia. Me guiaram passo a passo sem eu precisar saber nada.",
-    initials: "JF",
+    icon: Tv2,
+    title: "Multi-dispositivos",
+    desc: "Funciona na TV, celular, tablet e TV Box. Use onde preferir.",
+    color: "text-blue-400",
+    bgColor: "bg-blue-400/10",
+    borderColor: "border-blue-400/25",
   },
   {
-    name: "Roberto L.",
-    location: "Curitiba, PR",
-    rating: 5,
-    text: "Assisto futebol ao vivo sem travar. O preço cabe no bolso e o atendimento é top. Vale muito a pena.",
-    initials: "RL",
-  },
-  {
-    name: "Fernanda C.",
-    location: "Fortaleza, CE",
-    rating: 5,
-    text: "Uso no celular e na TV ao mesmo tempo. Nunca tive problema. Suporte sempre responde rápido.",
-    initials: "FC",
-  },
-  {
-    name: "Marcos A.",
-    location: "Porto Alegre, RS",
-    rating: 5,
-    text: "Já testei outros serviços. A Central Play Plus é diferente. Tem suporte de verdade, não é robô.",
-    initials: "MA",
+    icon: Ban,
+    title: "Sem fidelidade",
+    desc: "Cancele quando quiser, sem multa e sem complicação.",
+    color: "text-rose-400",
+    bgColor: "bg-rose-400/10",
+    borderColor: "border-rose-400/25",
   },
 ]
 
@@ -106,72 +96,19 @@ function AnimatedCount({
   )
 }
 
-function TestimonialCard({
-  t,
-  index,
-}: {
-  t: (typeof TESTIMONIALS)[number]
-  index: number
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className="group flex flex-col justify-between rounded-[1.5rem] border border-white/8 bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-amber-400/20 hover:bg-white/[0.05]"
-    >
-      {/* Stars */}
-      <div className="flex gap-1">
-        {Array.from({ length: t.rating }).map((_, i) => (
-          <Star key={i} className="size-[0.9rem] fill-amber-400 text-amber-400" />
-        ))}
-      </div>
-
-      {/* Quote */}
-      <p className="mt-5 text-[0.9rem] leading-[1.7] text-white/75">&ldquo;{t.text}&rdquo;</p>
-
-      {/* Author */}
-      <div className="mt-7 flex items-center gap-3.5">
-        <div className="flex size-11 shrink-0 items-center justify-center rounded-full border border-primary/25 bg-primary/10 text-[0.8rem] font-bold text-primary">
-          {t.initials}
-        </div>
-        <div>
-          <p className="text-[0.9rem] font-semibold text-white">{t.name}</p>
-          <p className="mt-0.5 text-[0.8rem] text-white/45">{t.location}</p>
-        </div>
-        <span className="ml-auto flex size-7 items-center justify-center rounded-full bg-whatsapp/15">
-          <Star className="size-3 fill-whatsapp text-whatsapp" />
-        </span>
-      </div>
-    </motion.div>
-  )
-}
-
 export function SocialProof() {
   return (
-    <section id="depoimentos" className="relative py-20 sm:py-32 lg:py-40">
-      {/* Background image */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <Image
-          src="/images/social-proof-bg.png"
-          alt=""
-          fill
-          className="object-cover opacity-15"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[oklch(0.11_0.018_264)] via-transparent to-[oklch(0.11_0.018_264)]" />
-      </div>
-
-      {/* Warm glow accents */}
+    <section id="diferenciais" className="relative py-20 sm:py-32 lg:py-40">
+      {/* Ambient glows */}
       <div
         aria-hidden
-        className="pointer-events-none absolute left-0 top-[30%] -z-10 h-[400px] w-[400px] -translate-x-1/2 rounded-full opacity-12"
-        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.35) 0%, transparent 70%)", filter: "blur(70px)" }}
+        className="pointer-events-none absolute left-0 top-[30%] -z-10 h-[400px] w-[400px] -translate-x-1/2 rounded-full opacity-15"
+        style={{ background: "radial-gradient(ellipse, oklch(0.62 0.18 255 / 0.35) 0%, transparent 70%)", filter: "blur(80px)" }}
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute right-0 bottom-[20%] -z-10 h-[350px] w-[350px] translate-x-1/2 rounded-full opacity-10"
-        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.3) 0%, transparent 70%)", filter: "blur(60px)" }}
+        className="pointer-events-none absolute right-0 bottom-[20%] -z-10 h-[350px] w-[350px] translate-x-1/2 rounded-full opacity-12"
+        style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65 / 0.3) 0%, transparent 70%)", filter: "blur(70px)" }}
       />
 
       <Container>
@@ -183,19 +120,19 @@ export function SocialProof() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <Eyebrow>Prova social</Eyebrow>
-            <h2 className="mt-5 text-balance text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-[3.1rem] lg:leading-[1.06]">
-              Quem já usa,{" "}
-              <span className="text-muted-foreground">aprova.</span>
+            <Eyebrow>Por que escolher a Central Play Plus?</Eyebrow>
+            <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[3rem] lg:leading-[1.08]">
+              Simples, rápido e{" "}
+              <span className="text-muted-foreground">sem complicação.</span>
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-white/55 sm:text-lg">
-              Centenas de clientes atendidos. Atendimento humano, ativação rápida e conteúdo de qualidade.
+              Centenas de clientes satisfeitos. Atendimento humano de verdade, ativação rápida e suporte contínuo.
             </p>
           </motion.div>
         </div>
 
-        {/* Stats */}
-        <div className="mx-auto mt-16 grid max-w-4xl grid-cols-2 gap-5 sm:grid-cols-4 sm:gap-6">
+        {/* Stats row */}
+        <div className="mx-auto mt-14 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-5">
           {STATS.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -203,26 +140,66 @@ export function SocialProof() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: i * 0.1 }}
-              className="group flex flex-col items-center rounded-[1.5rem] border border-white/6 bg-white/[0.03] px-4 py-8 text-center transition-all duration-500 hover:border-primary/20 hover:bg-white/[0.05]"
+              className="group flex flex-col items-center rounded-2xl border border-white/8 bg-white/[0.03] px-4 py-6 text-center transition-all duration-500 hover:border-primary/20 hover:bg-white/[0.05] sm:py-8"
             >
-              <span className="text-[2rem] font-bold tracking-[-0.02em] text-white sm:text-[2.5rem]">
+              <div className="mb-3 flex size-10 items-center justify-center rounded-xl border border-primary/25 bg-primary/10">
+                <stat.icon className="size-5 text-primary" />
+              </div>
+              <span className="text-2xl font-bold tracking-[-0.02em] text-white sm:text-[2rem]">
                 <AnimatedCount
                   target={stat.value}
                   suffix={stat.suffix}
                   isFloat={stat.isFloat}
                 />
               </span>
-      <span className="mt-2.5 text-[0.8rem] text-white/50">{stat.label}</span>
+              <span className="mt-1.5 text-[0.75rem] text-white/50 sm:text-[0.8rem]">{stat.label}</span>
             </motion.div>
           ))}
         </div>
 
-        {/* Testimonials grid */}
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {TESTIMONIALS.map((t, i) => (
-            <TestimonialCard key={t.name} t={t} index={i} />
+        {/* Differentials grid */}
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+          {DIFFERENTIALS.map((item, i) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className={`group relative overflow-hidden rounded-2xl border ${item.borderColor} bg-gradient-to-b from-white/[0.04] to-white/[0.01] p-6 transition-all duration-500 hover:-translate-y-1 hover:bg-white/[0.05] sm:p-7`}
+            >
+              <div className={`mb-4 flex size-12 items-center justify-center rounded-xl ${item.bgColor}`}>
+                <item.icon className={`size-6 ${item.color}`} />
+              </div>
+              <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+              <p className="mt-2 text-[0.85rem] leading-relaxed text-white/55">{item.desc}</p>
+            </motion.div>
           ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-12 flex flex-col items-center gap-4 rounded-2xl border border-white/8 bg-white/[0.03] px-6 py-8 text-center sm:flex-row sm:justify-between sm:px-8 sm:text-left"
+        >
+          <div>
+            <p className="text-lg font-semibold text-white">Ficou com alguma dúvida?</p>
+            <p className="mt-1 text-[0.9rem] text-white/55">Nossa equipe está online agora para te ajudar.</p>
+          </div>
+          <a
+            href={whatsappLink("Olá! Tenho algumas dúvidas sobre a Central Play Plus.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-whatsapp px-6 py-3.5 text-[0.9rem] font-semibold text-white transition-all duration-300 hover:bg-whatsapp/90"
+          >
+            <MessageCircle className="size-4" />
+            Falar no WhatsApp
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+          </a>
+        </motion.div>
       </Container>
     </section>
   )
