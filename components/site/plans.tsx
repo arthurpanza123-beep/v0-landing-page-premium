@@ -126,7 +126,7 @@ export function Plans() {
         </Stagger>
 
         <Reveal delay={0.1} className="mt-12 text-center text-sm text-muted-foreground">
-          Pagamento à vista no Pix • Sem renovação automática • Cancele quando quiser
+          Pagamento à vista no Pix &bull; Sem renovação automática &bull; Ativação no mesmo dia
         </Reveal>
       </Container>
     </section>

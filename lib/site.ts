@@ -35,7 +35,7 @@ export const PLANS: Plan[] = [
     price: "20",
     period: "/mês",
     description: "Para começar hoje com praticidade.",
-    features: ["Configuração guiada", "Suporte humano", "Ativação imediata", "Sem fidelidade"],
+    features: ["Configuração guiada pelo WhatsApp", "Suporte humano incluído", "Ativação no mesmo dia", "+30.000 conteúdos disponíveis"],
     whatsappMessage: "Olá, tudo bom?\nVim pelo site e gostaria do plano Mensal.",
   },
   {
@@ -47,7 +47,7 @@ export const PLANS: Plan[] = [
     description: "Economia e continuidade.",
     highlight: true,
     badge: "Mais escolhido",
-    features: ["Configuração guiada", "Suporte humano", "Ativação imediata", "Sem fidelidade"],
+    features: ["Configuração guiada pelo WhatsApp", "Suporte humano incluído", "Ativação no mesmo dia", "+30.000 conteúdos disponíveis"],
     whatsappMessage: "Olá, tudo bom?\nVim pelo site e gostaria do plano Trimestral.",
   },
   {
@@ -57,7 +57,7 @@ export const PLANS: Plan[] = [
     period: "/6 meses",
     equivalent: "equivalente a R$ 15,00/mês",
     description: "Mais tempo de uso com melhor custo-benefício.",
-    features: ["Configuração guiada", "Suporte humano", "Ativação imediata", "Sem fidelidade"],
+    features: ["Configuração guiada pelo WhatsApp", "Suporte humano incluído", "Ativação no mesmo dia", "+30.000 conteúdos disponíveis"],
     whatsappMessage: "Olá, tudo bom?\nVim pelo site e gostaria do plano Semestral.",
   },
   {
@@ -67,7 +67,7 @@ export const PLANS: Plan[] = [
     period: "/ano",
     equivalent: "equivalente a R$ 12,50/mês",
     description: "A opção mais econômica para o ano todo.",
-    features: ["Configuração guiada", "Suporte humano", "Ativação imediata", "Sem fidelidade"],
+    features: ["Configuração guiada pelo WhatsApp", "Suporte humano incluído", "Ativação no mesmo dia", "+30.000 conteúdos disponíveis"],
     whatsappMessage: "Olá, tudo bom?\nVim pelo site e gostaria do plano Anual.",
   },
 ]

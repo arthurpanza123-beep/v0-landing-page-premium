@@ -9,7 +9,7 @@ const CATEGORIES = [
     id: "filmes",
     icon: Film,
     label: "Filmes",
-    count: "+5.000",
+    count: "+15.000",
     gradient: "from-blue-500/20 via-blue-600/10 to-transparent",
     iconBg: "bg-blue-500/15",
     iconColor: "text-blue-400",
@@ -18,7 +18,7 @@ const CATEGORIES = [
     id: "series",
     icon: Tv,
     label: "Séries",
-    count: "+2.000",
+    count: "+5.000",
     gradient: "from-purple-500/20 via-purple-600/10 to-transparent",
     iconBg: "bg-purple-500/15",
     iconColor: "text-purple-400",
@@ -27,7 +27,7 @@ const CATEGORIES = [
     id: "canais",
     icon: Radio,
     label: "Canais ao Vivo",
-    count: "+200",
+    count: "+1.500",
     gradient: "from-emerald-500/20 via-emerald-600/10 to-transparent",
     iconBg: "bg-emerald-500/15",
     iconColor: "text-emerald-400",
@@ -45,7 +45,7 @@ const CATEGORIES = [
     id: "infantil",
     icon: Baby,
     label: "Infantil",
-    count: "+500",
+    count: "+2.000",
     gradient: "from-pink-500/20 via-pink-600/10 to-transparent",
     iconBg: "bg-pink-500/15",
     iconColor: "text-pink-400",
@@ -54,13 +54,15 @@ const CATEGORIES = [
 
 const HIGHLIGHTS = [
   "Lançamentos de cinema",
-  "Séries completas",
-  "Canais de notícias",
-  "Campeonatos nacionais",
+  "Séries completas dubladas",
+  "Canais nacionais e internacionais",
+  "Futebol ao vivo",
   "Desenhos animados",
   "Documentários",
-  "Conteúdo 4K",
+  "Conteúdo 4K Ultra HD",
   "Legendado e dublado",
+  "Filmes clássicos",
+  "Reality shows",
 ]
 
 export function Catalog() {
@@ -80,7 +82,7 @@ export function Catalog() {
               Tudo em um só lugar
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-pretty text-base leading-relaxed text-white/55">
-              Filmes, séries, canais ao vivo, futebol e conteúdo infantil. Escolha o que assistir, quando quiser.
+              Mais de 30.000 conteúdos entre filmes, séries, canais ao vivo, futebol e infantil — tudo disponível na hora.
             </p>
           </motion.div>
         </div>
@@ -137,9 +139,9 @@ export function Catalog() {
           className="mx-auto mt-10 flex max-w-2xl items-center justify-center divide-x divide-white/10 rounded-2xl border border-white/8 bg-white/[0.03] py-5 sm:py-6"
         >
           {[
-            { value: "+10.000", label: "Títulos" },
-            { value: "+200", label: "Canais" },
-            { value: "4K", label: "Qualidade" },
+            { value: "+30.000", label: "Conteúdos" },
+            { value: "+1.500", label: "Canais ao vivo" },
+            { value: "4K", label: "Ultra HD" },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-1 flex-col items-center px-4 sm:px-8">
               <span className="text-xl font-bold text-white sm:text-2xl">{stat.value}</span>
