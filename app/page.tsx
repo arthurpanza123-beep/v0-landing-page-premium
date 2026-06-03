@@ -14,12 +14,9 @@ import { Footer } from "@/components/site/footer"
 import { WhatsappFloat } from "@/components/site/whatsapp-float"
 import { Ambient } from "@/components/site/ambient"
 import { SectionDivider } from "@/components/site/section-divider"
-import { CursorGlow } from "@/components/site/cursor-glow"
-
 export default function Page() {
   return (
     <>
-      <CursorGlow />
       <Ambient />
       <Header />
       <main className="relative">

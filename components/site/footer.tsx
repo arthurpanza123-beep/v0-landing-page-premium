@@ -1,4 +1,4 @@
-import { MessageCircle, Clock, Headphones, BadgeCheck, Phone, Instagram, Shield, CreditCard } from "lucide-react"
+import { MessageCircle, Clock, Headphones, BadgeCheck, Phone, Instagram, Facebook, Shield, CreditCard } from "lucide-react"
 import { Logo } from "./logo"
 import { Container } from "./section"
 import { WHATSAPP_DEFAULT, WHATSAPP_NUMBER } from "@/lib/site"
@@ -74,11 +74,22 @@ export function Footer() {
             {/* Social links */}
             <div className="mt-5 flex items-center gap-3">
               <a
-                href="#"
-                className="flex size-9 items-center justify-center rounded-xl border border-border/50 bg-card/50 text-muted-foreground transition-all duration-300 hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
+                href="https://www.instagram.com/centralplay.plus/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex size-9 items-center justify-center rounded-xl border border-border/50 bg-card/50 text-muted-foreground transition-all duration-300 hover:border-pink-500/30 hover:bg-pink-500/10 hover:text-pink-400"
                 aria-label="Instagram"
               >
                 <Instagram className="size-4" />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61579501032576"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex size-9 items-center justify-center rounded-xl border border-border/50 bg-card/50 text-muted-foreground transition-all duration-300 hover:border-blue-500/30 hover:bg-blue-500/10 hover:text-blue-400"
+                aria-label="Facebook"
+              >
+                <Facebook className="size-4" />
               </a>
             </div>
             
