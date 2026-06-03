@@ -7,6 +7,8 @@ import {
   Headphones,
   BadgeCheck,
   MessageCircle,
+  Users,
+  Star,
 } from "lucide-react"
 import Image from "next/image"
 import { useRef } from "react"
@@ -16,13 +18,34 @@ import { TypingText } from "./micro/typing-text"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
-// Compatibility devices shown at the bottom of the hero
-const DEVICES = [
-  { icon: "📺", label: "Smart TV" },
-  { icon: "📦", label: "TV Box" },
-  { icon: "📱", label: "Celular" },
-  { icon: "⬛", label: "Tablet" },
-]
+// Floating particles component
+function FloatingParticles() {
+  return (
+    <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute size-1 rounded-full bg-primary/30"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0.2, 0.6, 0.2],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 4 + Math.random() * 3,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  )
+}
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -42,6 +65,45 @@ export function Hero() {
     >
       {/* ── BACKGROUND: desktop only — sala aconchegante ── */}
       <div className="absolute inset-0 z-0 hidden lg:block" aria-hidden>
+        {/* Mesh gradient animado */}
+        <div className="absolute inset-0">
+          <motion.div
+            className="absolute inset-0 opacity-60"
+            style={{
+              background: "radial-gradient(ellipse 80% 60% at 20% 40%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)",
+            }}
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.4, 0.6, 0.4],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div
+            className="absolute inset-0 opacity-40"
+            style={{
+              background: "radial-gradient(ellipse 60% 80% at 80% 20%, rgba(147, 51, 234, 0.12) 0%, transparent 50%)",
+            }}
+            animate={{
+              scale: [1.1, 1, 1.1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          />
+          <motion.div
+            className="absolute inset-0 opacity-30"
+            style={{
+              background: "radial-gradient(ellipse 50% 50% at 60% 70%, rgba(236, 72, 153, 0.1) 0%, transparent 50%)",
+            }}
+            animate={{
+              scale: [1, 1.15, 1],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          />
+        </div>
+        
+        <FloatingParticles />
+        
         <motion.div style={{ y: bgY }} className="absolute inset-0">
           <Image
             src="/images/hero-room-final.png"
@@ -166,9 +228,10 @@ export function Hero() {
             ].map(({ icon: Icon, label }, i) => (
               <motion.span
                 key={label}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.57 + i * 0.07 }}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 + i * 0.12 }}
+                whileHover={{ scale: 1.05 }}
                 className="inline-flex items-center gap-1.5 text-[0.8rem] font-medium text-white/45"
               >
                 <span className="flex size-5 items-center justify-center rounded-full border border-white/15 bg-white/[0.07]">
@@ -177,6 +240,40 @@ export function Hero() {
                 {label}
               </motion.span>
             ))}
+          </motion.div>
+          
+          {/* Social proof counter */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.85, ease }}
+            className="mt-8 flex items-center gap-3"
+          >
+            <div className="flex -space-x-2">
+              {[...Array(4)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: 0.9 + i * 0.08 }}
+                  className="flex size-8 items-center justify-center rounded-full border-2 border-background bg-gradient-to-br from-primary/80 to-primary text-[0.65rem] font-bold text-white"
+                >
+                  {["C", "P", "P", "+"][i]}
+                </motion.div>
+              ))}
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1.5">
+                <Users className="size-3.5 text-primary" />
+                <span className="text-sm font-semibold text-white">+2.500 clientes</span>
+              </div>
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="size-3 fill-amber-400 text-amber-400" />
+                ))}
+                <span className="ml-1 text-xs text-white/50">satisfeitos</span>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       </div>

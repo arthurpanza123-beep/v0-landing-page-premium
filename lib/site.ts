@@ -21,6 +21,7 @@ export type Plan = {
   price: string
   period: string
   equivalent?: string
+  savings?: string
   description: string
   highlight?: boolean
   badge?: string
@@ -44,6 +45,7 @@ export const PLANS: Plan[] = [
     price: "50",
     period: "/3 meses",
     equivalent: "equivalente a R$ 16,67/mês",
+    savings: "Economize R$ 10",
     description: "Economia e continuidade.",
     highlight: true,
     badge: "Mais escolhido",
@@ -56,6 +58,7 @@ export const PLANS: Plan[] = [
     price: "90",
     period: "/6 meses",
     equivalent: "equivalente a R$ 15,00/mês",
+    savings: "Economize R$ 30",
     description: "Mais tempo de uso com melhor custo-benefício.",
     features: ["Configuração guiada pelo WhatsApp", "Suporte humano incluído", "Ativação no mesmo dia", "+30.000 conteúdos disponíveis"],
     whatsappMessage: "Olá, tudo bom?\nVim pelo site e gostaria do plano Semestral.",
@@ -66,6 +69,7 @@ export const PLANS: Plan[] = [
     price: "150",
     period: "/ano",
     equivalent: "equivalente a R$ 12,50/mês",
+    savings: "Economize R$ 90",
     description: "A opção mais econômica para o ano todo.",
     features: ["Configuração guiada pelo WhatsApp", "Suporte humano incluído", "Ativação no mesmo dia", "+30.000 conteúdos disponíveis"],
     whatsappMessage: "Olá, tudo bom?\nVim pelo site e gostaria do plano Anual.",
