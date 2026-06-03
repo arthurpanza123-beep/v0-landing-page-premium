@@ -12,6 +12,7 @@ import Image from "next/image"
 import { useRef } from "react"
 import { WHATSAPP_DEFAULT } from "@/lib/site"
 import { AnnouncementBadge } from "./micro/announcement-badge"
+import { TypingText } from "./micro/typing-text"
 
 const ease = [0.22, 1, 0.36, 1] as const
 
@@ -117,9 +118,8 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.26, ease }}
             className="mt-6 max-w-[420px] text-pretty text-[0.975rem] leading-[1.7] text-white/55"
           >
-            Você escolhe o plano, fala com nossa equipe e nós te ajudamos a
-            configurar sua TV, celular ou TV Box com suporte humano pelo
-            WhatsApp.
+            Configure <TypingText /> em minutos, com suporte humano pelo
+            WhatsApp. Sem complicação, sem fidelidade.
           </motion.p>
 
           <motion.div

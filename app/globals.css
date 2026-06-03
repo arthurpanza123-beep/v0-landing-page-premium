@@ -4,10 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: oklch(0.11 0.018 264);
+  --background: oklch(0.14 0.022 250);
   --foreground: oklch(0.97 0.005 264);
-  --card: oklch(0.15 0.02 264);
-  --warm: oklch(0.72 0.14 65);
+  --card: oklch(0.18 0.025 250);
+  --warm: oklch(0.75 0.12 55);
   --card-foreground: oklch(0.97 0.005 264);
   --popover: oklch(0.16 0.015 264);
   --popover-foreground: oklch(0.97 0.005 264);
@@ -130,6 +130,7 @@
   }
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 }
 
@@ -222,6 +223,11 @@
   .shadow-soft {
     box-shadow: 0 24px 80px -32px oklch(0 0 0 / 0.7);
   }
+}
+
+@keyframes shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
 }
 
 @keyframes float-slow {

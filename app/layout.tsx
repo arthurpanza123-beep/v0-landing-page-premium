@@ -38,8 +38,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className={`${geist.variable} ${geistMono.variable} bg-background`}>
-      <body className="font-sans antialiased grain">
+    <html lang="pt-BR" className={`${geist.variable} ${geistMono.variable} bg-background overflow-x-hidden`}>
+      <body className="font-sans antialiased grain overflow-x-hidden">
         {/* Ambient background gradients for cozy atmosphere */}
         <div
           aria-hidden
@@ -47,18 +47,18 @@ export default function RootLayout({
         >
           {/* Blue glow — top left */}
           <div
-            className="absolute -left-[20%] -top-[10%] h-[600px] w-[800px] rounded-full opacity-[0.06]"
+            className="absolute -left-[20%] -top-[10%] h-[600px] w-[800px] rounded-full opacity-[0.10]"
             style={{ background: "radial-gradient(ellipse, oklch(0.62 0.18 255) 0%, transparent 70%)", filter: "blur(100px)" }}
           />
           {/* Warm glow — bottom right */}
           <div
-            className="absolute -bottom-[15%] -right-[15%] h-[500px] w-[700px] rounded-full opacity-[0.05]"
-            style={{ background: "radial-gradient(ellipse, oklch(0.72 0.14 65) 0%, transparent 70%)", filter: "blur(100px)" }}
+            className="absolute -bottom-[15%] -right-[15%] h-[500px] w-[700px] rounded-full opacity-[0.08]"
+            style={{ background: "radial-gradient(ellipse, oklch(0.75 0.12 55) 0%, transparent 70%)", filter: "blur(100px)" }}
           />
-          {/* Subtle center vignette */}
+          {/* Warm glow — top right for balance */}
           <div
-            className="absolute inset-0"
-            style={{ background: "radial-gradient(ellipse 80% 60% at 50% 50%, transparent 30%, oklch(0.08 0.02 264 / 0.5) 100%)" }}
+            className="absolute -right-[10%] top-[20%] h-[400px] w-[500px] rounded-full opacity-[0.06]"
+            style={{ background: "radial-gradient(ellipse, oklch(0.75 0.12 55) 0%, transparent 70%)", filter: "blur(80px)" }}
           />
         </div>
         {children}
