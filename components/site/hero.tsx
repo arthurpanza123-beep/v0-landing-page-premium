@@ -117,7 +117,7 @@ export function Hero() {
             transition={{ duration: 0.9, delay: 0.26, ease }}
             className="mt-6 max-w-[420px] text-pretty text-[0.975rem] leading-[1.7] text-white/60"
           >
-            Você escolhe o plano, chama no WhatsApp e nossa equipe configura tudo com suporte humano. Simples assim.
+            Ative em <TypingText /> com suporte humano pelo WhatsApp. Sem complicação, sem fidelidade.
           </motion.p>
 
           <motion.div
@@ -279,7 +279,7 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.22, ease }}
             className="mt-5 max-w-[340px] text-pretty text-[0.9rem] leading-[1.75] text-white/70"
           >
-            Você escolhe o plano, chama no WhatsApp e nossa equipe configura tudo com suporte humano.
+            Ative em <TypingText /> com suporte humano pelo WhatsApp. Sem complicação.
           </motion.p>
 
           {/* Botões empilhados, largura total */}
