@@ -8,31 +8,31 @@ import { whatsappLink } from "@/lib/site"
 const BENEFITS = [
   {
     icon: Clock,
-    title: "Ativação em minutos",
-    description: "Configure e comece a assistir no mesmo dia. Sem espera, sem burocracia.",
+    title: "Ativação no mesmo dia",
+    description: "Fechou o plano? Começamos a configurar na hora. Você assiste hoje mesmo.",
     highlight: "5 min",
-    highlightLabel: "tempo médio",
+    highlightLabel: "para ativar",
   },
   {
     icon: HeartHandshake,
-    title: "Suporte humano real",
-    description: "Fale com pessoas de verdade pelo WhatsApp. Nada de robôs ou respostas automáticas.",
-    highlight: "24h",
-    highlightLabel: "disponível",
+    title: "Suporte que responde de verdade",
+    description: "Atendimento humano pelo WhatsApp. Sem robô, sem espera, sem enrolação.",
+    highlight: "Real",
+    highlightLabel: "pessoa de verdade",
   },
   {
     icon: Tv2,
-    title: "Funciona em qualquer tela",
-    description: "Smart TV, celular, tablet, TV Box ou Fire Stick. Escolha onde assistir.",
-    highlight: "5+",
-    highlightLabel: "dispositivos",
+    title: "Conteúdo completo",
+    description: "Filmes, séries, canais ao vivo, futebol e infantil. Tudo num só lugar.",
+    highlight: "+5.000",
+    highlightLabel: "conteúdos",
   },
   {
     icon: Ban,
-    title: "Cancele quando quiser",
-    description: "Sem contrato de fidelidade, sem multa. Você tem total liberdade.",
-    highlight: "0",
-    highlightLabel: "multa",
+    title: "Sem surpresas no final",
+    description: "Preço fechado, sem taxa extra e sem multa se quiser cancelar.",
+    highlight: "Zero",
+    highlightLabel: "taxas ocultas",
   },
 ]
 
@@ -57,10 +57,10 @@ export function SocialProof() {
           >
             <Eyebrow>Por que a Central Play Plus?</Eyebrow>
             <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-[2.75rem] lg:leading-[1.1]">
-              Simples, rápido e sem complicação
+              O que nos diferencia
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-pretty text-base leading-relaxed text-white/55">
-              Atendimento humano de verdade, ativação no mesmo dia e suporte sempre que precisar.
+              Não somos só mais um serviço. Somos uma equipe que cuida de você do começo ao fim.
             </p>
           </motion.div>
         </div>
